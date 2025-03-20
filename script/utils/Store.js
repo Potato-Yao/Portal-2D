@@ -33,7 +33,14 @@ class Store {
     }
 
     encode() {
-        const param = new URLSearchParams(this.export());
+        const data = new Map();
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith(Store.prefix)) {
+                data.set(key, localStorage.getItem(key));
+            }
+        }
+        const param = new URLSearchParams(data);
 
         return param.toString();
     }
