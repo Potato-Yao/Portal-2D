@@ -27,15 +27,15 @@ class Game {
 
         /**
          * @type {MouseManager}
-        */
+         */
         let mouse = new MouseManager(document.querySelector("#game-container"), this.canvas);
         /**
-        * @type {InputManager}
-        */
+         * @type {InputManager}
+         */
         this.inputManager = new InputManager(keyboard, mouse);
         /**
-        * @type {DataManager}
-        */
+         * @type {DataManager}
+         */
         this.dataManager = new DataManager();
 
         /**
@@ -88,7 +88,7 @@ class Game {
         this.loadBtn = document.querySelector('#control-load');
         this.loadBtn.addEventListener('click', () => this.loadPopup.show());
 
-        this.deadScreen = new DeadScreen();
+        // this.deadScreen = new DeadScreen();
 
         this.chapterNow = 'Room1';
 
@@ -106,10 +106,11 @@ class Game {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         // await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
+        await this.eventManager.loadFromURL('./assets/stages/events/' + filename);
         this.loaded = true;
-        this.view = new PortalView(this.map, this.viewData);
+        // this.view = new PortalView(this.map, this.viewData);
 
-        this.chapterNow = filename.split('.')[ 0 ];
+        this.chapterNow = filename.split('.')[0];
     }
 
     start(prev = 0) {
@@ -121,15 +122,19 @@ class Game {
             return;
         }
 
-        this.computations.push((t) => this.view.compute(t));
-        this.renderings.push(() => this.view.draw());
+        // this.computations.push((t) => this.view.compute(t));
+        // this.renderings.push(() => this.view.draw());
 
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
 
         this.renderings.push(() => this.inputManager.mouse.draw());
 
-        this.computations.push((t) => { if (this.inputManager.keyboard.isKeyDown('Esc')) { this.pause(); } });
+        this.computations.push((t) => {
+            if (this.inputManager.keyboard.isKeyDown('Esc')) {
+                this.pause();
+            }
+        });
         // this.dialogManager.prints();
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
     }
@@ -144,10 +149,10 @@ class Game {
         const now = timestamp;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.eventManager.handle();
+        await this.eventManager.handle();
 
-        this.computations.forEach((comp) => comp({ timestamp, interval }));
-        this.renderings.forEach((render) => render({ timestamp, interval }));
+        this.computations.forEach((comp) => comp({timestamp, interval}));
+        this.renderings.forEach((render) => render({timestamp, interval}));
         if (this.stop) {
             while (!this.loaded) {
                 await wait(100);
@@ -172,6 +177,7 @@ class Game {
         await wait(500);
         this.canvas.classList.remove('fadeIn');
     }
+
     async fadeOut() {
         this.canvas.classList.remove('fadeIn');
         this.canvas.classList.add('fadeOut');

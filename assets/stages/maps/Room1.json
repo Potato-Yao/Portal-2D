@@ -2718,6 +2718,9 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
+                            "text": "hihihihi",
+                        },
+                        {
                             "text": "【Tips】单击屏幕进入游戏"
                         },
                         {
@@ -2729,6 +2732,9 @@ window.$game.dataManager.resolve(
                         {
                             "text": "【Tips】如果你真的切出游戏了，记得回到游戏的时候再按一遍 Ctrl"
                         }
+                    ],
+                    "options": [
+                        "a", "b", "c"
                     ]
                 },
                 {

@@ -1,9 +1,10 @@
 class DialogManager {
     constructor() {
-        this.createDialog();
         this.buffer = []; // 文本缓冲区
+        this.buttons = [];
         this.printing = false;
         this.audio = new Audio();
+        this.createDialog();
     }
 
     // 创建对话框的 DOM 元素
@@ -12,9 +13,12 @@ class DialogManager {
         let textContainer = document.querySelector(".dialogue-box");
         let name = document.createElement("div");
         let text = document.createElement("p");
+        let buttons = document.createElement("div");
         // 设置 ID 和样式
         dialog.id = "dialogue-container";
         dialog.style.display = "none";
+
+        buttons.id = "dialogue-buttons";
 
         textContainer.id = "dialogue-box";
         textContainer.classList.add("dialogue-box");
@@ -29,15 +33,19 @@ class DialogManager {
         dialog.appendChild(name);
         dialog.appendChild(textContainer);
         textContainer.appendChild(text);
+        textContainer.appendChild(buttons);
         document.getElementById("game").appendChild(dialog);
 
         // 存储 DOM 元素的引用
         this.dialog = dialog;
+        this.buttons = buttons;
         this.name = name;
         this.text = text;
     }
+
     load(data) {
         this.buffer = data.texts;
+        this.buttons = data.options;
     }
 
     async loadFromURL(url) {
@@ -49,6 +57,7 @@ class DialogManager {
             console.error('There has been a problem with your fetch operation:', error);
         }
     }
+
     async play_audio(src) {
         if (src == null) return;
         if (this.audio) this.audio.pause();
@@ -90,12 +99,20 @@ class DialogManager {
             return;
         await this.open(); // 打开对话框
         await this._prints(); // 打印文本
+        console.log("hihihi");
+        // await this.showOption();
         await this.close(); // 关闭对话框
     }
+
     clear() {
         this.buffer = [];
         this.printing = false;
     }
+
+    async showOption() {
+
+    }
+
     // 打印缓冲区中的文本
     async _prints() {
         this.printing = true;
@@ -105,32 +122,41 @@ class DialogManager {
             this.name.innerHTML = ""; // 清空名称和文本
             this.text.innerHTML = "";
             let text = content.text;
-            if (text[ 0 ] === "【") {
-                let end = text.indexOf("】");
-                let name = text.slice(1, end);
-                if (name == "要乐奈") name = "要<span>乐</span>奈"
-                else if (name == "GLaDOS") name = "GL<span>a</span>DOS"
-                else if (name == "长崎素世") name = "长崎<span>素</span>世"
-                else name = name[0] + "<span>" + name[1] + "</span>" + name.slice(2);
-                this.name.innerHTML = name; // 设置角色名称
-                text = text.slice(end + 1); // 移除名称部分
+            // if (text[0] === "【") {
+            //     let end = text.indexOf("】");
+            //     let name = text.slice(1, end);
+            //     name = name[0] + "<span>" + name[1] + "</span>" + name.slice(2);
+            //     this.name.innerHTML = name; // 设置角色名称
+            //     text = text.slice(end + 1); // 移除名称部分
+            // }
+            let texts = text.split(" ");
+            this.name.innerHTML = texts[0];
+
+            if (this.buttons.length != 0) {
+                console.log("666" + this.buttons);
             }
             let getEnd = () => {
                 let res = false;
-                window.$game.inputManager.firstDown("Enter", () => { res = true; });
-                window.$game.inputManager.firstDown("Space", () => { res = true; });
-                window.$game.inputManager.firstDown("ClickLeft", () => { res = true; });
+                window.$game.inputManager.firstDown("Enter", () => {
+                    res = true;
+                });
+                window.$game.inputManager.firstDown("Space", () => {
+                    res = true;
+                });
+                window.$game.inputManager.firstDown("ClickLeft", () => {
+                    res = true;
+                });
                 return res;
             };
             let toEnd = false;
-            this.play_audio(content.url);
-            for (let i of text.split("")) {
+            // this.play_audio(content.url);
+            for (let i = 1; i < texts.length; ++i) {
                 if (!this.printing) return;
 
                 let span = document.createElement("span");
-                span.textContent = i;
+                span.textContent = texts[i];
                 this.text.appendChild(span); // 逐字显示文本
-                if (window.$game.inputManager.isKeysDown([ "LCtrl", "RCtrl" ])) {
+                if (window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"])) {
                     await delay(10); // 控制打印速度
                     continue;
                 }
@@ -140,13 +166,13 @@ class DialogManager {
             }
 
             // 等待用户输入
-            if (!window.$game.inputManager.isKeysDown([ "LCtrl", "RCtrl" ]))
+            if (!window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"]))
                 while (
                     await (async () => {
                         await delay(100);
-                        return !getEnd() && !window.$game.inputManager.isKeysDown([ "LCtrl", "RCtrl" ]);
+                        return !getEnd() && !window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"]);
                     })()
-                );
+                    ) ;
             else await delay(100);
         }
         this.buffer = [];
