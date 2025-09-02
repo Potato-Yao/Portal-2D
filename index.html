@@ -3,9 +3,9 @@
 <html>
 
 <head>
-    <title>Portal: It's MyGO!!!!!</title>
+    <title>Exitless Day</title>
     <meta charset="utf-8">
-    <link rel="Shortcut Icon" href="./assets/ico/RanaLogo.png" type="image/x-icon" />
+    <link rel="Shortcut Icon" href="./assets/ico/exit.png" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scale=no">
     <link rel="stylesheet" type="text/css" href="./assets/style/base.css">
     <link rel="stylesheet" type="text/css" href="./assets/style/start.css">
@@ -19,24 +19,24 @@
 <body>
     <div class="menu">
         <div class="title">
-            <div class="vertical">
-                <div>传</div>
-                <div>送</div>
-            </div>
+            <!-- <div class="vertical">
+                <div>标</div>
+                <div>题</div>
+            </div> -->
             <div class="horizontal">
-                <div class="text">
-                    乐奈与抹茶奇境
+                <!-- <div class="text">
+                    Exitless <br> Day
+                </div> -->
+                <div class="icon">
+                    <img src="./assets/icon.svg" />
                 </div>
             </div>
         </div>
         <div class="button-container">
             <div class="button" id="start">开始新游戏</div>
             <div class="button" id="load">加载存档</div>
-            <div class="button" id="achievement">成就</div>
+            <div class="button" id="achievement">我们有成就吗？</div>
             <div class="button" id="exit">退出</div>
-        </div>
-        <div class="side">
-            Portal! It's MyGO!!!!!
         </div>
     </div>
 
@@ -76,24 +76,25 @@
     <script type="text/javascript" src="script/Managers/DataManager.js"></script>
 
     <script type="text/javascript">
-        const slideIn = () => {
+        const GAPTIME = 1800;
+        const fadeIn = () => {
             const transition = document.querySelector(".transition");
             transition.classList.remove("hidden");
-            transition.classList.add("slideIn");
+            transition.classList.add("fadeIn");
             setTimeout(() => {
                 transition.classList.add("hidden");
-                transition.classList.remove("slideIn");
-            }, 1800);
+                transition.classList.remove("fadeIn");
+            }, GAPTIME);
         };
 
-        const slideOut = () => {
+        const fadeOut = () => {
             const transition = document.querySelector(".transition");
             transition.classList.remove("hidden");
-            transition.classList.add("slideOut");
+            transition.classList.add("fadeOut");
             setTimeout(() => {
                 transition.classList.add("hidden");
-                transition.classList.remove("slideOut");
-            }, 1800);
+                transition.classList.remove("fadeOut");
+            }, GAPTIME);
         };
 
         window.onload = async () => {
@@ -113,7 +114,7 @@
                 window.location.href = `./game.html?${window.$store.encode()}`;
             })
 
-            slideIn();
+            fadeIn();
             if (!Auth.isAuthenticated()) {
                 Auth.toLogin();
             }
@@ -123,28 +124,31 @@
             const achievementManager = new AchievementManager();
 
             document.querySelector("#start").addEventListener("click", () => {
-                window.location.href = `./game.html?${window.$store.encode()}`;
+                fadeOut();
+                setTimeout(() => {
+                    window.location.href = `./game.html?${window.$store.encode()}`;
+                }, GAPTIME);
             });
             document.querySelector("#load").addEventListener("click", () => {
-                slideOut();
+                fadeOut();
                 setTimeout(() => {
                     document.querySelector(".menu").classList.add("hide");
                     document.querySelector(".save").classList.remove("hide");
                     load.build();
-                    slideIn();
-                }, 1800);
+                    fadeIn();
+                }, GAPTIME);
             });
             document.querySelector("#save-back").addEventListener("click", () => {
-                slideOut();
+                fadeOut();
                 setTimeout(() => {
                     document.querySelector(".save").classList.add("hide");
                     document.querySelector(".save-container").innerHTML = "";
                     document.querySelector(".menu").classList.remove("hide");
-                    slideIn();
-                }, 1800);
+                    fadeIn();
+                }, GAPTIME);
             });
             document.querySelector("#achievement").addEventListener("click", () => {
-                slideOut();
+                fadeOut();
                 if (!Store.get("achievements") || !AchievementManager.getAll().length) {
                     achievementManager.refresh();
                 }
@@ -152,19 +156,19 @@
                     document.querySelector(".menu").classList.add("hide");
                     document.querySelector(".achievementDisp").classList.remove("hide");
                     achievementDisp.disp();
-                    slideIn();
+                    fadeIn();
                     canScroll = true;
-                }, 1800);
+                }, GAPTIME);
             });
             document.querySelector("#achievement-back").addEventListener("click", () => {
-                slideOut();
+                fadeOut();
                 canScroll = false;
                 setTimeout(() => {
                     document.querySelector(".achievementDisp").classList.add("hide");
                     document.querySelector(".achievement-container > .list").innerHTML = "";
                     document.querySelector(".menu").classList.remove("hide");
-                    slideIn();
-                }, 1800);
+                    fadeIn();
+                }, GAPTIME);
             });
             document.querySelector("#exit").addEventListener("click", () => {
                 Auth.logout();
@@ -173,7 +177,8 @@
 
             document.querySelector(".achievementDisp").addEventListener("scroll", (e) => {
                 if (canScroll) {
-                    let offsetY = e.target.scrollLeft * Math.tan(10 / 180 * Math.PI)
+                    // let offsetY = e.target.scrollLeft * Math.tan(10 / 180 * Math.PI)
+					let offsetY = 0; // 去除斜向滚动
                     document.querySelector(".achievementDisp").style.setProperty("--offsetY", `${offsetY}px`);
                 }
             })

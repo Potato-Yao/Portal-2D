@@ -10,7 +10,7 @@ body {
 }
 
 :root {
-    --theme: #3388BB;
+    --theme: #193bb6;
 }
 
 .hide {
@@ -43,32 +43,29 @@ body {
     flex-direction: column;
     font-size: 4rem;
     gap: 12rem;
-    transform: skew(0, -10deg);
+    /* transform: skew(0, -10deg); */
 }
 
 .title .vertical>* {
     font-weight: 100;
 }
 
+@keyframes emergeText {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .title .horizontal {
-    font-size: 6rem;
-    font-weight: 300;
-    color: var(--theme);
-    transform: skew(0, -10deg);
-}
-
-.title .horizontal::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    animation: 1s spreadIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-
-.title .horizontal>.text {
-    margin: 0 1rem 0.5rem 1rem;
-    transform: skew(0, 0deg);
+    z-index: 1;
+    opacity: 0;
+    width: 35%;
+    height: 35%;
+    transform: skew(0, 0); /* 去掉后白块变大 */
+    animation: 1s emergeText 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 @keyframes spreadIn {
@@ -83,49 +80,78 @@ body {
     }
 }
 
+@keyframes emergeBack {
+    from {
+        background-color: var(--theme);
+        transform: scale(0.2, 0.2);
+    }
+    to {
+        background-color: #bababa;
+        transform: scale(1.2, 1.2);
+    }
+}
+
+.title .horizontal::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    animation: 1s emergeBack 1s cubic-bezier(0.23, 1, 0.32, 1) forwards; /* 原动画为上面的 spreadIn，其余参数均不变 */
+}
+
+.title .horizontal>.icon {
+    margin: 0 1rem 0.5rem 1rem;
+    transform: skew(0, 0);
+}
+.title .horizontal>.icon img {
+    width: 90%;
+    height: 90%;
+}
+
 .button-container {
+    z-index: 1;
     position: absolute;
     bottom: 0px;
     right: 0px;
     padding: 6vh 8vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
-    transform: skew(0, -10deg);
+    transform: skew(0, 0deg);
     user-select: none;
 }
 
-.button-container .button {
-    padding: 0.5rem 5rem 0.5rem 2rem;
-    text-align: start;
-    font-family: "Noto Serif", "Noto Serif SC", serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    background: var(--theme);
-    border: unset;
-    color: #ffffff;
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+.button-container .button { /* 选择.button-container下的.button子元素（游戏按钮） */
+    display: flex; /* 启用Flex布局 */
+    align-items: center; /* 文字在垂直方向居中 */
+    position: relative; /* 相对定位，作为伪元素::before的参考 */
+    cursor: pointer; /* 鼠标悬停时显示“手型”光标（提示可点击） */
+    padding: 1rem 10rem 1rem 4rem; /* 内边距：上下0.5rem，左侧2rem，右侧5rem（右侧留更多空间） */
+    text-align: center; /* 按钮内文字水平居中 */
+    font-family: "Noto Serif", "Noto Serif SC", serif; /* 按钮文字字体（衬线字体，偏复古风格） */
+    font-size: 1.5rem; /* 文字大小为1.25rem（约20px） */
+    font-weight: 600; /* 文字粗细为600（半粗体） */
+    background: #bababa; /* 按钮背景色使用全局主题色--theme */
+    border: unset; /* 清除按钮默认边框 */
+    color: var(--theme); /* 按钮文字颜色为白色 */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.button-container .button::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0.25rem;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    background: #ffffff;
+.button-container .button::before { /* 为.button元素添加伪元素（左侧白色装饰线） */
+    content: ''; /* 伪元素必须有content属性，空值表示无内容 */
+    display: block; /* 伪元素设为块级元素（可设置宽高） */
+    position: absolute; /* 绝对定位，相对于父元素.button */
+    width: 0rem; /* 装饰线宽度为0.25rem（约4px） */ /* 改为0rem以去除装饰线 */
+    height: 100%; /* 装饰线高度占满按钮 */
+    top: 0px; /* 装饰线距离按钮顶部0px */
+    left: 0px; /* 装饰线距离按钮左侧0px */
+    background: #ffffff; /* 装饰线颜色为白色 */
 }
 
-.button-container .button:hover {
-    color: var(--theme);
-    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
-    background-size: 200% 100%;
+.button-container .button:hover { /* 按钮鼠标悬停状态样式 */
+    color: #ffffff; /* 文字颜色变为全局主题色（与背景色互换） */
+    background-color: var(--theme);
 }
 
 .side {
@@ -138,112 +164,96 @@ body {
     font-style: italic;
     font-family: "Inter", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     letter-spacing: 0.05rem;
-    writing-mode: vertical-rl;
+    /* writing-mode: vertical-rl; */
     user-select: none;
 }
 
 @keyframes spreadBg {
     0% {
-        background-position: 100%;
+        background-position: 100%; /* 动画开始时背景位置在100%处 */
     }
 
     100% {
-        background-position: 0%;
+        background-position: 0%; /* 动画结束时背景位置在0%处 */
     }
 }
 
-@keyframes slideIn {
-    0% {
-        transform: translateX(-5%);
+@keyframes fadeIn {
+    from {
+        transform: scale(105%, 105%);
+        opacity: 1;
     }
-
-    100% {
-        transform: translateX(105%);
+    to {
+        transform: scale(105%, 105%);
+        opacity: 0;
     }
 }
 
-@keyframes slideOut {
-    0% {
-        transform: translateX(-105%);
+@keyframes fadeOut {
+    from {
+        transform: scale(105%, 105%);
+        opacity: 0;
     }
-
-    100% {
-        transform: translateX(0%);
+    to {
+        transform: scale(105%, 105%);
+        opacity: 1;
     }
 }
 
 .transition {
-    position: absolute;
-    top: -20vh;
-    left: 0px;
-    height: 140vh;
-    width: 100vw;
-
-    transform: skew(0, -10deg);
+    z-index: 2;
+    position: absolute; /* 绝对定位 */
+    top: -20vh; /* 距离顶部-20%视口高度（部分超出顶部） */
+    left: 0px; /* 距离左侧0像素 */
+    height: 140vh; /* 高度为140%视口高度（超出视口） */
+    width: 100vw; /* 宽度为100%视口宽度 */
+    /* transform: skew(0, -10deg); /* 沿Y轴倾斜-10度（向右倾斜） */
 }
 
 .transition.hidden {
-    display: none;
-    visibility: hidden;
+    display: none; /* 隐藏元素 */
+    visibility: hidden; /* 元素不可见 */
 }
 
 .transition > div {
-    background: var(--theme);
-    height: 25%;
-    width: 100%;
+    background: #0e0042;
+    height: 25%; /* 高度为父元素的25%（4个子元素刚好填满） */
+    width: 100%; /* 宽度为父元素的100% */
 }
 
-.transition.slideIn > div {
-    transform: translateX(-5%);
+.transition.fadeIn > div {
+    transform: scale(105%, 105%);
+    opacity: 1;
+}
+.transition.fadeOut > div {
+    transform: scale(105%, 105%);
+    opacity: 0;
 }
 
-.transition.slideOut > div {
-    width: 105%;
-    transform: translateX(-105%);
+.transition.fadeIn > div:nth-child(1) {
+    animation: 1.2s fadeIn 0.2s cubic-bezier(0.77, 0, 0.23, 1) forwards;
+}
+.transition.fadeIn > div:nth-child(2) {
+    animation: 1.2s fadeIn 0.4s cubic-bezier(0.77, 0, 0.23, 1) forwards;
+}
+.transition.fadeIn > div:nth-child(3) {
+    animation: 1.2s fadeIn 0.6s cubic-bezier(0.77, 0, 0.23, 1) forwards;
+}
+.transition.fadeIn > div:nth-child(4) {
+    animation: 1.2s fadeIn 0.8s cubic-bezier(0.77, 0, 0.23, 1) forwards;
 }
 
-.transition > div::before {
-    content: '';
-    width: 10px;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-
-    background: #ffffff;
+.transition.fadeOut > div:nth-child(1) {
+    animation: 1.2s fadeOut 0.2s cubic-bezier(0.23, 1, 0.77, 1) forwards;
 }
-
-.transition.slideIn > div::before {
-    left: 0px;
+.transition.fadeOut > div:nth-child(2) {
+    animation: 1.2s fadeOut 0.4s cubic-bezier(0.23, 1, 0.77, 1) forwards;
 }
-
-.transition.slideOut > div::before {
-    right: -10px;
+.transition.fadeOut > div:nth-child(3) {
+    animation: 1.2s fadeOut 0.6s cubic-bezier(0.23, 1, 0.77, 1) forwards;
 }
-
-.transition.slideIn > div:nth-child(1) {
-    animation: 1s slideIn calc(1 * 0.2s - 0.2s) cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-.transition.slideIn > div:nth-child(2) {
-    animation: 1s slideIn calc(2 * 0.2s - 0.2s) cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-.transition.slideIn > div:nth-child(3) {
-    animation: 1s slideIn calc(3 * 0.2s - 0.2s) cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-.transition.slideIn > div:nth-child(4) {
-    animation: 1s slideIn calc(4 * 0.2s - 0.2s) cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-
-.transition.slideOut > div:nth-child(1) {
-    animation: 1s slideOut calc(1 * 0.2s - 0.2s) cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-.transition.slideOut > div:nth-child(2) {
-    animation: 1s slideOut calc(2 * 0.2s - 0.2s) cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-.transition.slideOut > div:nth-child(3) {
-    animation: 1s slideOut calc(3 * 0.2s - 0.2s) cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-.transition.slideOut > div:nth-child(4) {
-    animation: 1s slideOut calc(4 * 0.2s - 0.2s) cubic-bezier(0.23, 1, 0.32, 1) forwards;
+.transition.fadeOut > div:nth-child(4) {
+    animation: 1.2s fadeOut 0.8s cubic-bezier(0.23, 1, 0.77, 1) forwards;
 }
 
 .save, .achievementDisp {
@@ -272,7 +282,7 @@ body {
     flex-direction: column;
     gap: 1rem;
     user-select: none;
-    transform: skew(0, -10deg);
+    transform: skew(0, 0deg); /* 去除倾斜 */
 }
 
 .achievementDisp > .achievement-container {

@@ -1,279 +1,280 @@
-body, html {
-    padding: 0;
-    margin: 0;
+body, html { /* 选择body和html根元素，统一设置基础样式 */
+    padding: 0; /* 清除body和html默认的内边距 */
+    margin: 0; /* 清除body和html默认的外边距 */
 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 'Microsoft YaHei UI', 'Source Han Sans', sans-serif;
-    overflow: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 'Microsoft YaHei UI', 'Source Han Sans', sans-serif; /* 设置字体族，优先系统默认字体，兼容Windows/macOS/移动端 */
+    overflow: hidden; /* 隐藏页面滚动条，禁止页面上下/左右滚动 */
 }
 
-#game, #base {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#game, #base { /* 选择ID为game和base的两个顶层容器 */
+    display: flex; /* 启用Flex布局 */
+    justify-content: center; /* 子元素在水平方向上居中对齐 */
+    align-items: center; /* 子元素在垂直方向上居中对齐 */
 
-    width: 100vw;
-    height: 100vh;
+    width: 100vw; /* 宽度占满整个视口宽度（100%视口宽度） */
+    height: 100vh; /* 高度占满整个视口高度（100%视口高度） */
 
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: absolute; /* 启用绝对定位，脱离文档流 */
+    top: 0; /* 定位到父容器顶部（距离顶部0px） */
+    left: 0; /* 定位到父容器左侧（距离左侧0px） */
 }
 
-#game > #game-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#game > #game-container { /* 选择ID为game的元素下的子元素#game-container（游戏内容核心容器） */
+    display: flex; /* 启用Flex布局 */
+    justify-content: center; /* 子元素水平居中对齐 */
+    align-items: center; /* 子元素垂直居中对齐 */
+
+    width: 100%; /* 宽度继承父元素#game（即100vw） */
+    height: 100%; /* 高度继承父元素#game（即100vh） */
+
+    position: relative; /* 启用相对定位，作为内部绝对定位元素的参考容器 */
 }
 
-#game > #game-container > canvas,
-#game > #game-container > .splash {
-    --padding: 40px;
-    height: calc(min(100vh, calc(100vw / 16 * 9)) - var(--padding));
-    aspect-ratio: 16 / 9;
-    user-select: none;
+#game > #game-container > canvas, /* 选择#game-container下的canvas元素（游戏画布） */
+#game > #game-container > .splash { /* 选择#game-container下的.splash元素（游戏启动/过渡画面） */
+    --padding: 40px; /* 定义CSS变量--padding，值为40px，用于统一控制内边距 */
+    height: calc(min(100vh, calc(100vw / 16 * 9)) - var(--padding)); /* 计算高度：取“视口高度”和“16:9比例下的视口宽度对应高度”的较小值，再减去--padding变量值 */
+    aspect-ratio: 16 / 9; /* 强制元素保持16:9宽高比（标准游戏画面比例） */
+    user-select: none; /* 禁止用户选中该元素（防止拖拽、复制或选中文字） */
 }
 
-#game > #game-container > .splash {
-    position: absolute;
+#game > #game-container > .splash { /* 单独设置.splash元素的定位 */
+    position: absolute; /* 绝对定位，相对于父容器#game-container */
 }
 
-#game > #game-container > .splash.hidden {
-    display: none;
-    visibility: hidden;
+#game > #game-container > .splash.hidden { /* 选择带有hidden类的.splash元素（隐藏启动画面） */
+    display: none; /* 隐藏元素，且不占用页面空间 */
+    visibility: hidden; /* 辅助隐藏（兼容部分浏览器，确保视觉上不可见） */
 }
 
-#game > #game-container > .splash > img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
+#game > #game-container > .splash > img { /* 选择.splash元素下的img子元素（启动画面图片） */
+    width: 100%; /* 图片宽度占满父容器.splash */
+    height: 100%; /* 图片高度占满父容器.splash */
+    object-fit: contain; /* 保持图片原有比例，完整显示在容器内（不拉伸、不裁剪） */
+    user-select: none; /* 禁止选中图片 */
+    -webkit-user-drag: none; /* 禁止拖拽图片（兼容WebKit内核浏览器，如Chrome/Safari） */
 }
 
-.control {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+.control { /* 选择.control元素（游戏控制界面，如开始菜单、暂停界面） */
+    display: flex; /* 启用Flex布局 */
+    justify-content: center; /* 子元素水平居中 */
+    align-items: center; /* 子元素垂直居中 */
+    flex-direction: column; /* 子元素垂直排列（默认是水平排列） */
 
-    background: #88888888;
+    position: absolute; /* 绝对定位，全屏覆盖 */
+    top: 0px; /* 距离顶部0px */
+    bottom: 0px; /* 距离底部0px */
+    left: 0px; /* 距离左侧0px */
+    right: 0px; /* 距离右侧0px（以上4行实现全屏覆盖） */
 
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #00000088;
 
-    flex-direction: column;
-    z-index: 1000;
+    padding: 10px; /* 内边距10px，避免内容贴边 */
+    z-index: 114514; /* 层级优先级1000，确保显示在其他元素上方 */
 }
 
-.control.hidden {
-    display: none;
-    visibility: hidden;
+.control.hidden { /* 选择带有hidden类的.control元素（隐藏控制界面） */
+    display: none; /* 隐藏元素，不占空间 */
+    visibility: hidden; /* 辅助隐藏，确保视觉不可见 */
 }
-:root {
-    --theme: #0b1820;
+:root { /* 选择根元素（HTML文档），定义全局CSS变量 */
+    --theme: #193bb6; /* 定义全局主题色变量--theme，值为深青色（用于统一按钮、通知等背景色） */
 }
-@keyframes spreadIn {
-    from {
-        width: 0px;
-        background: #FFFFFF;
+@keyframes spreadIn { /* 定义名为spreadIn的动画（元素展开效果） */
+    from { /* 动画起始状态 */
+        width: 0px; /* 宽度为0（元素完全收缩） */
+        background: #0a81ea8a; /* 背景色 */
     }
 
-    to {
-        width: 100%;
-        background: #FFFFFF;
+    to { /* 动画结束状态 */
+        width: 100%; /* 宽度占满父容器（元素完全展开） */
+        background: #FFFFFF; /* 背景色 */
     }
 }
-@keyframes spreadBg {
-    0% {
-        background-position: 100%;
+@keyframes spreadBg { /* 定义名为spreadBg的动画（背景滑动效果） */
+    0% { /* 动画起始帧（0%进度） */
+        background-position: 100%; /* 背景位置在右侧（100%处） */
     }
 
-    100% {
-        background-position: 0%;
-    }
-}
-
-.button-container {
-    position: absolute;
-    padding: 10vh 10vw;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    /* transform: skew(0, -10deg); */
-    user-select: none;
-}
-
-.button-container .button {
-    padding: 0.5rem 5rem 0.5rem 2rem;
-    text-align: center;
-    font-family: "Noto Serif", "Noto Serif SC", serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    background: var(--theme);
-    border: unset;
-    color: #ffffff;
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.button-container .button::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0.25rem;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    background: #ffffff;
-}
-
-.button-container .button:hover {
-    color: var(--theme);
-    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
-    background-size: 200% 100%;
-}
-
-.fadeOut {
-    animation: fadeOut 0.5s forwards;
-}
-.fadeIn {
-    animation: fadeIn 0.5s forwards;
-}
-.fadeHalf {
-    animation: fadeHalf 0.5s forwards;
-}
-@keyframes fadeHalf {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.2;
-    }
-
-}
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
+    100% { /* 动画结束帧（100%进度） */
+        background-position: 0%; /* 背景位置滑动到左侧（0%处） */
     }
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
+.button-container { /* 选择.button-container元素（按钮容器，用于包裹多个游戏按钮） */
+    display: flex; /* 启用Flex布局 */
+    flex-direction: column; /* 按钮垂直排列 */
+    position: absolute; /* 绝对定位 */
+    padding: 10vh 10vw; /* 内边距：上下为10%视口高度，左右为10%视口宽度 */
+    gap: 1rem; /* 按钮之间的间距为2rem（相对单位，适配不同屏幕） */
+    /* transform: skew(0, -10deg); */ /* 注释掉的代码：用于将容器倾斜（Y轴倾斜-10度），当前未启用 */
+    user-select: none; /* 禁止选中容器内内容（防止误选按钮文字） */
+}
+
+.button-container .button { /* 选择.button-container下的.button子元素（游戏按钮） */
+    display: flex; /* 启用Flex布局 */
+    align-items: center; /* 文字在垂直方向居中 */
+    position: relative; /* 相对定位，作为伪元素::before的参考 */
+    cursor: pointer; /* 鼠标悬停时显示“手型”光标（提示可点击） */
+    padding: 0.5rem 5rem 0.5rem 2rem; /* 内边距：上下0.5rem，左侧2rem，右侧5rem（右侧留更多空间） */
+    text-align: center; /* 按钮内文字水平居中 */
+    font-family: "Noto Serif", "Noto Serif SC", serif; /* 按钮文字字体（衬线字体，偏复古风格） */
+    font-size: 1.25rem; /* 文字大小为1.25rem（约20px） */
+    font-weight: 600; /* 文字粗细为600（半粗体） */
+    background: #bababa; /* 按钮背景色使用全局主题色--theme */
+    border: unset; /* 清除按钮默认边框 */
+    color: var(--theme); /* 按钮文字颜色为白色 */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-container .button::before { /* 为.button元素添加伪元素（左侧白色装饰线） */
+    content: ''; /* 伪元素必须有content属性，空值表示无内容 */
+    display: block; /* 伪元素设为块级元素（可设置宽高） */
+    position: absolute; /* 绝对定位，相对于父元素.button */
+    width: 0.25rem; /* 装饰线宽度为0.25rem（约4px） */
+    height: 100%; /* 装饰线高度占满按钮 */
+    top: 0px; /* 装饰线距离按钮顶部0px */
+    left: 0px; /* 装饰线距离按钮左侧0px */
+    background: #ffffff; /* 装饰线颜色为白色 */
+}
+
+.button-container .button:hover { /* 按钮鼠标悬停状态样式 */
+    color: #ffffff; /* 文字颜色变为全局主题色（与背景色互换） */
+    background-color: var(--theme);
+}
+
+.fadeOut { /* 定义.fadeOut类（应用淡出动画） */
+    animation: fadeOut 0.5s forwards; /* 绑定fadeOut动画，时长0.5s，保持结束状态 */
+}
+.fadeIn { /* 定义.fadeIn类（应用淡入动画） */
+    animation: fadeIn 0.5s forwards; /* 绑定fadeIn动画，时长0.5s，保持结束状态 */
+}
+.fadeHalf { /* 定义.fadeHalf类（应用半透明动画） */
+    animation: fadeHalf 0.5s forwards; /* 绑定fadeHalf动画，时长0.5s，保持结束状态 */
+}
+@keyframes fadeHalf { /* 定义名为fadeHalf的动画（从完全不透明到半透明） */
+    from { /* 动画起始状态 */
+        opacity: 1; /* 不透明度1（完全可见） */
+    }
+    to { /* 动画结束状态 */
+        opacity: 0.2; /* 不透明度0.2（接近透明） */
     }
 
-    to {
-        opacity: 0;
-    }
 }
-
-.parfait,
-.camera,
-.achievement {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-
-    padding: 1rem 2rem;
-    min-width: 120px;
-    background: var(--theme);
-    color: #ffffff;
-
-    animation: slideIn 1s forwards;
-}
-
-.camera.hide,
-.achievement.hide,
-.parfait.hide {
-    animation: slideOut 1s forwards;
-}
-
-.camera.hidden,
-.achievement.hidden,
-.parfait.hidden {
-    display: none;
-    visibility: hidden;
-}
-
-.camera::before,
-.achievement::before,
-.parfait::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0.25rem;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    background: #ffffff;
-}
-
-.camera > .title,
-.achievement > .title,
-.parfait > .title {
-    font-size: 1rem;
-    margin: 4px 0;
-}
-
-.achievement > .desc,
-.parfait > .desc {
-    font-size: 0.8rem;
-}
-
-.achievement > .caption,
-.parfait > .caption {
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(100%);
+@keyframes fadeIn { /* 定义名为fadeIn的动画（从透明到不透明） */
+    from { /* 起始状态 */
+        opacity: 0; /* 不透明度0（完全透明） */
     }
 
-    to {
-        transform: translateY(0%);
+    to { /* 结束状态 */
+        opacity: 1; /* 不透明度1（完全可见） */
     }
 }
 
-@keyframes slideOut {
-    from {
-        transform: translateY(0%);
+@keyframes fadeOut { /* 定义名为fadeOut的动画（从不透明到透明） */
+    from { /* 起始状态 */
+        opacity: 1; /* 不透明度1（完全可见） */
     }
 
-    to {
-        transform: translateY(100%);
+    to { /* 结束状态 */
+        opacity: 0; /* 不透明度0（完全透明） */
     }
 }
 
-.dead-screen {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background: #000000;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.parfait, /* 选择.parfait元素（自定义通知组件1） */
+.camera, /* 选择.camera元素（自定义通知组件2，如相机提示） */
+.achievement { /* 选择.achievement元素（自定义通知组件3，如成就解锁） */
+    position: absolute; /* 绝对定位 */
+    bottom: 0px; /* 距离页面底部0px */
+    right: 0px; /* 距离页面右侧0px（定位在右下角） */
+
+    padding: 1rem 2rem; /* 内边距：上下1rem，左右2rem */
+    min-width: 120px; /* 最小宽度120px（确保内容不拥挤） */
+    background: var(--theme); /* 背景色使用全局主题色 */
+    color: #ffffff; /* 文字颜色为白色 */
+
+    animation: slideIn 1s forwards; /* 应用slideIn动画，时长1s，保持结束状态（从底部滑入） */
 }
 
-.dead-screen.hidden {
-    display: none;
-    visibility: hidden;
+.camera.hide, /* 带有hide类的.camera元素 */
+.achievement.hide, /* 带有hide类的.achievement元素 */
+.parfait.hide { /* 带有hide类的.parfait元素（隐藏通知） */
+    animation: slideOut 1s forwards; /* 应用slideOut动画，时长1s，保持结束状态（从底部滑出） */
+}
+
+.camera.hidden, /* 带有hidden类的.camera元素 */
+.achievement.hidden, /* 带有hidden类的.achievement元素 */
+.parfait.hidden { /* 带有hidden类的.parfait元素（完全隐藏通知） */
+    display: none; /* 隐藏元素，不占用空间 */
+    visibility: hidden; /* 辅助隐藏，确保视觉不可见 */
+}
+
+.camera::before, /* 为.camera添加左侧装饰线 */
+.achievement::before, /* 为.achievement添加左侧装饰线 */
+.parfait::before { /* 为.parfait添加左侧装饰线 */
+    content: ''; /* 伪元素空内容 */
+    display: block; /* 块级元素（可设宽高） */
+    position: absolute; /* 绝对定位，相对于父元素 */
+    width: 0.25rem; /* 装饰线宽度0.25rem */
+    height: 100%; /* 装饰线高度占满父元素 */
+    top: 0px; /* 距离父元素顶部0px */
+    left: 0px; /* 距离父元素左侧0px */
+    background: #ffffff; /* 装饰线颜色为白色 */
+}
+
+.camera > .title, /* .camera下的.title子元素（通知标题） */
+.achievement > .title, /* .achievement下的.title子元素 */
+.parfait > .title { /* .parfait下的.title子元素 */
+    font-size: 1rem; /* 标题文字大小1rem（约16px） */
+    margin: 4px 0; /* 上下外边距4px，左右0（控制标题与内容间距） */
+}
+
+.achievement > .desc, /* .achievement下的.desc子元素（通知描述） */
+.parfait > .desc { /* .parfait下的.desc子元素 */
+    font-size: 0.8rem; /* 描述文字大小0.8rem（约12.8px） */
+}
+
+.achievement > .caption, /* .achievement下的.caption子元素（通知副标题/补充说明） */
+.parfait > .caption { /* .parfait下的.caption子元素 */
+    font-size: 0.8rem; /* 文字大小0.8rem */
+    opacity: 0.8; /* 不透明度0.8（比主文字浅，区分层级） */
+}
+
+@keyframes slideIn { /* 定义名为slideIn的动画（从底部滑入） */
+    from { /* 起始状态 */
+        transform: translateY(100%); /* Y轴平移100%（完全在屏幕底部外） */
+    }
+
+    to { /* 结束状态 */
+        transform: translateY(0%); /* Y轴平移0%（完全显示在屏幕内） */
+    }
+}
+
+@keyframes slideOut { /* 定义名为slideOut的动画（从底部滑出） */
+    from { /* 起始状态 */
+        transform: translateY(0%); /* Y轴平移0%（完全显示在屏幕内） */
+    }
+
+    to { /* 结束状态 */
+        transform: translateY(100%); /* Y轴平移100%（完全滑出屏幕底部） */
+    }
+}
+
+.dead-screen { /* 选择.dead-screen元素（游戏结束界面） */
+    position: absolute; /* 绝对定位 */
+    top: 0px; /* 距离顶部0px */
+    left: 0px; /* 距离左侧0px */
+    width: 100vw; /* 宽度占满视口 */
+    height: 100vh; /* 高度占满视口（全屏显示） */
+    background: #000000; /* 背景色为黑色（营造结束氛围） */
+    color: #ffffff; /* 文字颜色为白色 */
+    display: flex; /* 启用Flex布局 */
+    justify-content: center; /* 子元素水平居中 */
+    align-items: center; /* 子元素垂直居中 */
+    flex-direction: column; /* 子元素垂直排列（如“游戏结束”文字和重启按钮） */
+}
+
+.dead-screen.hidden { /* 带有hidden类的.dead-screen元素（隐藏游戏结束界面） */
+    display: none; /* 隐藏元素，不占空间 */
+    visibility: hidden; /* 辅助隐藏，确保视觉不可见 */
 }

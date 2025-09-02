@@ -1,216 +1,228 @@
 /* styles.css */
 body {
-    background: var(--theme);
-    color: #ffffff;
+    background: var(--theme); /* 设置页面背景色为CSS变量--theme定义的值 */
+    color: #ffffff; /* 设置页面文本颜色为白色 */
 }
 
 .container {
-    width: 100%;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
+    width: 100%; /* 容器宽度占满父元素 */
+    max-width: 400px; /* 容器最大宽度限制为400px */
+    margin: 50px auto; /* 上下外边距50px，左右自动居中 */
+    padding: 20px; /* 内边距20px */
 
-    transform: skew(0, -10deg);
+    transform: skew(
+        0,
+        0deg
+    ); /* 沿Y轴倾斜-10度（向上倾斜） */ /* 改为0deg去掉倾斜 */
 }
 
 .form {
-    display: none;
+    display: none; /* 隐藏表单元素 */
 }
 
 .form h2 {
-    font-size: 5rem;
-    font-weight: 100;
-    margin: unset;
+    font-size: 5rem; /* 设置标题字体大小为5rem */
+    font-weight: 100; /* 设置标题字重为100（细体） */
+    margin: unset; /* 清除默认外边距 */
 }
 
 .form > .inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: start;
-    height: 250px;
-    padding: 20px 0 0 0;
-    box-sizing: border-box;
+    display: flex; /* 设置为弹性布局容器 */
+    flex-direction: column; /* 子元素垂直排列 */
+    gap: 10px; /* 子元素之间的间距为10px */
+    align-items: center; /* 子元素水平居中对齐 */
+    justify-content: start; /* 子元素垂直方向从顶部开始排列 */
+    height: 250px; /* 容器高度250px */
+    padding: 20px 0 0 0; /* 上内边距20px，其他方向0 */
+    box-sizing: border-box; /* 内边距和边框计入总宽度/高度 */
 
-    position: relative;
+    position: relative; /* 设置为相对定位，作为子元素绝对定位的参考 */
 }
 
 .form input {
-    display: block;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
+    display: block; /* 设置为块级元素 */
+    padding: 10px; /* 内边距10px */
+    width: 100%; /* 宽度占满父元素 */
+    box-sizing: border-box; /* 内边距和边框计入总宽度 */
 
-    font-family: "Noto Serif", "Noto Serif SC", serif;
-    font-size: 1.2rem;
-    font-weight: 800;;
+    font-family: "Noto Serif", "Noto Serif SC", serif; /* 设置字体族 */
+    font-size: 1.2rem; /* 字体大小1.2rem */
+    font-weight: 800; /* 字重800（粗体） */
 
-    color: #ffffff;
-    background-color: transparent;
+    color: #ffffff; /* 文本颜色白色 */
+    background-color: transparent; /* 背景色透明 */
 
-    border: unset;
-    border-bottom: 3px solid #ffffff;
+    border: unset; /* 清除默认边框 */
+    border-bottom: 3px solid #ffffff; /* 底部边框为3px白色实线 */
 
-    outline: none;
+    outline: none; /* 清除聚焦时的默认轮廓 */
 }
 
 .form input::placeholder {
-    opacity: 0.8;
+    opacity: 0.8; /* 设置输入框占位符的透明度为0.8 */
 }
 
 .form .button {
-    padding: 0.5rem 5rem 0.5rem 2rem;
-    text-align: start;
-    font-family: "Noto Serif", "Noto Serif SC", serif;
-    font-size: 1.25rem;
-    font-weight: 800;
-    background: var(--theme);
-    border: unset;
-    color: #ffffff;
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+    padding: 0.5rem 5rem 0.5rem 2rem; /* 上下内边距0.5rem，左右分别为2rem和5rem */
+    text-align: start; /* 文本左对齐 */
+    font-family: "Noto Serif", "Noto Serif SC", serif; /* 设置字体族 */
+    font-size: 1.25rem; /* 字体大小1.25rem */
+    font-weight: 800; /* 字重800（粗体） */
+    background: var(--theme); /* 背景色为CSS变量--theme定义的值 */
+    border: unset; /* 清除默认边框 */
+    color: #ffffff; /* 文本颜色白色 */
+    position: relative; /* 设置为相对定位 */
+    display: flex; /* 设置为弹性布局容器 */
+    align-items: center; /* 子元素垂直居中 */
+    cursor: pointer; /* 鼠标悬停时显示手型指针 */
 
-    width: 100%;
-    margin-bottom: 1rem;
+    width: 100%; /* 宽度占满父元素 */
+    margin-bottom: 1rem; /* 下外边距1rem */
 }
 
 .form .button.primary {
-    background: #ffffff;
-    color: var(--theme);
-    border: 1px solid #ffffff;
+    background: #ffffff; /* 主要按钮背景色为白色 */
+    color: var(--theme); /* 主要按钮文本颜色为CSS变量--theme定义的值 */
+    border: 1px solid #ffffff; /* 主要按钮边框为1px白色实线 */
 }
 
 .form .button::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0.25rem;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    background: #ffffff;
+    content: ""; /* 生成空内容 */
+    display: block; /* 设置为块级元素 */
+    position: absolute; /* 绝对定位 */
+    width: 0.25rem; /* 宽度0.25rem */
+    height: 100%; /* 高度占满父元素 */
+    top: 0px; /* 顶部与父元素顶部对齐 */
+    left: 0px; /* 左侧与父元素左侧对齐 */
+    background: #ffffff; /* 背景色白色 */
 }
 
 .form .button.primary::before {
-    background: var(--theme);
+    background: var(
+        --theme
+    ); /* 主要按钮的伪元素背景色为CSS变量--theme定义的值 */
 }
 
 .form .button:hover {
-    color: var(--theme);
-    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
-    background-size: 200% 100%;
+    color: var(--theme); /* 鼠标悬停时文本颜色为CSS变量--theme定义的值 */
+    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards; /* 应用0.5秒的spreadBg动画，使用特定贝塞尔曲线，动画结束后保持最后状态 */
+    background: linear-gradient(
+        90deg,
+        #ffffff 0 50%,
+        var(--theme) 50% 100%
+    ); /* 背景为从左到右的线性渐变，左半白右半主题色 */
+    background-size: 200% 100%; /* 背景大小为200%宽度，100%高度 */
 }
 
 .form .button.primary:hover {
-    color: #ffffff;
-    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    background: linear-gradient(90deg, var(--theme) 0 50%, #ffffff 50% 100%);
-    background-size: 200% 100%;
+    color: #ffffff; /* 主要按钮鼠标悬停时文本颜色为白色 */
+    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards; /* 应用0.5秒的spreadBg动画 */
+    background: linear-gradient(
+        90deg,
+        var(--theme) 0 50%,
+        #ffffff 50% 100%
+    ); /* 背景为从左到右的线性渐变，左半主题色右半白 */
+    background-size: 200% 100%; /* 背景大小为200%宽度，100%高度 */
 }
 
 .form p {
-    text-align: center;
+    text-align: center; /* 表单内段落文本居中对齐 */
 }
 
 .hidden {
-    display: none;
+    display: none; /* 隐藏元素 */
 }
 
 .psc {
-    display: flex;
-    justify-content: center;
+    display: flex; /* 设置为弹性布局容器 */
+    justify-content: center; /* 子元素水平居中对齐 */
 }
 
 blockquote {
-    position: relative;
-    width: 100%;
-    margin: unset;
-    padding: 0 2rem;
+    position: relative; /* 设置为相对定位 */
+    width: 100%; /* 宽度占满父元素 */
+    margin: unset; /* 清除默认外边距 */
+    padding: 0 2rem; /* 左右内边距2rem，上下0 */
 }
 blockquote::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0.25rem;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    background: #ffffff;
+    content: ""; /* 生成空内容 */
+    display: block; /* 设置为块级元素 */
+    position: absolute; /* 绝对定位 */
+    width: 0.25rem; /* 宽度0.25rem */
+    height: 100%; /* 高度占满父元素 */
+    top: 0px; /* 顶部与父元素顶部对齐 */
+    left: 0px; /* 左侧与父元素左侧对齐 */
+    background: #ffffff; /* 背景色白色 */
 }
 
 /* 模拟alert */
 .custom-alert {
-    position: fixed;
-    left: 430px;
-    width: 150px;
-    padding: 5px 20px;
-    z-index: 1000;
+    position: fixed; /* 固定定位，相对于视口 */
+    left: 430px; /* 左侧距离430px */
+    width: 150px; /* 宽度150px */
+    padding: 5px 20px; /* 上下内边距5px，左右20px */
+    z-index: 1000; /* 层级1000，确保在其他元素上方 */
 
-    opacity: 1;
-    background-color: #ffffff;
-    color: var(--theme);
+    opacity: 1; /* 不透明度1（完全可见） */
+    background-color: #ffffff; /* 背景色白色 */
+    color: var(--theme); /* 文本颜色为CSS变量--theme定义的值 */
 
-    font-weight: 800;
-    font-size: 1.2rem;
+    font-weight: 800; /* 字重800（粗体） */
+    font-size: 1.2rem; /* 字体大小1.2rem */
 
-    display: flex;
-    align-items: center;
+    display: flex; /* 设置为弹性布局容器 */
+    align-items: center; /* 子元素垂直居中 */
 
-    animation: fadeIn 0.233s forwards;
+    animation: fadeIn 0.233s forwards; /* 应用0.233秒的fadeIn动画 */
 }
 
 .custom-alert.hiding {
-    animation: fadeOut 0.233s forwards;
+    animation: fadeOut 0.233s forwards; /* 应用0.233秒的fadeOut动画 */
 }
 
 .custom-alert.hidden {
-    opacity: 0;
-    display: none;
-    visibility: hidden;
+    opacity: 0; /* 不透明度0（完全透明） */
+    display: none; /* 隐藏元素 */
+    visibility: hidden; /* 元素不可见 */
 }
 
 .custom-alert .countdown {
-    text-align: right;
+    text-align: right; /* 倒计时文本右对齐 */
 }
 
-
 .tip {
-    font-size: 14px;
+    font-size: 14px; /* 提示文本字体大小14px */
 }
 
 .psc {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; /* 设置为弹性布局容器 */
+    justify-content: center; /* 子元素水平居中对齐 */
+    align-items: center; /* 子元素垂直居中对齐 */
 
-    gap: 8px;
-    margin: 1rem 0;
+    gap: 8px; /* 子元素之间间距8px */
+    margin: 1rem 0; /* 上下外边距1rem，左右0 */
 }
 .psc > .bar {
-    height: 1rem;
-    display: none;
-    width: 80px;
-    justify-content: space-between;
+    height: 1rem; /* 高度1rem */
+    display: none; /* 隐藏元素 */
+    width: 80px; /* 宽度80px */
+    justify-content: space-between; /* 子元素两端对齐，中间间距相等 */
 }
 
 @keyframes fadeIn {
     from {
-        opacity: 0;
+        opacity: 0; /* 动画开始时不透明度0 */
     }
     to {
-        opacity: 1;
+        opacity: 1; /* 动画结束时不透明度1 */
     }
 }
 
 @keyframes fadeOut {
     from {
-        opacity: 1;
+        opacity: 1; /* 动画开始时不透明度1 */
     }
     to {
-        opacity: 0;
+        opacity: 0; /* 动画结束时不透明度0 */
     }
 }

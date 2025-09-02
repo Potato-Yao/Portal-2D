@@ -43,10 +43,10 @@ class Game {
          */
 
 
-        this.map = new MapManager();
-        this.viewData = new ViewData();
+        // this.map = new MapManager();
+        // this.viewData = new ViewData();
         this.dialogManager = new DialogManager();
-        this.textureManager = new TextureManager();
+        // this.textureManager = new TextureManager();
         this.soundManager = new SoundManager();
         this.eventManager = new EventManager();
         this.achievementManager = new AchievementManager();
@@ -55,13 +55,13 @@ class Game {
         this.isPaused = false;
 
         this.store = new Store();
-        this.statistics = {
-            portal: 0,
-            bullet: 0,
-            restart: 0,
-            jump: 0,
-            jumpTime: 0,
-        };
+        // this.statistics = {
+        //     portal: 0,
+        //     bullet: 0,
+        //     restart: 0,
+        //     jump: 0,
+        //     jumpTime: 0,
+        // };
         window.$store = this.store;
 
         this.savePopup = new Save();
@@ -96,16 +96,16 @@ class Game {
     }
 
     async init(filename = 'Room1.json') {
-        await this.textureManager.load();
+        // await this.textureManager.load();
         await this.soundManager.load();
         await this.achievementManager.load();
         await this.load(filename);
     }
 
     async load(filename = 'Room1.json') {
-        await this.map.loadFromURL('./assets/stages/maps/' + filename);
+        // await this.map.loadFromURL('./assets/stages/maps/' + filename);
         // await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
-        await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
+        // await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
         await this.eventManager.loadFromURL('./assets/stages/events/' + filename);
         this.loaded = true;
         // this.view = new PortalView(this.map, this.viewData);

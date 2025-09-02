@@ -9,14 +9,12 @@ class EventManager {
 
     load(data) {
         this.events = data.events;
-        console.log(this.events)
     }
 
     async loadFromURL(url) {
         try {
             const response = await window.$game.dataManager.loadJSON(url);
             this.load(response);
-            console.log(this);
         } catch (error) {
             console.error('There has been a problem with your fetch operation:', error);
         }
@@ -70,6 +68,10 @@ class EventManager {
                 //     break;
                 case "showImg":
                     await window.$game.splash.showImg(event.url);
+                    break;
+                case "updateDay":
+                    const dayShown = document.getElementById("day_shown");
+                    dayShown.value = "Day: " + event.day;
                     break;
                 case "hideImg":
                     await window.$game.splash.hide();

@@ -14,6 +14,7 @@ class DialogManager {
         let name = document.createElement("div");
         let text = document.createElement("p");
         let buttons = document.createElement("div");
+        let characterImg = document.createElement("img");
         // 设置 ID 和样式
         dialog.id = "dialogue-container";
         dialog.style.display = "none";
@@ -29,18 +30,26 @@ class DialogManager {
         text.id = "text";
         text.classList.add("text");
 
+        characterImg.id = "character-img";
+        characterImg.classList.add("character-img");
+        characterImg.style.display = "none";
+
         // 组装 DOM 元素
         dialog.appendChild(name);
         dialog.appendChild(textContainer);
         textContainer.appendChild(text);
         textContainer.appendChild(buttons);
-        document.getElementById("game").appendChild(dialog);
+
+        let gameContainer = document.getElementById("game");
+        gameContainer.appendChild(dialog);
+        gameContainer.appendChild(characterImg);
 
         // 存储 DOM 元素的引用
         this.dialog = dialog;
         this.buttons = buttons;
         this.name = name;
         this.text = text;
+        this.characterImg = characterImg;
     }
 
     load(data) {
@@ -99,7 +108,6 @@ class DialogManager {
             return;
         await this.open(); // 打开对话框
         await this._prints(); // 打印文本
-        console.log("hihihi");
         // await this.showOption();
         await this.close(); // 关闭对话框
     }
@@ -107,6 +115,9 @@ class DialogManager {
     clear() {
         this.buffer = [];
         this.printing = false;
+    }
+
+    async showImg(name) {
     }
 
     async showOption() {
@@ -130,11 +141,19 @@ class DialogManager {
             //     text = text.slice(end + 1); // 移除名称部分
             // }
             let texts = text.split(" ");
-            this.name.innerHTML = texts[0];
+            let name = texts[0];
+            this.name.innerHTML = name;
 
-            if (this.buttons.length != 0) {
-                console.log("666" + this.buttons);
+            if (name === "妈妈") {
+                this.characterImg.src = "./assets/imgs/mom.png";
+                this.characterImg.style.display = "block";
+            } else if (name === "凌华") {
+                this.characterImg.src = "./assets/imgs/friend.png";
+                this.characterImg.style.display = "block";
+            } else {
+                this.characterImg.style.display = "none";
             }
+
             let getEnd = () => {
                 let res = false;
                 window.$game.inputManager.firstDown("Enter", () => {
