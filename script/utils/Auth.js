@@ -4,6 +4,8 @@ class Auth {
     }
 
     static isAuthenticated() {
+        // 开发时跳过登录
+        // return true;
         return this.getToken() !== null;
     }
 
