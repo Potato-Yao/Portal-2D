@@ -171,8 +171,7 @@ class DialogManager {
         this.options = []; // 清除选项
     }
 
-    async showImg(name) {
-    }
+    async showImg(name) {}
 
     // 显示选项并等待用户选择
     async showOption() {
@@ -292,7 +291,7 @@ class DialogManager {
                             ])
                         );
                     })()
-                    ) ;
+                );
             else await delay(100);
         }
         this.buffer = [];
