@@ -135,7 +135,6 @@ class Game {
                 this.pause();
             }
         });
-        // this.dialogManager.prints();
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
     }
 
