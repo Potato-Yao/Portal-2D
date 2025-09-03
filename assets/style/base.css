@@ -79,6 +79,8 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
 }
 :root { /* 选择根元素（HTML文档），定义全局CSS变量 */
     --theme: #193bb6; /* 定义全局主题色变量--theme，值为深青色（用于统一按钮、通知等背景色） */
+    /* 定义基于视口宽度的基础字体大小，确保在不同屏幕尺寸上按比例缩放 */
+    font-size: clamp(0.5rem, 2vw, 1.25rem);
 }
 @keyframes spreadIn { /* 定义名为spreadIn的动画（元素展开效果） */
     from { /* 动画起始状态 */
@@ -104,6 +106,8 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
 .button-container { /* 选择.button-container元素（按钮容器，用于包裹多个游戏按钮） */
     display: flex; /* 启用Flex布局 */
     flex-direction: column; /* 按钮垂直排列 */
+    justify-content: center; /* 按钮水平居中 */
+    align-items: center; /* 按钮垂直居中 */
     position: absolute; /* 绝对定位 */
     padding: 10vh 10vw; /* 内边距：上下为10%视口高度，左右为10%视口宽度 */
     gap: 1rem; /* 按钮之间的间距为2rem（相对单位，适配不同屏幕） */
@@ -114,28 +118,20 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
 .button-container .button { /* 选择.button-container下的.button子元素（游戏按钮） */
     display: flex; /* 启用Flex布局 */
     align-items: center; /* 文字在垂直方向居中 */
-    position: relative; /* 相对定位，作为伪元素::before的参考 */
-    cursor: pointer; /* 鼠标悬停时显示“手型”光标（提示可点击） */
-    padding: 0.5rem 5rem 0.5rem 2rem; /* 内边距：上下0.5rem，左侧2rem，右侧5rem（右侧留更多空间） */
-    text-align: center; /* 按钮内文字水平居中 */
-    font-family: "Noto Serif", "Noto Serif SC", serif; /* 按钮文字字体（衬线字体，偏复古风格） */
-    font-size: 1.25rem; /* 文字大小为1.25rem（约20px） */
-    font-weight: 600; /* 文字粗细为600（半粗体） */
-    background: #bababa; /* 按钮背景色使用全局主题色--theme */
-    border: unset; /* 清除按钮默认边框 */
-    color: var(--theme); /* 按钮文字颜色为白色 */
+    justify-content: center; /* 文字在水平方向居中 */
+    position: relative; /* 相对定位 */
+    cursor: pointer; /* 手型光标 */
+    padding: 0.5rem 2rem; /* 统一内边距 */
+    width: clamp(10vw, 15vw, 20vw); /* 统一按钮宽度 */
+    text-align: center; /* 文本居中对齐 */
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-size: 1.25rem; /* 基于根元素字体大小 */
+    font-weight: 600;
+    background: #bababa;
+    border: unset;
+    color: var(--theme);
+    white-space: nowrap;
     transition: background-color 0.3s, color 0.3s;
-}
-
-.button-container .button::before { /* 为.button元素添加伪元素（左侧白色装饰线） */
-    content: ''; /* 伪元素必须有content属性，空值表示无内容 */
-    display: block; /* 伪元素设为块级元素（可设置宽高） */
-    position: absolute; /* 绝对定位，相对于父元素.button */
-    width: 0.25rem; /* 装饰线宽度为0.25rem（约4px） */
-    height: 100%; /* 装饰线高度占满按钮 */
-    top: 0px; /* 装饰线距离按钮顶部0px */
-    left: 0px; /* 装饰线距离按钮左侧0px */
-    background: #ffffff; /* 装饰线颜色为白色 */
 }
 
 .button-container .button:hover { /* 按钮鼠标悬停状态样式 */
@@ -185,11 +181,11 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
 .camera, /* 选择.camera元素（自定义通知组件2，如相机提示） */
 .achievement { /* 选择.achievement元素（自定义通知组件3，如成就解锁） */
     position: absolute; /* 绝对定位 */
-    bottom: 0px; /* 距离页面底部0px */
-    right: 0px; /* 距离页面右侧0px（定位在右下角） */
+    bottom: 0; /* 距离页面底部0（移除px单位） */
+    right: 0; /* 距离页面右侧0（移除px单位） */
 
-    padding: 1rem 2rem; /* 内边距：上下1rem，左右2rem */
-    min-width: 120px; /* 最小宽度120px（确保内容不拥挤） */
+    padding: 1rem 2rem; /* 使用相对单位，实现按比例缩放 */
+    min-width: 7.5rem; /* 转换为相对单位（120px/16px=7.5rem），实现按比例缩放 */
     background: var(--theme); /* 背景色使用全局主题色 */
     color: #ffffff; /* 文字颜色为白色 */
 
@@ -225,18 +221,18 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
 .camera > .title, /* .camera下的.title子元素（通知标题） */
 .achievement > .title, /* .achievement下的.title子元素 */
 .parfait > .title { /* .parfait下的.title子元素 */
-    font-size: 1rem; /* 标题文字大小1rem（约16px） */
-    margin: 4px 0; /* 上下外边距4px，左右0（控制标题与内容间距） */
+    font-size: 1rem; /* 标题文字大小1rem，基于根元素字体大小，实现按比例缩放 */
+    margin: 0.25rem 0; /* 上下外边距使用相对单位，实现按比例缩放 */
 }
 
 .achievement > .desc, /* .achievement下的.desc子元素（通知描述） */
 .parfait > .desc { /* .parfait下的.desc子元素 */
-    font-size: 0.8rem; /* 描述文字大小0.8rem（约12.8px） */
+    font-size: 0.8rem; /* 描述文字大小0.8rem，基于根元素字体大小，实现按比例缩放 */
 }
 
 .achievement > .caption, /* .achievement下的.caption子元素（通知副标题/补充说明） */
 .parfait > .caption { /* .parfait下的.caption子元素 */
-    font-size: 0.8rem; /* 文字大小0.8rem */
+    font-size: 0.8rem; /* 文字大小0.8rem，基于根元素字体大小，实现按比例缩放 */
     opacity: 0.8; /* 不透明度0.8（比主文字浅，区分层级） */
 }
 

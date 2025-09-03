@@ -32,12 +32,17 @@
                 </div>
             </div>
         </div>
-        <div class="button-container">
+        <div class="button-container" style="opacity: 0; transition: opacity 0.5s ease-in-out;">
             <div class="button" id="start">开始新游戏</div>
             <div class="button" id="load">加载存档</div>
             <div class="button" id="achievement">我们有成就吗？</div>
             <div class="button" id="exit">退出</div>
         </div>
+        <!-- <div class="side">
+            这里不知道要写啥 <br>
+            但是看起来很吊所以没删 <br>
+            如果不写东西最好还是删了
+        </div> -->
     </div>
 
     <div class="save hide" id="save-load">
@@ -52,9 +57,11 @@
             <div class="title">成就</div>
             <div class="list"></div>
         </div>
-        <div class="button-container">
-            <div class="button" id="achievement-back">返回</div>
-        </div>
+        <div class="achievement-button" id="achievement-back">返回</div>
+    </div>
+
+    <div class="cursor-follower">
+        <div class="cursor-inner"></div>
     </div>
 
     <div class="transition hidden">
@@ -76,7 +83,25 @@
     <script type="text/javascript" src="script/Managers/DataManager.js"></script>
 
     <script type="text/javascript">
-        const GAPTIME = 1800;
+
+        // 鼠标跟随
+        const cursorFollower = document.querySelector(".cursor-follower");
+        document.addEventListener('mousemove', (event) => {
+            cursorFollower.style.left = event.clientX + 'px';
+            cursorFollower.style.top = event.clientY + 'px';
+        });
+
+        // 添加鼠标点击动画效果
+        const cursorInner = cursorFollower.querySelector('.cursor-inner');
+        document.addEventListener('mousedown', () => {
+            cursorInner.classList.add('active');
+        });
+        document.addEventListener('mouseup', () => {
+            cursorInner.classList.remove('active');
+        });
+
+        const FADE_IN_GAP_TIME = 600, FADE_OUT_GAP_TIME = 1800, GAPTIME = 1800;
+        
         const fadeIn = () => {
             const transition = document.querySelector(".transition");
             transition.classList.remove("hidden");
@@ -84,7 +109,12 @@
             setTimeout(() => {
                 transition.classList.add("hidden");
                 transition.classList.remove("fadeIn");
-            }, GAPTIME);
+                /*
+                    修改之处 (第二处):
+                    在页面淡入动画结束后，将按钮容器的透明度设为1，使其显示出来。
+                */
+                document.querySelector(".menu .button-container").style.opacity = 1;
+            }, FADE_IN_GAP_TIME);
         };
 
         const fadeOut = () => {
@@ -94,7 +124,7 @@
             setTimeout(() => {
                 transition.classList.add("hidden");
                 transition.classList.remove("fadeOut");
-            }, GAPTIME);
+            }, FADE_OUT_GAP_TIME);
         };
 
         window.onload = async () => {

@@ -11,6 +11,7 @@ body {
 
 :root {
     --theme: #193bb6;
+    --font-size: clamp(0.5rem, 2vw, 1.25rem);
 }
 
 .hide {
@@ -26,13 +27,13 @@ body {
 .menu > .title {
     display: flex;
     position: absolute;
+    align-items: center;
+    justify-content: center;
     top: 0px;
     left: 0px;
     height: 100vh;
     width: 100vw;
     background: var(--theme);
-    align-items: center;
-    justify-content: center;
     color: #FFFFFF;
     user-select: none;
 }
@@ -62,10 +63,10 @@ body {
 .title .horizontal {
     z-index: 1;
     opacity: 0;
-    width: 35%;
-    height: 35%;
+    width: clamp(15vw, 35%, 40vw); /* 使用clamp实现基于视口宽度的响应式缩放 */
+    height: clamp(15vw, 35%, 40vw); /* 使用clamp实现基于视口宽度的响应式缩放 */
     transform: skew(0, 0); /* 去掉后白块变大 */
-    animation: 1s emergeText 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation: 1s emergeText 400ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 @keyframes spreadIn {
@@ -97,7 +98,7 @@ body {
     height: 100%;
     display: block;
     position: absolute;
-    animation: 1s emergeBack 1s cubic-bezier(0.23, 1, 0.32, 1) forwards; /* 原动画为上面的 spreadIn，其余参数均不变 */
+    animation: 1s emergeBack 400ms cubic-bezier(0.23, 1, 0.32, 1) forwards; /* 原动画为上面的 spreadIn，其余参数均不变 */
 }
 
 .title .horizontal>.icon {
@@ -105,48 +106,41 @@ body {
     transform: skew(0, 0);
 }
 .title .horizontal>.icon img {
-    width: 90%;
-    height: 90%;
+    width: clamp(15vw, 90%, 40vw); /* 使用clamp实现基于视口宽度的响应式缩放 */
+    height: clamp(15vw, 90%, 40vw); /* 使用clamp实现基于视口宽度的响应式缩放 */
 }
 
-.button-container {
+.button-container { /* 选择.button-container元素（按钮容器，用于包裹多个游戏按钮） */
     z-index: 1;
-    position: absolute;
     bottom: 0px;
-    right: 0px;
-    padding: 6vh 8vw;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    transform: skew(0, 0deg);
-    user-select: none;
+    display: flex; /* 启用Flex布局 */
+    flex-direction: row; /* 按钮垂直排列 */
+    justify-content: center; /* 按钮水平居中 */
+    align-items: center; /* 按钮垂直居中 */
+    position: absolute; /* 绝对定位 */
+    padding: 6vh 8vw; /* 内边距：上下为10%视口高度，左右为10%视口宽度 */
+    gap: 1rem; /* 按钮之间的间距为2rem（相对单位，适配不同屏幕） */
+    user-select: none; /* 禁止选中容器内内容（防止误选按钮文字） */
 }
 
 .button-container .button { /* 选择.button-container下的.button子元素（游戏按钮） */
     display: flex; /* 启用Flex布局 */
     align-items: center; /* 文字在垂直方向居中 */
-    position: relative; /* 相对定位，作为伪元素::before的参考 */
-    cursor: pointer; /* 鼠标悬停时显示“手型”光标（提示可点击） */
-    padding: 1rem 10rem 1rem 4rem; /* 内边距：上下0.5rem，左侧2rem，右侧5rem（右侧留更多空间） */
-    text-align: center; /* 按钮内文字水平居中 */
-    font-family: "Noto Serif", "Noto Serif SC", serif; /* 按钮文字字体（衬线字体，偏复古风格） */
-    font-size: 1.5rem; /* 文字大小为1.25rem（约20px） */
-    font-weight: 600; /* 文字粗细为600（半粗体） */
-    background: #bababa; /* 按钮背景色使用全局主题色--theme */
-    border: unset; /* 清除按钮默认边框 */
-    color: var(--theme); /* 按钮文字颜色为白色 */
+    justify-content: center; /* 文字在水平方向居中 */
+    align-items: center; /* 按钮垂直居中 */
+    position: relative; /* 相对定位 */
+    cursor: pointer; /* 手型光标 */
+    padding: 0.5rem 2rem; /* 统一内边距 */
+    width: clamp(10vw, 15vw, 20vw); /* 统一按钮宽度 */
+    text-align: center; /* 文本居中对齐 */
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-size: 1.25rem; /* 基于根元素字体大小 */
+    font-weight: 600;
+    background: #bababa;
+    border: unset;
+    color: var(--theme);
+    white-space: nowrap;
     transition: background-color 0.3s, color 0.3s;
-}
-
-.button-container .button::before { /* 为.button元素添加伪元素（左侧白色装饰线） */
-    content: ''; /* 伪元素必须有content属性，空值表示无内容 */
-    display: block; /* 伪元素设为块级元素（可设置宽高） */
-    position: absolute; /* 绝对定位，相对于父元素.button */
-    width: 0rem; /* 装饰线宽度为0.25rem（约4px） */ /* 改为0rem以去除装饰线 */
-    height: 100%; /* 装饰线高度占满按钮 */
-    top: 0px; /* 装饰线距离按钮顶部0px */
-    left: 0px; /* 装饰线距离按钮左侧0px */
-    background: #ffffff; /* 装饰线颜色为白色 */
 }
 
 .button-container .button:hover { /* 按钮鼠标悬停状态样式 */
@@ -329,6 +323,7 @@ body {
     cursor: pointer;
 
     margin-top: 1rem;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .achievement-container > .list > .list-item {
@@ -362,12 +357,66 @@ body {
 .save-container .list-item:hover,
 .achievement-container .list-item:hover {
     color: var(--theme);
-    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
-    background-size: 200% 100%;
+    background-color: #ffffff;
+}
+
+.achievement-button {
+    display: flex; /* 启用Flex布局 */
+    align-items: center; /* 文字在垂直方向居中 */
+    justify-content: center; /* 文字在水平方向居中 */
+    align-items: center; /* 按钮垂直居中 */
+    position: absolute;
+    bottom: clamp(10vh, 10vh, 15vh);
+    right: clamp(10vh, 10vh, 15vh);
+    cursor: pointer; /* 手型光标 */
+    padding: 0.5rem 2rem; /* 统一内边距 */
+    width: clamp(10vw, 15vw, 20vw); /* 统一按钮宽度 */
+    text-align: center; /* 文本居中对齐 */
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-size: 1.25rem; /* 基于根元素字体大小 */
+    font-weight: 600;
+    background: #bababa;
+    border: unset;
+    color: var(--theme);
+    white-space: nowrap;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.achievement-button:hover {
+    background-color: var(--theme);
+    color: #ffffff;
 }
 
 .save-container > .button {
     display: none;
     visibility: hidden;
+}
+
+.cursor-follower {
+    position: absolute;
+    z-index: 9999; /* 确保位于最上层 */
+    border-radius: 10px; /* 圆角矩形框 */
+    opacity: 0.8;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ffffff; /* 空心边框 */
+    background: transparent;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-follower .cursor-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s cubic-bezier(0.77, 0, 0.23, 1);
+}
+
+.cursor-follower .cursor-inner.active {
+    transform: translate(-50%, -50%) scale(3);
 }

@@ -5,32 +5,33 @@ body {
 .dialogue-container {
     position: absolute;
     bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end; /* 底部对齐 */
+    gap: 1vw; /* 在头像和对话框之间添加间隙 */
     margin: 0;
-    /* background-color: #f0f0f0; */
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: "Noto Sans SC", sans-serif;
 }
 
-/* 外层的白色边框 */
+/* 角色信息容器 (名字 + 头像) */
+.character-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+/* 角色名 (已修改) */
 .character-name {
-    position: absolute;
-    top: calc(20% - 0.4rem);
-    left: 17%;
-    transform: rotate(-13deg);
     color: black;
     font-size: 2.25vh;
     z-index: 1;
     font-weight: 900;
-    height: 1rem;
-    width: 5rem;
+    width: 10rem;
     text-align: center;
-    justify-content: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 0.5rem; /* 名字和头像框之间的距离 */
 }
 
 .character-name > span {
@@ -38,19 +39,37 @@ body {
     background: black;
 }
 
+/* 头像框 (新增) */
+.avatar-box {
+    width: 15vh;
+    height: 15vh;
+    background-image: url("../avatar_box.svg"); /* 注意图片路径 */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5vh;
+    box-sizing: border-box;
+}
+
+#avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* 内层的对话框 */
 .dialogue-box {
-    min-width: 40vw;
-    max-width: 60vw;
+    min-width: 30vw;
+    max-width: 40vw;
     min-height: 2rem;
-
     position: relative;
     z-index: 0;
     text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
     font-size: 2vh;
-
     aspect-ratio: 10/3;
-
     display: flex;
     align-items: center;
 }
@@ -58,16 +77,16 @@ body {
 .dialogue-box img {
     position: absolute;
     z-index: 10;
-	max-width: 100%;
-	max-height: 100%;
-	height: auto;
-	width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
 }
 
 .dialogue-box p {
     margin: 0 20%;
     word-break: break-all;
-    max-width: 80%;
+    max-width: 40%;
     color: white;
     z-index: 20;
     line-height: 1;

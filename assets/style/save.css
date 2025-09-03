@@ -1,5 +1,5 @@
 .save-container {
-    min-width: 300px;
+    width: clamp(15vw, 20vw, 30vw);
     background: #000000;
     position: relative;
     padding: 1rem 2rem;
@@ -10,19 +10,6 @@
     display: flex;
     flex-direction: column;
     user-select: none;
-}
-
-.save-container::before {
-    content: '';
-
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 0.5rem;
-    height: 100%;
-
-    background: #ffffff;
 }
 
 .save-container .title {
@@ -38,7 +25,8 @@
 
 
 .save-container .list-item {
-    padding: 0.5rem 2rem 0.5rem 2rem;
+    padding: 0.5rem 2rem;
+    width: clamp(10vw, 15vw, 20vw);
     text-align: center;
     font-family: "Noto Serif", "Noto Serif SC", serif;
     background: var(--theme);
@@ -50,51 +38,40 @@
     cursor: pointer;
 
     margin-bottom: 0.5rem;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .save-container .list-item:hover {
-    color: var(--theme);
-    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
-    background-size: 200% 100%;
+    color: var(--theme); /* 文字颜色变为全局主题色（与背景色互换） */
+    background-color: #ffffff;
 }
-
-
 
 .save-container .button {
-    padding: 0.5rem 5rem 0.5rem 2rem;
-    text-align: center;
-    font-family: "Noto Serif", "Noto Serif SC", serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    background: var(--theme);
-    border: unset;
-    color: #ffffff;
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-
     margin-top: 1rem;
-}
-
-.save-container .button::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0.25rem;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    background: #ffffff;
+    display: flex; /* 启用Flex布局 */
+    align-items: center; /* 文字在垂直方向居中 */
+    justify-content: center; /* 文字在水平方向居中 */
+    align-items: center; /* 按钮垂直居中 */
+    position: relative; /* 相对定位 */
+    cursor: pointer; /* 手型光标 */
+    padding: 0.5rem 2rem; /* 统一内边距 */
+    width: clamp(10vw, 15vw, 20vw); /* 统一按钮宽度 */
+    text-align: center; /* 文本居中对齐 */
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-size: 1.25rem; /* 基于根元素字体大小 */
+    font-weight: 600;
+    background: #bababa;
+    border: unset;
+    color: var(--theme);
+    white-space: nowrap;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .save-container .button:hover {
-    color: var(--theme);
-    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
-    background-size: 200% 100%;
+    color: #ffffff; /* 文字颜色变为全局主题色（与背景色互换） */
+    background-color: var(--theme);
 }
+
 
 @keyframes spreadBg {
     0% {

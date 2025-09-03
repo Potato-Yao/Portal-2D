@@ -22,7 +22,7 @@ window.$game.dataManager.resolve(
         },
         {
             "type": "showImg",
-            "url": "./assets/imgs/black_background.jpg"
+            "url": "./assets/imgs/ocean_dark.jpg"
         },
         {
             "type": "dialog",
