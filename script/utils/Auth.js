@@ -1,6 +1,6 @@
 class Auth {
     static getToken() {
-        return Store.get('token');
+        return Store.get("token");
     }
 
     static isAuthenticated() {
@@ -8,15 +8,15 @@ class Auth {
     }
 
     static toLogin() {
-        window.location.href = './pages/login/login.html';
+        window.location.href = "./pages/login/login.html";
     }
 
     static login() {
-        Store.set('token', 'test');
+        Store.set("token", "test");
     }
 
     static logout() {
-        Store.remove('token');
-        this.toLogin()
+        Store.remove("token");
+        this.toLogin();
     }
 }
