@@ -11,6 +11,7 @@ body {
 
 :root {
     --theme: #193bb6;
+    --button-color: #bababa;
     --font-size: clamp(0.5rem, 2vw, 1.25rem);
 }
 
@@ -87,7 +88,7 @@ body {
         transform: scale(0.2, 0.2);
     }
     to {
-        background-color: #bababa;
+        background-color: var(--button-color);
         transform: scale(1.2, 1.2);
     }
 }
@@ -136,7 +137,7 @@ body {
     font-family: "Noto Serif", "Noto Serif SC", serif;
     font-size: 1.25rem; /* 基于根元素字体大小 */
     font-weight: 600;
-    background: #bababa;
+    background: var(--button-color);
     border: unset;
     color: var(--theme);
     white-space: nowrap;
@@ -375,7 +376,7 @@ body {
     font-family: "Noto Serif", "Noto Serif SC", serif;
     font-size: 1.25rem; /* 基于根元素字体大小 */
     font-weight: 600;
-    background: #bababa;
+    background: var(--button-color);
     border: unset;
     color: var(--theme);
     white-space: nowrap;
@@ -394,7 +395,7 @@ body {
 
 .cursor-follower {
     position: absolute;
-    z-index: 9999; /* 确保位于最上层 */
+    z-index: 3;
     border-radius: 10px; /* 圆角矩形框 */
     opacity: 0.8;
     width: 40px;
@@ -403,20 +404,29 @@ body {
     background: transparent;
     pointer-events: none;
     transform: translate(-50%, -50%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.cursor-follower .cursor-inner {
+.cursor-follower.active {
+    transform: translate(-50%, -50%) scale(30%);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.cursor-inner {
     position: absolute;
+    z-index: 3;
+    opacity: 0;
     top: 50%;
     left: 50%;
     width: 10px;
     height: 10px;
     background-color: #ffffff;
     border-radius: 50%;
+    pointer-events: none;
     transform: translate(-50%, -50%);
-    transition: transform 0.3s cubic-bezier(0.77, 0, 0.23, 1);
+    transition: transform 0.3s cubic-bezier(0.55, 0, 0.45, 1);
 }
 
-.cursor-follower .cursor-inner.active {
-    transform: translate(-50%, -50%) scale(3);
+.cursor-inner.active {
+    transform: translate(-50%, -50%) scale(4.5);
 }
