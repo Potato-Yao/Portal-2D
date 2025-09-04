@@ -60,9 +60,8 @@
         <div class="achievement-button" id="achievement-back">返回</div>
     </div>
 
-    <div class="cursor-follower">
-        <div class="cursor-inner"></div>
-    </div>
+    <div class="cursor-follower"></div>
+    <div class="cursor-inner"></div>
 
     <div class="transition hidden">
         <div></div>
@@ -86,17 +85,23 @@
 
         // 鼠标跟随
         const cursorFollower = document.querySelector(".cursor-follower");
+        const cursorInnerFollower = document.querySelector(".cursor-inner");
         document.addEventListener('mousemove', (event) => {
             cursorFollower.style.left = event.clientX + 'px';
             cursorFollower.style.top = event.clientY + 'px';
+            cursorInnerFollower.style.left = event.clientX + 'px';
+            cursorInnerFollower.style.top = event.clientY + 'px';
         });
 
         // 添加鼠标点击动画效果
-        const cursorInner = cursorFollower.querySelector('.cursor-inner');
+        const cursorOuter = document.querySelector('.cursor-follower');
+        const cursorInner = document.querySelector('.cursor-inner');
         document.addEventListener('mousedown', () => {
+            cursorOuter.classList.add('active');
             cursorInner.classList.add('active');
         });
         document.addEventListener('mouseup', () => {
+            cursorOuter.classList.remove('active');
             cursorInner.classList.remove('active');
         });
 
@@ -114,6 +119,7 @@
                     在页面淡入动画结束后，将按钮容器的透明度设为1，使其显示出来。
                 */
                 document.querySelector(".menu .button-container").style.opacity = 1;
+                cursorInner.style.opacity = 0.8;
             }, FADE_IN_GAP_TIME);
         };
 
@@ -145,6 +151,48 @@
             })
 
             fadeIn();
+            
+            // 初始化CSS变量闪烁效果
+            let enableFlickAnimation = false;
+            // 初始禁用闪烁效果
+            let isOriginal = true;
+            const sleep = (ms) => {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            };
+            const switchColor = () => {
+                const root = document.documentElement;
+                if (isOriginal) {
+                    root.style.setProperty('--theme', '#000000');
+                    root.style.setProperty('--button-color', '#193bb6');
+                } else {
+                    root.style.setProperty('--theme', '#193bb6');
+                    root.style.setProperty('--button-color', '#bababa');
+                }
+                isOriginal = !isOriginal;
+            };
+            const flick = async () => {
+                switchColor();
+                await sleep(100);
+                switchColor();
+                await sleep(50);
+                switchColor();
+                await sleep(10000);
+                switchColor();
+                await sleep(150);
+                switchColor();
+                await sleep(100);
+                switchColor();
+            };
+
+            if(enableFlickAnimation) {
+                await (async () => {
+                    await sleep(10000);
+                    await flick();
+                    await sleep(10000);
+                })();
+                setInterval(flick, 20000);
+            }
+            
             if (!Auth.isAuthenticated()) {
                 Auth.toLogin();
             }
