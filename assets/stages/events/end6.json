@@ -3,21 +3,15 @@ window.$game.dataManager.resolve(
     "events": [
         {
             "type": "showImg",
-            "url": "./assets/imgs/street_light.jpg",
+            "url": "./assets/imgs/ocean_dark.jpg"
         },
         {
             "type": "dialog",
             "texts": [
                 {
-                    "text": "o ooo"
+                    "text": " （一切归于虚无）"
                 }
-            ],
-            "options": [
-                "爱", "不爱"
             ]
-        },
-        {
-            "type": "jump"
         }
     ]
 }

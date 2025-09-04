@@ -1,0 +1,25 @@
+window.$game.dataManager.resolve(
+{
+  "events": [
+    {
+      "type": "showImg",
+      "url": "./assets/imgs/sittingroom_light.jpg"
+    },
+    {
+      "type": "dialog",
+      "texts": [
+        {
+          "text": "？？？ 猫猫，你相信妈妈爱你吗？"
+        }
+      ],
+      "options": [
+        "相信",
+        "不相信"
+      ]
+    },
+    {
+      "type": "jump"
+    }
+  ]
+}
+)

@@ -38,9 +38,9 @@ class MouseManager {
 
     async capture() {
         if (!this.isCapture) {
-            await this.container.requestPointerLock({
-                unadjustedMovement: false,
-            });
+            // await this.container.requestPointerLock({
+            //     unadjustedMovement: false,
+            // });
 
             this.isCapture = true;
             setTimeout(() => {
@@ -124,7 +124,7 @@ class MouseManager {
     }
 
     draw() {
-        window.$game.ctx.drawImage(window.$game.textureManager.getTexture("cursor"), 12, 9, 16, 22, this.x - 4, this.y - 5, 16, 22);
+        // window.$game.ctx.drawImage(window.$game.textureManager.getTexture("cursor"), 12, 9, 16, 22, this.x - 4, this.y - 5, 16, 22);
     }
 
     get position() {

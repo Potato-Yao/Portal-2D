@@ -43,10 +43,10 @@ class Game {
          */
 
 
-        // this.map = new MapManager();
+        this.map = new MapManager();
         // this.viewData = new ViewData();
         this.dialogManager = new DialogManager();
-        // this.textureManager = new TextureManager();
+        this.textureManager = new TextureManager();
         this.soundManager = new SoundManager();
         this.eventManager = new EventManager();
         this.achievementManager = new AchievementManager();
@@ -91,6 +91,7 @@ class Game {
         // this.deadScreen = new DeadScreen();
 
         this.chapterNow = 'Room1';
+        window.$chatperState = 0;
 
         this.splash = new Splash();
     }
@@ -195,7 +196,6 @@ class Game {
     async restart() {
         this.restartBtn.blur();
         this.isPaused = true;
-        this.statistics.restart++;
         await this.rebuild(async () => {
             await this.eventManager.clear();
             await this.resetView();

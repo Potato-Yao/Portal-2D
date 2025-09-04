@@ -47,15 +47,16 @@ class EventManager {
         // // console.log(event);
         // this.processing = true;
         for (let event of this.events) {
+            console.log(this.events)
             switch (event.type) {
                 case "delay":
                     await wait(event.time);
                     break;
                 case "dialog":
                     if (window.$game.dialogManager.printing)
-                        window.$game.dialogManager.clear();
+                        await window.$game.dialogManager.clear();
                     window.$game.dialogManager.printing = false;
-                    await window.$game.dialogManager.prints(event.texts);
+                    await window.$game.dialogManager.prints(event.texts, event.options);
                     break;
                 case "fadeIn":
                     await window.$game.fadeIn();
@@ -82,6 +83,9 @@ class EventManager {
                 case "playBGM":
                     window.$game.soundManager.playBGM(event.name);
                     break;
+                case "jump":
+                    await window.$game.switchView(window.$choice);
+                    return;
                 // case "deathSelect":
                 //     await window.$game.deadScreen.show().then(async () => {
                 //         // retry
@@ -99,6 +103,7 @@ class EventManager {
                     break;
             }
         }
+
         // // player.blockMove = false;
         // this.processing = false;
         // if (this.head == null) {
@@ -108,6 +113,10 @@ class EventManager {
         // if (this.head == null)
         //     this.tail = null;
         // this.hasProcess = true;
+    }
+
+    async handleCase(event) {
+
     }
 
     clear() {

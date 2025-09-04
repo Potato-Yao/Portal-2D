@@ -75,13 +75,13 @@ class PortalView extends View {
 
         this.cubes = [];
         this.gelDispensers = [];
-        this.player = new Player(viewData.player.copy());
-        this.GLaDOS = new GLaDOS(viewData.GLaDOS);
+        // this.player = new Player(viewData.player.copy());
+        // this.GLaDOS = new GLaDOS(viewData.GLaDOS);
 
-        viewData.cubes.forEach(i => this.cubes.push(new Cube(copyVector(i))));
-        viewData.gelDispensers.forEach(i => this.gelDispensers.push(new GelDispenser(copyVector(i.position), i.times, i.facing, i.type)));
+        // viewData.cubes.forEach(i => this.cubes.push(new Cube(copyVector(i))));
+        // viewData.gelDispensers.forEach(i => this.gelDispensers.push(new GelDispenser(copyVector(i.position), i.times, i.facing, i.type)));
 
-        this.gelledEdgeList = new GelledEdgeList();
+        // this.gelledEdgeList = new GelledEdgeList();
         /**
          * @type {Entity[]}
         */
@@ -105,10 +105,10 @@ class PortalView extends View {
          * @type {PortalGun}
          */
         this.portalGun = new PortalGun();
-        this.portals = viewData.portals.map(portalData => {
-            return new Portal(portalData.type, copyVector(portalData.position), portalData.facing);
-
-        });
+        // this.portals = viewData.portals.map(portalData => {
+        //     return new Portal(portalData.type, copyVector(portalData.position), portalData.facing);
+        //
+        // });
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
             if (!this.player.blockMove) {
@@ -125,11 +125,11 @@ class PortalView extends View {
 
                 this.portalGun.isHit = false;
 
-                if (Portal.valid(position, edge, this.portals[ this.portalGun.flyingType ^ 1 ])) {
-                    position = Portal.fixPosition(position, edge);
-
-                    this.portals[ this.portalGun.flyingType ] = new Portal(this.portalGun.flyingType, position, edge.facing);
-                }
+                // if (Portal.valid(position, edge, this.portals[ this.portalGun.flyingType ^ 1 ])) {
+                //     position = Portal.fixPosition(position, edge);
+                //
+                //     this.portals[ this.portalGun.flyingType ] = new Portal(this.portalGun.flyingType, position, edge.facing);
+                // }
             }
         });
 

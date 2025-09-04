@@ -1,0 +1,28 @@
+window.$game.dataManager.resolve(
+{
+    "events": [
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_dark.jpg"
+        },
+        {
+            "type": "delay",
+            "time": 500
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "猫猫 （睁开眼睛）已经多久了？"
+                },
+                {
+                    "text": "妈妈 猫猫...已经过去半年了"
+                },
+                {
+                    "text": " （你重新闭上了眼睛）"
+                }
+            ]
+        }
+    ]
+}
+)
