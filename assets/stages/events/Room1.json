@@ -17,6 +17,10 @@ window.$game.dataManager.resolve(
             ]
         },
         {
+            "type": "jump",
+            "url": "game1"
+        },
+        {
             "type": "jump"
         }
     ]

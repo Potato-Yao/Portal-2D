@@ -106,7 +106,7 @@
         });
 
         const FADE_IN_GAP_TIME = 600, FADE_OUT_GAP_TIME = 1800, GAPTIME = 1800;
-        
+
         const fadeIn = () => {
             const transition = document.querySelector(".transition");
             transition.classList.remove("hidden");
@@ -151,7 +151,7 @@
             })
 
             fadeIn();
-            
+
             // 初始化CSS变量闪烁效果
             let enableFlickAnimation = false;
             // 初始禁用闪烁效果
@@ -192,7 +192,7 @@
                 })();
                 setInterval(flick, 20000);
             }
-            
+
             if (!Auth.isAuthenticated()) {
                 Auth.toLogin();
             }
@@ -204,6 +204,7 @@
             document.querySelector("#start").addEventListener("click", () => {
                 fadeOut();
                 setTimeout(() => {
+                    console.log(window.$store)
                     window.location.href = `./game.html?${window.$store.encode()}`;
                 }, GAPTIME);
             });

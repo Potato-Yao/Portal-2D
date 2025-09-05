@@ -84,6 +84,9 @@ class EventManager {
                     window.$game.soundManager.playBGM(event.name);
                     break;
                 case "jump":
+                    if (event.url) {
+                        window.location.href = "./assets/games/" + event.url + "/index.html";
+                    }
                     await window.$game.switchView(window.$choice);
                     return;
                 // case "deathSelect":

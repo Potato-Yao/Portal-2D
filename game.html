@@ -42,6 +42,7 @@
             font-size: xxx-large;
             color: red;
         }
+
         .character-img {
             display: block; /* Still good to have, but less critical with Flexbox parent */
             margin-top: 20px; /* Space below dialog */
@@ -222,15 +223,15 @@
 <script type="text/javascript" src="script/View.js"></script>
 <script type="text/javascript" src="script/Game.js"></script>
 <script type="text/javascript">
-    window.onload = () => {
-        const store = new Store();
-        window.$store = store;
+    window.onload = async () => {
+        window.$store = new Store();
 
         if (!Auth.isAuthenticated()) {
             Auth.toLogin();
         }
 
         let toLoad = Store.get("toLoad") ?? undefined;
+        console.log(toLoad)
         if (toLoad) {
             toLoad = JSON.parse(toLoad);
             Store.remove("toLoad");

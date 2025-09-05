@@ -68,6 +68,10 @@ window.$game.dataManager.resolve(
         "想",
         "不想"
       ]
+    },
+    {
+      "type": "jump",
+      "url": "game1"
     }
   ]
 }
