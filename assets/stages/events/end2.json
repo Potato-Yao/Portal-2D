@@ -1,0 +1,64 @@
+window.$game.dataManager.resolve(
+{
+    "events": [
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/ocean_dark.jpg"
+        },
+        {
+            "type": "delay",
+            "time": 500
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "？？？ Bb#E，Dg1ed"
+                },
+                {
+                    "text": "猫猫 。"
+                },
+                {
+                    "text": "？？？ A&*%Roc'.[oid（）（）@zvgBR4($jd~cv#####+++="
+                },
+                {
+                    "text": "猫猫 。"
+                },
+                {
+                    "text": "？？？ zwVDt@31，。。。1？？？"
+                },
+                {
+                    "text": " （###￥%……&****）"
+                },
+                {
+                    "text": "？？？ BF36!~！}{-j97q！c！、"
+                },
+                {
+                    "text": "猫猫 。"
+                },
+                {
+                    "text": "？？？ cae！E？//vfdv，》餐2￥YG"
+                },
+                {
+                    "text": "猫猫 （我就这样...永远在这里）"
+                },
+                {
+                    "text": "  "
+                },
+                {
+                    "text": "？？？ 医生，我女儿已经三个月没醒了，怎么办？我该怎么办"
+                },
+                {
+                    "text": "医生 抱歉女士，病人的求生欲望并不强烈，可能....."
+                },
+                {
+                    "text": " （病房中弥漫着哭泣声，你的呼吸声轻轻起伏）"
+                }
+            ]
+        },
+        {
+            "type": "gameEnd"
+        }
+    ]
+}
+)

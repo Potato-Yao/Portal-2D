@@ -1,0 +1,155 @@
+window.$game.dataManager.resolve(
+{
+    "events": [
+        {
+            "type": "updateDay",
+            "day": "2"
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "？？？ 宝贝，该起床了"
+                },
+                {
+                    "text": "猫猫 （睁开眼睛）好的...我现在就起"
+                },
+                {
+                    "text": "妈妈 该去上学了呀，这是你高一的第一天哦，要好好表现~妈妈会一直在家里等你的（微笑）"
+                },
+                {
+                    "text": "猫猫 （为什么...妈妈说错了吗？）好的，我现在就去"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sittingroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "猫猫起床、洗漱、走到餐厅"
+                },
+                {
+                    "text": "妈妈 你喜欢就好，喜欢就多吃一点"
+                },
+                {
+                    "text": "猫猫 我吃饱了，谢谢妈妈"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/street_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "（猫猫出门，看到了凌华，冲她高兴的招手）"
+                },
+                {
+                    "text": "凌华 猫猫，我等你好久啦！走吧走吧！"
+                },
+                {
+                    "text": "猫猫 早上好"
+                },
+                {
+                    "text": "凌华 怎么今天这么不精神，我是凌华呀"
+                },
+                {
+                    "text": "猫猫 （怎么...有点不对劲？）哦哦，好...没事，走吧！"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/classroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "高一的时间总是过的很快，大家在一起玩的很开心"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/canteen_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "凌华 猫猫，再见啦！很高兴今天和你在一起！"
+                },
+                {
+                    "text": "猫猫 嗯，我也是，明天见"
+                },
+                {
+                    "text": "猫猫 （为什么？为什么和昨天一模一样？我记错了吗？为什么？）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sittingroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "妈妈 猫猫！欢迎回来，快来吃晚饭吧"
+                },
+                {
+                    "text": "妈妈 嗯嗯，吃完饭休息休息，就快去睡觉吧，今天猫猫很幸福对不对？"
+                },
+                {
+                    "text": "猫猫 （这不对...到底哪里...出错了？！）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_dark.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （到了夜晚，猫猫不安地闭上了眼睛...）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/ocean_dark.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "猫猫 你不要再啰嗦了！我自己的事自己能做"
+                },
+                {
+                    "text": "？？？（沉默地看着你）抱歉"
+                },
+                {
+                    "text": "猫猫 （我该怎么办？好痛苦）"
+                }
+            ]
+        },
+        {
+            "type": "jump",
+            "url": "game2"
+        }
+    ]
+}
+)

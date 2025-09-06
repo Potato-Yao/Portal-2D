@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // const cell = grid[new_x][new_y];
-        let cell = 4;
+        const cell = grid[new_x][new_y];
+        // let cell = 4; // for debug
 
         if (cell === 1) {
             console.log("撞到了墙上，无法通过！");
@@ -103,8 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cell === 4) {
             alert("🎉 你到达出口，游戏胜利！");
             isGameOver = true;
-            console.log(window.location.href)
-            window.location.href = '../../../game.html?portal-2d-toLoad={"url": "Room2.json"}';
+            window.location.href = '../../../game.html?portal-2d-toLoad={"url": "day2.json", "state": 1}';
         }
 
         if (cell === 2) {
@@ -119,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (player.hp <= 0) {
             alert("💀 生命归零，游戏失败！");
             isGameOver = true;
+            window.location.href = '../../../game.html?portal-2d-toLoad={"url": "day2.json", "state": 0}';
         }
     }
 

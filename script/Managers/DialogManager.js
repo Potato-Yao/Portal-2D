@@ -140,12 +140,13 @@ class DialogManager {
                     } else {
                         window.$chatperState = 2;
                     }
-                    window.$choice = "Room2.json";
+                    window.$choice = "day4-2.json";
                     break;
                 }
                 case 1: {
                     if (choice === 0) {
-                        window.$choice = "Room3.json"
+                        window.$choice = "day4-3.json"
+                        window.$chatperState = 3;
                     } else {
                         window.$choice = "end7.json"
                     }
@@ -153,7 +154,8 @@ class DialogManager {
                 }
                 case 2: {
                     if (choice === 0) {
-                        window.$choice = "Room3.json"
+                        window.$choice = "day4-3.json"
+                        window.$chatperState = 3;
                     } else {
                         window.$choice = "end6.json"
                     }

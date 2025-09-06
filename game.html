@@ -35,12 +35,19 @@
             top: 50px; /* Adjust as needed */
             left: 100px; /* Adjust as needed */
             z-index: 1000; /* Ensures it appears on top of other content */
-            padding: 5px;
-            border-radius: 4px;
+            padding: 10px 20px;
+            width: 150px;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            border-radius: 8px;
             border-style: none;
-            background-color: transparent;
+            font-family: "Noto Serif", "Noto Serif SC", serif;
+            font-weight: 700;
+            font-style: normal;
+            background-color: rgba(25, 59, 182, 0.5);
             font-size: xxx-large;
-            color: red;
+            color: white;
         }
 
         .character-img {
@@ -223,6 +230,19 @@
 <script type="text/javascript" src="script/View.js"></script>
 <script type="text/javascript" src="script/Game.js"></script>
 <script type="text/javascript">
+    // 禁止#day_shown元素被选中
+    const dayShown = document.getElementById('day_shown');
+    if (dayShown) {
+        dayShown.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+            return false;
+        });
+        dayShown.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            return false;
+        });
+    }
+
     window.onload = async () => {
         window.$store = new Store();
 
@@ -231,11 +251,11 @@
         }
 
         let toLoad = Store.get("toLoad") ?? undefined;
-        console.log(toLoad)
         if (toLoad) {
             toLoad = JSON.parse(toLoad);
             Store.remove("toLoad");
             Store.set("parfait", JSON.stringify(toLoad.parfait));
+            window.$gameState += toLoad.state;
         } else {
             Store.remove("parfait");
         }
