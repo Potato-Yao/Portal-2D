@@ -27,6 +27,9 @@ body {
 .character-name {
     color: black;
     font-size: 2.25vh;
+    position: absolute;
+    left: 25%;
+    transform: translateX(-50%);
     z-index: 1;
     font-weight: 900;
     width: 10rem;
@@ -66,6 +69,9 @@ body {
     max-width: 40vw;
     min-height: 2rem;
     position: relative;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
     z-index: 0;
     text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
     font-size: 2vh;
@@ -95,4 +101,15 @@ body {
 .dialogue-box span {
     font-size: 2vh;
     font-weight: 500;
+}
+
+#character-img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20vh;
+    height: auto;
+    max-height: 30vh;
+    object-fit: contain;
+    z-index: 5;
 }

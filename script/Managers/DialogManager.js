@@ -54,6 +54,8 @@ class DialogManager {
         gameContainer.appendChild(characterImg);
         gameContainer.appendChild(optionsContainer); // 将选项容器添加到游戏容器
 
+        dialog.appendChild(characterImg);
+
         // 存储 DOM 元素的引用
         this.dialog = dialog;
         this.optionsContainer = optionsContainer; // 存储选项容器的引用
