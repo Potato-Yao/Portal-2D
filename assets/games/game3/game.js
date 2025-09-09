@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cell === 4) {
             alert("🎉 你到达出口，游戏胜利！");
             isGameOver = true;
-            return;
+			window.location.href = '../../../game.html?portal-2d-toLoad={"url": "day4.json", "state": 0}';
         }
         
         if (cell === 2) {
@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (player.hp <= 0) {
             alert("💀 生命归零，游戏失败！");
             isGameOver = true;
+			window.location.href = '../../../game.html?portal-2d-toLoad={"url": "day4.json", "state": 0}';
         }
     }
 

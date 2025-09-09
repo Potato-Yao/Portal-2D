@@ -1,103 +1,46 @@
 window.$game.dataManager.resolve(
 [
     {
-        "type": 1,
-        "title": "Gelled Edge",
-        "condition": "覆盖凝胶长度达到 1000 像素",
-        "desc": "把房间弄得到处都是！"
+        "type": 0,
+        "title": "我们所厌恶又热爱的生活",
+        "condition": "达到结局1",
+        "desc": ""
     },
     {
-        "type": 2,
-        "title": "HighSpeed!",
-        "condition": "速度达到高速",
-        "desc": "速度达到一万三千点"
+        "type": 0,
+        "title": "无法逃离的一天",
+        "condition": "达到结局2",
+        "desc": ""
     },
     {
-        "type": 3,
-        "title": "爱方块TV",
-        "condition": "在没有触碰到方块的情况下通过Room11",
-        "desc": "爱护好你的朋友"
+        "type": 0,
+        "title": "错误的现实",
+        "condition": "达到结局3",
+        "desc": ""
     },
     {
-        "type": 4,
-        "title": "偷跑领域大神",
-        "condition": "用不涂抹凝胶的方式通过Room15",
-        "desc": "用不涂抹凝胶的方式通过我精心设计的地图",
-        "room": "Room15",
-        "hitbox":
-        {
-            "position": {
-                "x": 920,
-                "y": 40
-            },
-            "size": {
-                "x": 80,
-                "y": 40
-            }
-        }
+        "type": 0,
+        "title": "美梦",
+        "condition": "达到结局4",
+        "desc": ""
     },
     {
-        "type": 4,
-        "title": "爱凝胶TV",
-        "desc": "你竟然无视白色凝胶！",
-        "condition": "用不涂抹凝胶的方式通过Room18",
-        "room": "Room18",
-        "hitbox":
-        {
-            "position": {
-                "x": 1200,
-                "y": 120
-            },
-            "size": {
-                "x": 40,
-                "y": 160
-            }
-        }
+        "type": 0,
+        "title": "疯狂幻想家",
+        "condition": "达到结局5",
+        "desc": ""
     },
     {
-        "type": 5,
-        "title": "飞行冠军",
-        "condition": "在空中滞留15秒",
-        "desc": "闲的无聊",
+        "type": 0,
+        "title": "突如其来的崩坏",
+        "condition": "达到结局6",
+        "desc": ""
     },
     {
-        "type": 6,
-        "title": "春日影",
-        "condition": "发现关卡的秘密",
-        "desc": "何で春日影やったの??!",
-    },
-    {
-        "type": 7,
-        "title": "剪切线",
-        "desc": "紧紧封闭的感情 我想要全部说出来",
-        "condition": "达成真结局",
-        "ending": 2,
-    },
-    {
-        "type": 7,
-        "title": "无路矢",
-        "condition": "达成假结局",
-        "desc": "消散于漫无边际的空虚",
-        "ending": 1,
-    },
-    {
-        "type": 7,
-        "title": "孤坏牢",
-        "condition": "达成死亡结局",
-        "desc": "不存在的明天 无法描绘的未来",
-        "ending": 0,
-    },
-    {
-        "type": 8,
-        "title": "芭菲暴食者",
-        "condition": "收集到了所有的芭菲",
-        "desc": "啊啊啊宝宝你真的是一个好好的胖宝宝"
-    },
-    {
-        "type": 9,
-        "title": "摄像摧毁者",
-        "condition": "破坏了所有的摄像头",
-        "desc": "友情提示：本次游戏没有任何摄像头受到伤害"
+        "type": 0,
+        "title": "物是人非",
+        "condition": "达到结局7",
+        "desc": ""
     }
 ]
 )
