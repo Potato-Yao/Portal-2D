@@ -10,7 +10,7 @@ body {
 
 .container {
     width: 100%; /* 容器宽度占满父元素 */
-    max-width: 400px; /* 容器最大宽度限制为400px */
+    max-width: 800px; /* 容器最大宽度限制为400px */
     margin: 50px auto; /* 上下外边距50px，左右自动居中 */
     padding: 20px; /* 内边距20px */
 
@@ -67,41 +67,25 @@ body {
 }
 
 .form .button {
-    padding: 0.5rem 5rem 0.5rem 2rem; /* 上下内边距0.5rem，左右分别为2rem和5rem */
-    text-align: start; /* 文本左对齐 */
+    padding: 0.5rem; /* 上下左右内边距0.5rem */
+    text-align: center;
     font-family: "Noto Serif", "Noto Serif SC", serif; /* 设置字体族 */
     font-size: 1.25rem; /* 字体大小1.25rem */
     font-weight: 800; /* 字重800（粗体） */
-    background: var(--theme); /* 背景色为CSS变量--theme定义的值 */
     border: unset; /* 清除默认边框 */
     position: relative; /* 设置为相对定位 */
     display: flex; /* 设置为弹性布局容器 */
     align-items: center; /* 子元素垂直居中 */
+    justify-content: center; /* 子元素水平居中 */
     cursor: pointer; /* 鼠标悬停时显示手型指针 */
     width: 100%; /* 宽度占满父元素 */
     margin-bottom: 1rem; /* 下外边距1rem */
-    color: #ffffff; /* 按钮文字颜色为白色 */
+    background: #ffffff;
+    color: var(--theme); 
     transition: background-color 0.3s, color 0.3s;
 }
 
-.form .button.primary {
-    background: #ffffff; /* 主要按钮背景色为白色 */
-    color: var(--theme); /* 主要按钮文本颜色为CSS变量--theme定义的值 */
-    border: 1px solid #ffffff; /* 主要按钮边框为1px白色实线 */
-}
-
-.form .button.primary::before {
-    background: var(
-        --theme
-    ); /* 主要按钮的伪元素背景色为CSS变量--theme定义的值 */
-}
-
 .form .button:hover {
-    color: var(--theme);
-    background-color: #ffffff;
-}
-
-.form .button.primary:hover {
     color: #ffffff;
     background-color: var(--theme);
 }
