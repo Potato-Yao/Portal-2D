@@ -348,11 +348,13 @@ body {
     content: '';
     display: block;
     position: absolute;
-    width: 0.25rem;
-    height: 100%;
+    width: 0;
+    height: 0;
     top: 0px;
     left: 0px;
-    background: #ffffff;
+    border-left: 0.25rem solid transparent;
+    border-right: 0.25rem solid transparent;
+    border-top: 0.5rem solid #ffffff;
 }
 
 .save-container .list-item:hover,
@@ -369,12 +371,12 @@ body {
     position: absolute;
     bottom: clamp(10vh, 10vh, 15vh);
     right: clamp(10vh, 10vh, 15vh);
-    cursor: pointer; /* 手型光标 */
+    cursor: pointer;
     padding: 0.5rem 2rem; /* 统一内边距 */
-    width: clamp(10vw, 15vw, 20vw); /* 统一按钮宽度 */
+    width: clamp(10vw, 15vw, 20vw);
     text-align: center; /* 文本居中对齐 */
     font-family: "Noto Serif", "Noto Serif SC", serif;
-    font-size: 1.25rem; /* 基于根元素字体大小 */
+    font-size: 1.25rem;
     font-weight: 600;
     background: var(--button-color);
     border: unset;
