@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="Shortcut Icon" href="../../assets/ico/RanaLogo.png" type="image/x-icon" />
+    <link rel="Shortcut Icon" href="../../assets/ico/exit.png" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Signup</title>
     <link rel="stylesheet" href="../../assets/style/base.css">
@@ -18,25 +18,25 @@
     <div class="container">
         <!-- 登录 -->
         <div id="loginForm" class="form">
-            <h2>登录</h2>
+            <h2>登录 / Sign In</h2>
             <div class="inputs">
-                <input id="text" type="text" placeholder="用户名" required>
-                <input id="password" type="password" placeholder="密码" required>
+                <input id="text" type="text" placeholder="用户名 Username" required>
+                <input id="password" type="password" placeholder="密码 Password" required>
             </div>
             <div class="custom-alert hidden">
                 <div class="message"></div>
             </div>
-            <button class="button primary" onclick="login()">登录</button>
-            <button class="button" id="signupLink">注册</button>
+            <button class="button" onclick="login()">登录   Sign In</button>
+            <button class="button" id="signupLink">注册   Sign Up</button>
         </div>
         <!-- 注册 -->
         <div id="signupForm" class="form hidden">
-            <h2>注册</h2>
+            <h2>注册 / Sign Up</h2>
             <div class="inputs">
-                <input id="text-signup" type="text" placeholder="用户名" required>
-                <input id="password-signup" type="password" placeholder="密码"
+                <input id="text-signup" type="text" placeholder="用户名 Username" required>
+                <input id="password-signup" type="password" placeholder="密码 Password"
                 oninput="checkPasswordStrength(this.value)" required>
-                <input id="password-signup-check" type="password" placeholder="确认密码"
+                <input id="password-signup-check" type="password" placeholder="确认密码 Confirm Password"
                 oninput="checkSame(this.value)" required>
                 <div class="psc">
                     <div id="strength"> </div>
@@ -48,27 +48,14 @@
             <div class="custom-alert hidden">
                 <div class="message"></div>
             </div>
-            <button class="button primary" onclick="signup()">注册</button>
-            <button class="button" id="loginLink">登录</button>
+            <button class="button" onclick="signup()">注册   Sign Up</button>
+            <button class="button" id="loginLink">登录   Sign In</button>
         </div>
-        <blockquote>
-            <p>
-                Tip: 必须包含数字和字母且密码长度大于6
-            </p>
-            <p>
-                以下规则至少满足一条
-            </p>
-            <ul>
-                <li class="tip">同时包含大小写字母</li>
-                <li class="tip">包含特殊符号</li>
-                <li class="tip">密码长度大于10</li>
-            </ul>
-        </blockquote>
     </div>
 
-    <div class="side">
-        Portal! It's MyGO!!!!!
-    </div>
+    <!-- <div class="side">
+        (no text)
+    </div> -->
 
     <script type="text/javascript" src="./login.js"></script>
     <script type="text/javascript" src="../../script/utils/Store.js"></script>
