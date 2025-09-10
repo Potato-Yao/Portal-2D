@@ -19,10 +19,6 @@
 <body>
     <div class="menu">
         <div class="title">
-            <!-- <div class="vertical">
-                <div>标</div>
-                <div>题</div>
-            </div> -->
             <div class="horizontal">
                 <!-- <div class="text">
                     Exitless <br> Day
@@ -36,13 +32,9 @@
             <div class="button" id="start">开始新游戏</div>
             <div class="button" id="load">加载存档</div>
             <div class="button" id="achievement">成就！</div>
+            <div class="button" id="members">团队成员</div>
             <div class="button" id="exit">退出</div>
         </div>
-        <!-- <div class="side">
-            这里不知道要写啥 <br>
-            但是看起来很吊所以没删 <br>
-            如果不写东西最好还是删了
-        </div> -->
     </div>
 
     <div class="save hide" id="save-load">
@@ -207,6 +199,13 @@
                 setTimeout(() => {
                     console.log(window.$store)
                     window.location.href = `./game.html?${window.$store.encode()}`;
+                }, GAPTIME);
+            });
+            document.querySelector("#members").addEventListener("click", () => {
+                fadeOut();
+                setTimeout(() => {
+                    console.log(window.$store)
+                    window.location.href = `./pages/members.html?${window.$store.encode()}`;
                 }, GAPTIME);
             });
             document.querySelector("#load").addEventListener("click", () => {
