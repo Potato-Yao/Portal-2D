@@ -23,6 +23,7 @@ body {
 .menu {
     height: 100vh;
     width: 100vw;
+    position: relative;
 }
 
 .menu > .title {
@@ -115,11 +116,13 @@ body {
     z-index: 1;
     bottom: 0px;
     display: flex; /* 启用Flex布局 */
-    flex-direction: row; /* 按钮垂直排列 */
+    flex-direction: row; /* 按钮水平排列 */
     justify-content: center; /* 按钮水平居中 */
     align-items: center; /* 按钮垂直居中 */
     position: absolute; /* 绝对定位 */
-    padding: 6vh 8vw; /* 内边距：上下为10%视口高度，左右为10%视口宽度 */
+    width: 100%; /* 占满整个宽度 */
+    box-sizing: border-box; /* 确保padding不会增加总宽度 */
+    padding: 6vh 4vw; /* 优化水平内边距 */
     gap: 1rem; /* 按钮之间的间距为2rem（相对单位，适配不同屏幕） */
     user-select: none; /* 禁止选中容器内内容（防止误选按钮文字） */
 }
@@ -128,11 +131,10 @@ body {
     display: flex; /* 启用Flex布局 */
     align-items: center; /* 文字在垂直方向居中 */
     justify-content: center; /* 文字在水平方向居中 */
-    align-items: center; /* 按钮垂直居中 */
     position: relative; /* 相对定位 */
     cursor: pointer; /* 手型光标 */
     padding: 0.5rem 2rem; /* 统一内边距 */
-    width: clamp(10vw, 15vw, 20vw); /* 统一按钮宽度 */
+    width: clamp(6vw, 200px, 10vw); /* 统一按钮宽度 */
     text-align: center; /* 文本居中对齐 */
     font-family: "Noto Serif", "Noto Serif SC", serif;
     font-size: 1.25rem; /* 基于根元素字体大小 */
@@ -141,6 +143,7 @@ body {
     border: unset;
     color: var(--theme);
     white-space: nowrap;
+    border-radius: clamp(2%, 10px, 12%);
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -334,6 +337,14 @@ body {
     box-sizing: border-box;
 }
 
+.achievement-container .list .list-item.completed:hover {
+    color: #ffffff;
+    background-color: #ffca91e7;
+}
+.achievement-container .list .list-item.completed::before {
+    border-top-color: #ffca91e7;
+}
+
 .achievement-container>.list>.list-item > div {
     text-align: start;
 }
@@ -352,9 +363,9 @@ body {
     height: 0;
     top: 0px;
     left: 0px;
-    border-left: 0.25rem solid transparent;
-    border-right: 0.25rem solid transparent;
-    border-top: 0.5rem solid #ffffff;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-top: 1rem solid #ffffff;
 }
 
 .save-container .list-item:hover,
