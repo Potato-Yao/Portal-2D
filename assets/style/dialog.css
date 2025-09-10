@@ -94,7 +94,7 @@ body {
     margin: 5% 20%;
     word-break: break-all;
     max-width: 80%;
-    color: white;
+    color: rgb(0, 0, 0);
     z-index: 20;
     line-height: 1;
 }
