@@ -11,18 +11,18 @@
 <body>
     <div class="container">
         <header class="page-header">
-            <h1>BITVentures</h1>
+            <img src="../assets/imgs/team_logo.png" alt="Team Logo" class="header-logo">
             <nav class="main-nav">
                 <ul>
-                    <li><a href="../index.html">首页</a></li>
-                    <li><a href="#" class="active">成员介绍</a></li>
+                    <li><a href="../index.html" id="home">返回主页</a></li>
+                    <!-- <li><a href="#" class="active" id="members-intro">成员介绍</a></li> -->
                 </ul>
             </nav>
         </header>
 
         <main class="member-container">
             <div class="member-gallery">
-                <div class="member-card">
+                <div class="member-card" id="czf">
                     <div class="member-avatar">
                         <img src="../assets/avatars/czf.png" alt="成员头像">
                     </div>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <div class="member-card">
+                <div class="member-card" id="lyt">
                     <div class="member-avatar">
                         <img src="../assets/avatars/lyt.png" alt="成员头像">
                     </div>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
 
-                <div class="member-card">
+                <div class="member-card" id="phr">
                     <div class="member-avatar">
                         <img src="../assets/avatars/phr.png" alt="成员头像">
                     </div>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="member-card">
+                <div class="member-card" id="yys">
                     <div class="member-avatar">
                         <img src="../assets/avatars/yys.png" alt="成员头像">
                     </div>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="member-card">
+                <div class="member-card" id="zn">
                     <div class="member-avatar">
                         <img src="../assets/avatars/zn.png" alt="成员头像">
                     </div>
@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <div class="member-card">
+                <div class="member-card" id="zzm">
                     <div class="member-avatar">
                         <img src="../assets/avatars/zzm.png" alt="成员头像">
                     </div>
@@ -102,8 +102,39 @@
         </script>
 
         <footer class="page-footer">
-            <p>Exitless Day</p>
+            <p>Exitless Day.</p>
         </footer>
     </div>
+    <script type="text/javascript">
+          // 页面加载时恢复滚动位置
+          window.addEventListener('DOMContentLoaded', () => {
+              // 从index页面进入时重置滚动位置
+                //   if (document.referrer.includes('index.html')) {
+                //       sessionStorage.removeItem('memberGalleryScrollLeft');
+                //   }
+              // 这段代码似乎未能生效（，于是改为了在下面监听单击 home 按钮并在离开时清除
+              const savedScroll = sessionStorage.getItem('memberGalleryScrollLeft');
+              if (savedScroll) {
+                  const gallery = document.querySelector('.member-gallery');
+                  gallery.scrollLeft = parseInt(savedScroll, 10);
+              }
+          });
+          document.querySelector("#home").addEventListener("click", () => {
+                sessionStorage.removeItem('memberGalleryScrollLeft');
+          });
+          const eventListener = (tag) => {
+              document.querySelector("#" + tag).addEventListener("click", () => {
+                  const gallery = document.querySelector('.member-gallery');
+                  sessionStorage.setItem('memberGalleryScrollLeft', gallery.scrollLeft);
+                  window.location.href = `./intro/${tag}.html`;
+              });
+          };
+          eventListener("czf");
+          eventListener("lyt");
+          eventListener("phr");
+          eventListener("yys");
+          eventListener("zn");
+          eventListener("zzm");
+      </script>
 </body>
 </html>
