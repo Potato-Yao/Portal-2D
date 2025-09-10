@@ -75,13 +75,14 @@ body {
     z-index: 0;
     text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
     font-size: 2vh;
-    aspect-ratio: 10/3;
+    aspect-ratio: 10/5;
     display: flex;
     align-items: center;
 }
 
 .dialogue-box img {
     position: absolute;
+    bottom: 5%;
     z-index: 10;
     max-width: 100%;
     max-height: 100%;
@@ -105,11 +106,10 @@ body {
 
 #character-img {
     position: absolute;
+    left: 5%;
     bottom: 0;
-    left: 0;
-    width: 20vh;
-    height: auto;
-    max-height: 30vh;
+    width: 60vh;
+    max-height: 500vh;
     object-fit: contain;
-    z-index: 5;
+    z-index: 3;
 }
