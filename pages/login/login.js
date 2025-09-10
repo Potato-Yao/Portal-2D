@@ -1,81 +1,3 @@
-// 检查密码强度
-function checkPasswordStrength(password) {
-    // 密码长度至少为6
-    if (password.length == 0) {
-        document.getElementById('strength').textContent = "";
-        barDisplay("");
-        return;
-    }
-    if (password.length < 6) {
-        document.getElementById('strength').textContent = "无效";
-        barDisplay("无效");
-        return;
-    }
-
-    // 检查是否包含数字和字母
-    const hasDigit = /\d/.test(password);
-    const hasLetter = /[a-zA-Z]/.test(password);
-
-    if (!hasDigit || !hasLetter) {
-        document.getElementById("strength").textContent = "无效";
-        ("无效");
-    }
-
-    // 密码至少为弱强度
-    let strength = "弱";
-
-    // 检查长度是否大于10
-    if (password.length > 10) {
-        strength = "中"; // 至少为中等
-    }
-
-    // 检查是否有大写和小写字母
-    const hasLower = /[a-z]/.test(password);
-    const hasUpper = /[A-Z]/.test(password);
-    const hasBothCase = hasLower && hasUpper;
-
-    // 检查是否包含特殊字符
-    const hasSpecialChar = /[^a-zA-Z0-9]/.test(password);
-
-    // 如果同时满足三个条件，则密码强度为强
-    if (password.length > 10 && hasBothCase && hasSpecialChar) {
-        strength = "强";
-    }
-    // 如果满足其中一个或两个条件，则密码强度为中
-    else if (password.length > 10 || hasBothCase || hasSpecialChar) {
-        strength = "中";
-    }
-
-    document.getElementById("strength").textContent = strength;
-    barDisplay(strength);
-}
-
-
-function barDisplay(strength) {
-    let KeyMap = {
-        "强" : 2,
-        "中" : 1,
-        "弱" : 0,
-        "无效" : -1,
-        "" : -1
-    }
-    colors = ["white", "white", "white"];
-    for (let i = 0; i < 3; ++i)
-    {
-        let bar = document.getElementById("bar" + i);
-        if (strength == "无效" || strength == "")
-            bar.style.display = "none";
-        else
-            bar.style.display = "flex";
-        if (i <= KeyMap[strength])
-            bar.style.backgroundColor = colors[KeyMap[strength]];
-        else
-            bar.style.backgroundColor = "#3388BB";
-
-    }
-}
-
-
 //注册账号
 function signup() {
     const username = document.getElementById("text-signup").value;
@@ -91,13 +13,9 @@ function signup() {
         showAlertWithCountdown("请输入用户名", 1);
         return ;
     }
-    if (strength.textContent != "强" && strength.textContent != "中") {
-        showAlertWithCountdown("请提高密码强度", 1);
-        return ;
-    }
 
     if (password != passwordCheck) {
-        showAlertWithCountdown("两次密码输入不相等", 1);
+        showAlertWithCountdown("两次密码输入不同", 1);
         return ;
     }
     Store.set(username, password);
