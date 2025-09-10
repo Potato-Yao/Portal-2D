@@ -1,0 +1,108 @@
+:root {
+    --theme: #193bb6;
+    --light-theme: rgba(25, 59, 182, 0.1);
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: var(--theme);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.personal-container {
+    position: absolute;
+    text-align: center;
+    width: 80%;
+    max-width: 1200px;
+    min-width: 300px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.911);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.personal-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--light-theme);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 30px;
+    border: 4px solid var(--theme);
+    box-shadow: 0 0 30px rgba(25, 59, 182, 0.3);
+}
+
+.personal-avatar img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.personal-name {
+    color: var(--theme);
+    font-size: 2.5rem;
+    margin: 40px 0 20px;
+    text-shadow: none;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px dashed var(--light-theme);
+}
+
+.personal-bio {
+    color: #666666;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    padding: 20px;
+    margin-top: 10px;
+    border-bottom: 1.5px dashed var(--light-theme);
+    background: none;
+    box-shadow: none;
+    border: none;
+}
+
+/* 导航按钮样式 */
+.personal-nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.personal-nav ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.personal-nav a {
+    color: var(--text-light);
+    background-color: #3e58b6;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.personal-nav a:hover {
+    background-color: var(--theme);
+}
+
+.personal-nav a.active {
+    background-color: var(--text-light);
+    color: var(--theme);
+}
