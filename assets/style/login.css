@@ -123,8 +123,8 @@ blockquote::before {
 /* 模拟alert */
 .custom-alert {
     position: fixed; /* 固定定位，相对于视口 */
-    left: 430px; /* 左侧距离430px */
-    width: 150px; /* 宽度150px */
+    left: 850px; /* 左侧距离430px */
+    width: 200px; /* 宽度150px */
     padding: 5px 20px; /* 上下内边距5px，左右20px */
     z-index: 1000; /* 层级1000，确保在其他元素上方 */
 
