@@ -91,9 +91,9 @@ body {
 }
 
 .dialogue-box p {
-    margin: 0 20%;
+    margin: 5% 20%;
     word-break: break-all;
-    max-width: 40%;
+    max-width: 80%;
     color: white;
     z-index: 20;
     line-height: 1;
