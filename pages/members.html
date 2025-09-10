@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="Shortcut Icon" href="../assets/ico/exit.png" type="image/x-icon" />
+    <title>Exitless Day - 团队成员</title>
+    <link rel="stylesheet" href="../assets/style/start.css">
+    <link rel="stylesheet" href="../assets/style/members.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>这里是标题</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="#" class="active">成员介绍</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="member-container">
+            <div class="member-gallery">
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="../assets/avatars/czf.png" alt="成员头像">
+                    </div>
+                    <div class="member-info">
+                        <h2 class="member-name">陈卓凡</h2>
+                        <p class="member-role">Coding & Design</p>
+                        <p class="member-bio">负责小游戏部分的设计与开发，以及初步视觉效果的实现。</p>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="../assets/avatars/lyt.png" alt="成员头像">
+                    </div>
+                    <div class="member-info">
+                        <h2 class="member-name">李禹潼</h2>
+                        <p class="member-role">Text & Design</p>
+                        <p class="member-bio">负责游戏文本、游戏流程的设计与编写，以及小游戏玩法的设计。</p>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="../assets/avatars/phr.png" alt="成员头像">
+                    </div>
+                    <div class="member-info">
+                        <h2 class="member-name">彭浩然</h2>
+                        <p class="member-role">Coding & Visual Design</p>
+                        <p class="member-bio">负责视觉效果的设计与实现，以及游戏界面的设计。</p>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="../assets/avatars/yys.png" alt="成员头像">
+                    </div>
+                    <div class="member-info">
+                        <h2 class="member-name">姚雨森</h2>
+                        <p class="member-role">Coding & Framework</p>
+                        <p class="member-bio">负责游戏框架的搭建、游戏的逻辑实现以及各部分的衔接。</p>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="../assets/avatars/zn.png" alt="成员头像">
+                    </div>
+                    <div class="member-info">
+                        <h2 class="member-name">赵楠</h2>
+                        <p class="member-role">Coding & Design</p>
+                        <p class="member-bio">负责小游戏的设计与开发，以及初步视觉效果的实现。</p>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="../assets/avatars/zzm.png" alt="成员头像">
+                    </div>
+                    <div class="member-info">
+                        <h2 class="member-name">曾梓木</h2>
+                        <p class="member-role">Coding & Visual Design</p>
+                        <p class="member-bio">负责视觉效果的设计与实现，各界面的初步布局。</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const gallery = document.querySelector('.member-gallery');
+                // 鼠标滚轮控制水平滚动
+                gallery.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    gallery.scrollLeft += e.deltaY * 1.5; // 调整滚动速度为更舒适的1.5倍
+                });
+
+            });
+        </script>
+
+        <footer class="page-footer">
+            <p>Exitless Day</p>
+        </footer>
+    </div>
+</body>
+</html>
