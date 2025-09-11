@@ -1,6 +1,6 @@
 /* style.css */
 :root {
-    --tile-size: 40px; /* 定义一个变量，方便统一修改方块大小 */
+    --tile-size: 160px; /* 定义一个变量，方便统一修改方块大小 */
 }
 
 body {
@@ -56,7 +56,7 @@ body {
 
 #ui-panel {
     margin-top: 15px;
-    font-size: 1.2em;
+    font-size: 6em;
     display: flex;
     justify-content: space-between;
 }
@@ -73,6 +73,11 @@ body {
     width: calc(var(--tile-size) * 3 + 10px); /* 大约3个方块的宽度 */
     justify-content: center;
 }
+h1 {
+    font-size: 5em; /* 您可以调整为任何您希望的大小，如 3em 或 60px */
+    color: #61dafb;   /* 也可以顺便给它换个颜色，使其与边框颜色一致 */
+    margin-bottom: 5px; /* 也可以微调一下标题和游戏容器之间的间距 */
+}
 
 /* 按键的基础样式 */
 .key {
@@ -84,7 +89,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em;
+    font-size: 4em;
     font-weight: bold;
     color: #61dafb;
     user-select: none; /* 防止双击时选中文本 */

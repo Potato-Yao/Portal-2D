@@ -1,0 +1,81 @@
+window.$game.dataManager.resolve({
+    "events": [
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sittingroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "猫猫 （睁开双眼）...我在哪？"
+                },
+                {
+                    "text": "护士 你终于醒啦"
+                },
+                {
+                    "text": "猫猫 我睡了多久？我记得自己是去上学然后，被车创了..."
+                },
+                {
+                    "text": "护士 嗯...已经过去3年了"
+                },
+                {
+                    "text": "猫猫 （三年？那我...已经...）我的朋友们，最近有来过吗？"
+                },
+                {
+                    "text": "护士 您的母亲一周前来看过您"
+                },
+                {
+                    "text": "猫猫 （......我该怎么办？）"
+                },
+                {
+                    "text": " （你的人生，便一路错位，直至抵达终点）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sky_light.jpg"
+        },
+        {
+            "type": "delay",
+            "time": 1200
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （窗外阳光依旧，街道车水马龙，世界没有等你）"
+                },
+                {
+                    "text": " （课桌已换新人，朋友各奔东西，母亲白发渐生）"
+                },
+                {
+                    "text": " （你醒来，却像从未存在过）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/ocean_dark.jpg"
+        },
+        {
+            "type": "delay",
+            "time": 800
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （黑暗温柔包裹，不再有痛苦，不再有错位）"
+                },
+                {
+                    "text": " （你轻轻闭上眼，这一次，是自己选择的沉睡）"
+                }
+            ]
+        },
+        {
+            "type": "gameEnd"
+        }
+    ]
+})

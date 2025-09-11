@@ -85,6 +85,16 @@ class EventManager {
                     break;
                 case "jump":
                     if (event.url) {
+                        let url = event.url.split("-");
+                        if (url[0] === "autoselect") {
+                            if (url[1] === "game4") {
+                                if (window.$gameStateSum > 2) {
+                                    window.location.href = "./assets/games/game4/index.html";
+                                } else {
+                                    window.location.href = "./assets/games/gamee4/index.html";
+                                }
+                            }
+                        }
                         window.location.href = "./assets/games/" + event.url + "/index.html";
                     }
                     await window.$game.switchView(window.$choice);

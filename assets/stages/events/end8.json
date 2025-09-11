@@ -1,0 +1,75 @@
+window.$game.dataManager.resolve({
+    "events": [
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/canteen_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （高一的时间总是过的很快，早上在大家的欢声笑语中结束了。中午的时候，猫猫和凌华一起在食堂吃着美味的饭菜。下午举办了许多社团活动，大家在一起玩的很开心，一切都很幸福，仿佛置身于梦境之中）"
+                },
+                {
+                    "text": "凌华 猫猫，再见啦！很高兴今天和你在一起！"
+                },
+                {
+                    "text": "猫猫 嗯，我也是！明天见"
+                },
+                {
+                    "text": "猫猫 （虽然我丧失了记忆，但这样似乎...也不赖。我现在很幸福）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sittingroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "妈妈 猫猫！欢迎回来，快来吃晚饭吧"
+                },
+                {
+                    "text": "猫猫 嚼嚼嚼，超级好吃，谢谢妈妈！"
+                },
+                {
+                    "text": "妈妈 嗯嗯，吃完饭休息休息，就快去睡觉吧，今天猫猫很幸福对不对？"
+                },
+                {
+                    "text": "猫猫 （开心的笑）"
+                },
+                {
+                    "text": " （到了夜晚，猫猫永远闭上了眼睛...新的一天在梦里开始了...）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_dark.jpg"
+        },
+        {
+            "type": "delay",
+            "time": 800
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/ocean_dark.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （另一道轻柔飘渺的声音响起，像耳边的幻听）"
+                },
+                {
+                    "text": "？？？：猫猫……快醒来吧……"
+                }
+            ]
+        },
+        {
+            "type": "gameEnd"
+        }
+    ]
+})

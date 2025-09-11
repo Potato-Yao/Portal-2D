@@ -1,0 +1,21 @@
+window.$game.dataManager.resolve(
+{
+    "events": [
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "？？？ 猫猫，无论如何，那个世界有许多挫折，但你愿意相信，会有人永远爱你吗？"
+                }
+            ],
+            "options": [
+                {"text": "相信", "url": "day4C"},
+                {"text": "不相信", "url": "end7"}
+            ]
+        },
+        {
+            "type": "jump"
+        }
+    ]
+}
+)

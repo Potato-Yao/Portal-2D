@@ -1,13 +1,8 @@
-window.$game.dataManager.resolve(
-{
+window.$game.dataManager.resolve({
     "events": [
         {
             "type": "showImg",
             "url": "./assets/imgs/sittingroom_light.jpg"
-        },
-        {
-            "type": "delay",
-            "time": 500
         },
         {
             "type": "dialog",
@@ -22,10 +17,10 @@ window.$game.dataManager.resolve(
                     "text": "妈妈 （哽咽）猫猫...我的女儿，我好想你"
                 },
                 {
-                    "text": "猫猫 （我好像是...被车创了...然后...）唔！"
+                    "text": "猫猫 （我好像是...被车撞了...然后...）唔！"
                 },
                 {
-                    "text": "妈妈 小心头，你已经睡了一个月了。还记得吗？高二上学的路上，你被汽车创了，然后一直昏迷。我们都很担心你，你的朋友们也经常来看你。"
+                    "text": "妈妈 小心头，你已经睡了一个月了。还记得吗？高二上学的路上，你被汽车撞了，然后一直昏迷。我们都很担心你，你的朋友们也经常来看你。"
                 },
                 {
                     "text": "猫猫 （团团...凌华...千鹤...原来是你们，我最好的朋友们）"
@@ -47,6 +42,50 @@ window.$game.dataManager.resolve(
                 },
                 {
                     "text": "猫猫 嗯...我回来了"
+                },
+                {
+                    "text": " 人的一生就像是薛定谔的猫，幸福和不幸，真实与虚假，从来都是自己决定。"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sky_light.jpg"
+        },
+        {
+            "type": "delay",
+            "time": 1500
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （阳光洒在窗台，风轻轻吹动窗帘）"
+                },
+                {
+                    "text": " （远处传来鸟鸣，和隐约的笑声）"
+                },
+                {
+                    "text": " —— 真实的世界，或许不完美，但值得你睁开眼。"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/ocean_dark.jpg"
+        },
+        {
+            "type": "delay",
+            "time": 800
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （画面渐暗，轻柔女声低语）"
+                },
+                {
+                    "text": "谢谢你，选择回来。"
                 }
             ]
         },
@@ -54,5 +93,4 @@ window.$game.dataManager.resolve(
             "type": "gameEnd"
         }
     ]
-}
-)
+})

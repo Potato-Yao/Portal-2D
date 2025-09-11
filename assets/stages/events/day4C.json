@@ -1,0 +1,10 @@
+window.$game.dataManager.resolve(
+{
+    "events": [
+        {
+            "type": "jump",
+            "url": "game5"
+        }
+    ]
+}
+)

@@ -1,0 +1,138 @@
+window.$game.dataManager.resolve({
+    "events": [
+        {
+            "type": "updateDay",
+            "day": "4"
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "？？？ 宝贝，该起床了"
+                },
+                {
+                    "text": "猫猫 （睁开眼睛）怎么会，我明明应该在公园睡着了"
+                },
+                {
+                    "text": "猫猫 不对，我明明不吃饭也不会饿；为什么一定需要睡觉！梦里固定的小游戏和闪现的片段又到底是什么？"
+                },
+                {
+                    "text": "？？？ 该去上学了呀，这是你高一的第一天哦，要好好表现~妈妈会一直在家里等你的（微笑）"
+                },
+                {
+                    "text": "猫猫 （今天可以听清ta说的话了，或许可以沟通）妈妈，这不是真的你，对吗？"
+                },
+                {
+                    "text": "？？？ （猫猫看到了ta的口型：woyizhizaidengni）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sittingroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "猫猫起床、洗漱，出门"
+                },
+                {
+                    "text": "？？？ 你喜欢就好，喜欢就多吃一点"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/street_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （猫猫出门，不出意外的见到了她）"
+                },
+                {
+                    "text": "？？？ 猫猫，我等你好久啦！走吧走吧！"
+                },
+                {
+                    "text": "猫猫 早上好"
+                },
+                {
+                    "text": "？？？ 怎么今天这么不精神，我是团团呀"
+                },
+                {
+                    "text": "猫猫 我该怎么样，才能回到原来的世界呢？虽然我忘记了，但我知道，这个美好的世界不是真的。"
+                },
+                {
+                    "text": "？？？ （xinglaiba）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/classroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （高一的时间总是过的很快，经历了那些事情之后，你决定先谨慎观察周围，寻找离开这里的方法；又或者，你其实根本不想离开这个只有快乐的世界）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/canteen_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "？？？ 猫猫，再见啦！很高兴今天和你在一起！"
+                },
+                {
+                    "text": "猫猫 很高兴和你在一起，我们一起度过的时光很开心...或许我们明天就不要再见面了"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sittingroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "？？？ 猫猫！欢迎回来，快来吃晚饭吧"
+                },
+                {
+                    "text": "猫猫 嚼嚼嚼..."
+                },
+                {
+                    "text": "？？？ 嗯嗯，吃完饭休息休息，就快去睡觉吧，今天猫猫很幸福对不对？"
+                },
+                {
+                    "text": "猫猫 嗯，在这里我很幸福，但是...我很想看看真实的世界，外面的世界又似乎在"
+                },
+                {
+                    "text": "？？？ 猫猫，如果真实的世界并非你想的那般美好，你会爱那个世界吗？"
+                }
+            ]
+        },
+        {
+            "type": "option",
+            "options": [
+                { "text": "爱", "url": "day4B" },
+                { "text": "不爱", "url": "day4B"}
+            ]
+        },
+        {
+            "type": "jump"
+        }
+    ]
+})

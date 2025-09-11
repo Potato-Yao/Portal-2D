@@ -135,45 +135,15 @@ class DialogManager {
         const choice = await this.showOption(); // 显示选项并等待选择
         console.log(choice);
         if (choice !== null) {
-            switch (window.$chatperState) {
-                case 0: {
-                    if (choice === 0) {
-                        window.$chatperState = 1;
-                    } else {
-                        window.$chatperState = 2;
-                    }
-                    window.$choice = "day4-2.json";
-                    break;
-                }
-                case 1: {
-                    if (choice === 0) {
-                        window.$choice = "day4-3.json"
-                        window.$chatperState = 3;
-                    } else {
-                        window.$choice = "end7.json"
-                    }
-                    break;
-                }
-                case 2: {
-                    if (choice === 0) {
-                        window.$choice = "day4-3.json"
-                        window.$chatperState = 3;
-                    } else {
-                        window.$choice = "end6.json"
-                    }
-                    break;
-                }
-
-                default:
-                    break;
-            }
+            window.$choice = this.options[choice].url + ".json";
         }
 
         await this.close(); // 关闭对话框
         this.options = []; // 清除选项
     }
 
-    async showImg(name) {}
+    async showImg(name) {
+    }
 
     // 显示选项并等待用户选择
     async showOption() {
@@ -187,7 +157,8 @@ class DialogManager {
         // 返回一个Promise，它在用户选择后解决
         return new Promise((resolve) => {
             // 为每个选项创建单选按钮
-            this.options.forEach((optionText, index) => {
+            this.options.forEach((button, index) => {
+                let optionText = button.text;
                 const label = document.createElement("label");
                 label.style.padding = "8px";
                 label.style.margin = "4px";
@@ -293,7 +264,7 @@ class DialogManager {
                             ])
                         );
                     })()
-                );
+                    ) ;
             else await delay(100);
         }
         this.buffer = [];

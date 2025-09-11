@@ -1,10 +1,10 @@
 // game.js
 document.addEventListener('DOMContentLoaded', () => {
     // --- 全局变量和常量 ---
-    const TILE_SIZE = 40; // 必须和CSS中的 --tile-size 一致
+    const TILE_SIZE = 160; // 必须和CSS中的 --tile-size 一致
     const TILE_CLASS_MAPPING = {
         0: 'floor',
-        1: 'wall',
+        //1: 'wall',
         2: 'switch',
         3: 'start',
         4: 'exit',
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let player = {
         name: "玩家1",
         hp: 3,
-        map_name: "map1_1",
+        map_name: "map1",
         pos: [0, 0] // 初始位置，稍后会更新
     };
     let isGameOver = false;
@@ -31,11 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!mapsData) return;
 
         const grid = mapsData[player.map_name].grid;
-
+        
         // 动态设置网格布局的列数和行数
         gridContainer.style.gridTemplateColumns = `repeat(${grid[0].length}, ${TILE_SIZE}px)`;
         gridContainer.style.gridTemplateRows = `repeat(${grid.length}, ${TILE_SIZE}px)`;
-
+        
         // 清空旧的地图
         gridContainer.innerHTML = '';
 
@@ -45,15 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tileDiv = document.createElement('div');
                 let tileClass = TILE_CLASS_MAPPING[tileVal] || 'floor';
                 if (tileVal === 1) {
-                    if (player.map_name === 'map1_1') {
-                        tileClass = 'wall-map1_1';
+                    if (player.map_name === 'map1') {
+                        tileClass = 'wall-map1';
                     } else { // 假设除了map1之外的地图都用第二种墙壁
-                        tileClass = 'wall-map1_2';
+                        tileClass = 'wall-map2';
                     }
                 }
 
                 tileDiv.classList.add('tile', tileClass);
-
+                
                 // 给每个方块加上ID，方便定位玩家
                 tileDiv.id = `tile-${i}-${j}`;
 
@@ -93,38 +93,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const cell = grid[new_x][new_y];
-        // let cell = 4; // for debug
 
         if (cell === 1) {
             console.log("撞到了墙上，无法通过！");
-            return;
+			return;
         }
 
         if (cell === 4) {
             alert("🎉 你到达出口，游戏胜利！");
             isGameOver = true;
-            window.location.href = '../../../game.html?portal-2d-toLoad={"url": "day2.json", "state": 1}';
+			window.location.href = '../../../game.html?portal-2d-toLoad={"url": "day1.json", "state": 1}';
+            return;
         }
-
+        
         if (cell === 2) {
             switchMap(new_x, new_y);
         } else {
             player.pos = [new_x, new_y];
         }
 
+        // --- 新增的被困判断逻辑 ---
+        if (isPlayerTrapped()) {
+            // 惩罚：直接返回 map1 的起点
+            console.log("玩家被困住了! 返回最初的起点。");
+            player.map_name = 'map1';                   // 1. 强制切换回 map1
+            player.pos = findStartPos('map1');        // 2. 寻找 map1 的入口并设置位置
+        }
+        // --- 逻辑结束 ---
+
         // 每次移动后都重绘游戏
         drawGame();
 
         if (player.hp <= 0) {
             alert("💀 生命归零，游戏失败！");
+			window.location.href = '../../../game.html?portal-2d-toLoad={"url": "day1.json", "state": 0}';
             isGameOver = true;
-            window.location.href = '../../../game.html?portal-2d-toLoad={"url": "day2.json", "state": 0}';
         }
     }
 
     // 切换地图
     function switchMap(switch_x, switch_y) {
-        player.map_name = (player.map_name === "map1_1") ? "map1_2" : "map1_1";
+        player.map_name = (player.map_name === "map1") ? "map2" : "map1";
         player.pos = [switch_x, switch_y];
 
         const grid = mapsData[player.map_name].grid;
@@ -133,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("传送点在墙上！掉一条命");
                         // --- 新增的动画触发逻辑 ---
             hpDisplay.classList.add('damage-flash'); // 立即添加动画类
-
+            
             // 设置一个定时器，在动画播放完毕后移除这个类
             // 动画时长0.5秒，播放2次，总时长1秒 (1000毫秒)
             setTimeout(() => {
@@ -141,6 +150,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
             // --- 逻辑结束 ---
         }
+    }
+    
+    function isPlayerTrapped() {
+        const [x, y] = player.pos;
+        const grid = mapsData[player.map_name].grid;
+
+        // 定义上下左右四个相邻格子的坐标
+        const neighbors = [
+            { r: x - 1, c: y }, // 上
+            { r: x + 1, c: y }, // 下
+            { r: x, c: y - 1 }, // 左
+            { r: x, c: y + 1 }  // 右
+        ];
+
+        // 检查所有相邻格子
+        for (const neighbor of neighbors) {
+            const { r, c } = neighbor;
+
+            // 检查这个邻居坐标是否在地图范围内
+            if (r >= 0 && r < grid.length && c >= 0 && c < grid[0].length) {
+                // 如果在范围内，检查它是不是墙
+                if (grid[r][c] !== 1) {
+                    // 只要有一个邻居不是墙，玩家就没有被困住
+                    return false;
+                }
+            }
+            // 如果邻居坐标超出了地图边界，我们同样视其为一堵“墙”
+        }
+
+        // 如果循环结束，所有邻居都是墙或边界，说明玩家被困住了
+        return true;
     }
 
     // 寻找初始位置
@@ -159,9 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 游戏启动 ---
     async function initGame() {
         // 异步加载地图文件
-        const response = await fetch('map1.json');
+        const response = await fetch('第一关map.json');
         mapsData = await response.json();
-
+        
         // 设置玩家初始位置
         player.pos = findStartPos(player.map_name);
 

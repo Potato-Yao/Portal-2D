@@ -91,22 +91,41 @@ class Game {
         // this.deadScreen = new DeadScreen();
 
         this.chapterNow = 'day1';
-        window.$chatperState = 0;
+        window.$chatperState = "null";
 
         this.splash = new Splash();
     }
 
-    async init(filename = 'day1.json') {
+    async init(filename = 'day0.json') {
         // await this.textureManager.load();
         await this.soundManager.load();
         await this.achievementManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'day1.json') {
+    async load(filename = 'day0.json') {
         // await this.map.loadFromURL('./assets/stages/maps/' + filename);
         // await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         // await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
+        if (filename === "day3jump") {
+            if (window.$gameStateSum >= 2) {
+                filename = "day3A.json";
+            } else {
+                filename = "day3B.json";
+            }
+        } else if (filename === "day4jump0") {
+            if (window.$gameState === 1) {
+                filename = "end1.json";
+            } else {
+                filename = "end5.json";
+            }
+        } else if (filename === "day4jump1") {
+            if (window.$gameState === 1) {
+                filename = "day4A.json";
+            } else {
+                filename = "day4B.json";
+            }
+        }
         await this.eventManager.loadFromURL('./assets/stages/events/' + filename);
         this.loaded = true;
         // this.view = new PortalView(this.map, this.viewData);

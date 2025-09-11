@@ -1,0 +1,81 @@
+window.$game.dataManager.resolve({
+    "events": [
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/street_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "克莱蒂 什么？猫猫，你不上课了吗？你要去哪里"
+                },
+                {
+                    "text": "猫猫 抱歉，我有点事要出去一趟"
+                },
+                {
+                    "text": "（猫猫跑出了校园，走到大街上，才发现自己根本不认识路，只能四处乱走）"
+                },
+                {
+                    "text": "猫猫 怎么找不到回去的路了？那先随便转转吧"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/playground_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （猫猫走到了周围的公园，炎炎夏日中，公园绿树繁茂，男女老少在公园聊天，遛弯）"
+                },
+                {
+                    "text": "猫猫 （前面那个阿姨在看风景，试着去问句话吧）您好，想问下现在是什么时候了？"
+                },
+                {
+                    "text": "阿姨 （微笑）"
+                },
+                {
+                    "text": "猫猫 您好？"
+                },
+                {
+                    "text": "阿姨 （一直微笑）"
+                },
+                {
+                    "text": "猫猫 请问你能听到我说话吗？（伸手去拍她的背）"
+                },
+                {
+                    "text": "（突然，天一下变暗了，阿姨仿佛蛋壳一般碎了一地，四周的人物也化为虚无，出现了许多类似于黑洞一样的缺口）"
+                },
+                {
+                    "text": "缺口 （低语）猫猫————猫猫————！"
+                },
+                {
+                    "text": "猫猫 ！！！这种缺口是？"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/ocean_dark.jpg"
+        },
+        {
+            "type": "dialog",
+            "options": [
+                {
+                    "text": "进入缺口",
+                    "url": "end9"
+                },
+                {
+                    "text": "不进入，转身逃跑",
+                    "url": "day2B"
+                }
+            ]
+        },
+        {
+            "type": "jump"
+        }
+    ]
+})

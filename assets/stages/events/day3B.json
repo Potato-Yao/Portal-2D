@@ -1,0 +1,123 @@
+window.$game.dataManager.resolve({
+    "events": [
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "？？？ 宝b#E，该起床了"
+                },
+                {
+                    "text": "猫猫 （睁开眼睛以为自己幻听了）好的...梦里的事情，好像依稀能记住了"
+                },
+                {
+                    "text": "妈妈 该去上学了呀，这是你（）（）的第一天哦，要好好表现~妈妈会一直在家里J*nl1i的（微笑）"
+                },
+                {
+                    "text": "猫猫 （这是.....什么情况？）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sittingroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "猫猫起床、洗漱，朝着大门走去"
+                },
+                {
+                    "text": "妈妈 你A￥%x就好，喜欢就多吃一点"
+                },
+                {
+                    "text": "猫猫 （？？？！！！）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/street_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （猫猫跑出门，看到了那个女生）"
+                },
+                {
+                    "text": "猫猫 为什么，我听不清妈妈说的话了！"
+                },
+                {
+                    "text": "凌华 ——，我等你好久啦！@#））！"
+                },
+                {
+                    "text": "猫猫 （！！！）"
+                },
+                {
+                    "text": "猫猫 （这不对劲！）你们到底是谁"
+                },
+                {
+                    "text": "？？？拉着猫猫的手向前走去，可是前面根本没有路"
+                },
+                {
+                    "text": "猫猫用尽自己全身力气甩开这个不知道是不是人的手，跑了起来，明明没有路，场景却不受控制的快速变换，最后定格到了公园"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/playground_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " 人们都微笑着在公园散步，猫猫松了一口气，试图靠近其中一对情侣"
+                },
+                {
+                    "text": "女性 HF（g24##@（捂嘴笑）"
+                },
+                {
+                    "text": "男性 ！#ni3rf，亲爱的"
+                },
+                {
+                    "text": "猫猫 （这不对...到底哪里...出错了？！）"
+                },
+                {
+                    "text": " 公园和第二天一样又快速的暗了下来，但猫猫实在不想回家面对不知道是否是人的“妈妈”，索性在公园的椅子上睡下了"
+                },
+                {
+                    "text": " （到了夜晚，猫猫辗转反侧，但还是紧紧地闭上了眼睛...）"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/ocean_dark.jpg"
+        },
+        {
+            "type": "delay",
+            "time": 1200
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （风声渐起，远处传来断断续续的呼唤）"
+                },
+                {
+                    "text": "？？？：……猫猫……你还记得……自己的名字吗……？"
+                }
+            ]
+        },
+        {
+            "type": "jump",
+            "url": "autoselect-game4"
+        }
+    ]
+})

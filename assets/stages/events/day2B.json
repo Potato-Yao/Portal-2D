@@ -1,0 +1,59 @@
+window.$game.dataManager.resolve({
+    "events": [
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/street_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " 猫猫扭头就跑，场景在眼前飞速变换，居然一眨眼就到家了"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sittingroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "妈妈 猫猫！欢迎回来，快来吃晚饭吧"
+                },
+                {
+                    "text": "猫猫 妈妈，我今天后面翘课了..."
+                },
+                {
+                    "text": "妈妈 嗯嗯，吃完饭休息休息，就快去睡觉吧，今天猫猫很幸福对不对？"
+                },
+                {
+                    "text": "猫猫 妈妈，你不介意吗？我没去上课"
+                },
+                {
+                    "text": "妈妈（微笑）"
+                },
+                {
+                    "text": " 猫猫现在看到她的微笑，只觉得惊悚，但外面的场景让她不敢出门，只能默默回到房间"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_dark.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （到了夜晚，猫猫闭上了眼睛...）"
+                }
+            ]
+        },
+        {
+            "type": "jump",
+            "url": "game3"
+        }
+    ]
+})

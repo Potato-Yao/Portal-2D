@@ -22,6 +22,9 @@ window.$game.dataManager.resolve(
                     "text": " （你重新闭上了眼睛）"
                 }
             ]
+        },
+        {
+            "type": "gameEnd"
         }
     ]
 }

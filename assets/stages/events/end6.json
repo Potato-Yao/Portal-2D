@@ -12,6 +12,9 @@ window.$game.dataManager.resolve(
                     "text": " （一切归于虚无）"
                 }
             ]
+        },
+        {
+            "type": "gameEnd"
         }
     ]
 }

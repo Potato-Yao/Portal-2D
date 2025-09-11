@@ -1,5 +1,4 @@
-window.$game.dataManager.resolve(
-{
+window.$game.dataManager.resolve({
     "events": [
         {
             "type": "updateDay",
@@ -16,7 +15,7 @@ window.$game.dataManager.resolve(
                     "text": "？？？ 宝贝，该起床了"
                 },
                 {
-                    "text": "猫猫 （睁开眼睛）好的...我现在就起"
+                    "text": "猫猫 （睁开眼睛）好的...我现在就起，好像做了一个梦？"
                 },
                 {
                     "text": "妈妈 该去上学了呀，这是你高一的第一天哦，要好好表现~妈妈会一直在家里等你的（微笑）"
@@ -34,10 +33,13 @@ window.$game.dataManager.resolve(
             "type": "dialog",
             "texts": [
                 {
-                    "text": "猫猫起床、洗漱、走到餐厅"
+                    "text": " 猫猫起床、洗漱、走到餐厅"
                 },
                 {
                     "text": "妈妈 你喜欢就好，喜欢就多吃一点"
+                },
+                {
+                    "text": "猫猫：（心声）连味道都和昨天一样。是我在重复，还是世界在重复？"
                 },
                 {
                     "text": "猫猫 我吃饱了，谢谢妈妈"
@@ -52,7 +54,7 @@ window.$game.dataManager.resolve(
             "type": "dialog",
             "texts": [
                 {
-                    "text": "（猫猫出门，看到了凌华，冲她高兴的招手）"
+                    "text": " （猫猫出门，看到了凌华，冲她高兴的招手）"
                 },
                 {
                     "text": "凌华 猫猫，我等你好久啦！走吧走吧！"
@@ -61,10 +63,16 @@ window.$game.dataManager.resolve(
                     "text": "猫猫 早上好"
                 },
                 {
-                    "text": "凌华 怎么今天这么不精神，我是凌华呀"
+                    "text": "凌华 怎么今天这么不精神，我是克莱蒂呀"
                 },
                 {
-                    "text": "猫猫 （怎么...有点不对劲？）哦哦，好...没事，走吧！"
+                    "text": "猫猫 （怎么...有点不对劲？）你...你是谁?那凌华是谁"
+                },
+                {
+                    "text": "克莱蒂 什么凌华？猫猫你醒醒...不会还没睡醒吧？"
+                },
+                {
+                    "text": "猫猫 （难道是我做梦的时候记错了？）"
                 }
             ]
         },
@@ -76,80 +84,25 @@ window.$game.dataManager.resolve(
             "type": "dialog",
             "texts": [
                 {
-                    "text": "高一的时间总是过的很快，大家在一起玩的很开心"
+                    "text": " （到了学校，猫猫发现一切都和之前一样，同学们愉快的玩耍、聊天，一切美好又轻松，仿佛幻想中的乌托邦）"
+                },
+                {
+                    "text": "猫猫 （学校...是这样的吗？那我晚上梦见的是什么？要不要出去看看...总觉得这不是我的生活）"
+                }
+            ],
+            "options": [
+                {
+                    "text": "出去探索，寻找真相",
+                    "url": "day2A"
+                },
+                {
+                    "text": "留在原地，继续‘幸福’生活",
+                    "url": "end8"
                 }
             ]
         },
         {
-            "type": "showImg",
-            "url": "./assets/imgs/canteen_light.jpg"
-        },
-        {
-            "type": "dialog",
-            "texts": [
-                {
-                    "text": "凌华 猫猫，再见啦！很高兴今天和你在一起！"
-                },
-                {
-                    "text": "猫猫 嗯，我也是，明天见"
-                },
-                {
-                    "text": "猫猫 （为什么？为什么和昨天一模一样？我记错了吗？为什么？）"
-                }
-            ]
-        },
-        {
-            "type": "showImg",
-            "url": "./assets/imgs/sittingroom_light.jpg"
-        },
-        {
-            "type": "dialog",
-            "texts": [
-                {
-                    "text": "妈妈 猫猫！欢迎回来，快来吃晚饭吧"
-                },
-                {
-                    "text": "妈妈 嗯嗯，吃完饭休息休息，就快去睡觉吧，今天猫猫很幸福对不对？"
-                },
-                {
-                    "text": "猫猫 （这不对...到底哪里...出错了？！）"
-                }
-            ]
-        },
-        {
-            "type": "showImg",
-            "url": "./assets/imgs/bedroom_dark.jpg"
-        },
-        {
-            "type": "dialog",
-            "texts": [
-                {
-                    "text": " （到了夜晚，猫猫不安地闭上了眼睛...）"
-                }
-            ]
-        },
-        {
-            "type": "showImg",
-            "url": "./assets/imgs/ocean_dark.jpg"
-        },
-        {
-            "type": "dialog",
-            "texts": [
-                {
-                    "text": "猫猫 你不要再啰嗦了！我自己的事自己能做"
-                },
-                {
-                    "text": "？？？（沉默地看着你）抱歉"
-                },
-                {
-                    "text": "猫猫 （我该怎么办？好痛苦）"
-                }
-            ]
-        },
-        {
-            "type": "jump",
-            "url": "game2"
+            "type": "jump"
         }
     ]
-}
-)
+})

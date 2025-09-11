@@ -233,7 +233,8 @@
             toLoad = JSON.parse(toLoad);
             Store.remove("toLoad");
             Store.set("parfait", JSON.stringify(toLoad.parfait));
-            window.$gameState += toLoad.state;
+            window.$gameStateSum += toLoad.state;
+            window.$gameState = toLoad.state;
         } else {
             Store.remove("parfait");
         }

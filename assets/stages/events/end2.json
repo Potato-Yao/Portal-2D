@@ -1,13 +1,8 @@
-window.$game.dataManager.resolve(
-{
+window.$game.dataManager.resolve({
     "events": [
         {
             "type": "showImg",
             "url": "./assets/imgs/ocean_dark.jpg"
-        },
-        {
-            "type": "delay",
-            "time": 500
         },
         {
             "type": "dialog",
@@ -28,6 +23,9 @@ window.$game.dataManager.resolve(
                     "text": "？？？ zwVDt@31，。。。1？？？"
                 },
                 {
+                    "text": "猫猫 。"
+                },
+                {
                     "text": " （###￥%……&****）"
                 },
                 {
@@ -41,10 +39,16 @@ window.$game.dataManager.resolve(
                 },
                 {
                     "text": "猫猫 （我就这样...永远在这里）"
-                },
-                {
-                    "text": "  "
-                },
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/sittingroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
                 {
                     "text": "？？？ 医生，我女儿已经三个月没醒了，怎么办？我该怎么办"
                 },
@@ -53,6 +57,52 @@ window.$game.dataManager.resolve(
                 },
                 {
                     "text": " （病房中弥漫着哭泣声，你的呼吸声轻轻起伏）"
+                },
+                {
+                    "text": " （监护仪发出规律的滴答声，窗外阳光刺眼，却照不进你的眼睑）"
+                },
+                {
+                    "text": " （妈妈的手，紧紧握着你的手，颤抖着，不肯放开）"
+                }
+            ]
+        },
+        {
+            "type": "delay",
+            "time": 2000
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_dark.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": " （黑暗中，一个熟悉的声音，轻轻响起）"
+                },
+                {
+                    "text": "凌华：猫猫...别睡了..."
+                },
+                {
+                    "text": "团团：我们...都在等你回来..."
+                },
+                {
+                    "text": "千鹤：你不是一个人..."
+                },
+                {
+                    "text": "妈妈：（哽咽）...求你...睁开眼睛..."
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/ocean_dark.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "猫猫 （手指...微微动了一下）"
                 }
             ]
         },
@@ -60,5 +110,4 @@ window.$game.dataManager.resolve(
             "type": "gameEnd"
         }
     ]
-}
-)
+})

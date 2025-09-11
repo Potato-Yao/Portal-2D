@@ -1,0 +1,78 @@
+window.$game.dataManager.resolve({
+    "events": [
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "？？？ Bb#E，该起床了"
+                },
+                {
+                    "text": "猫猫 ......怎么会，我明明应该在公园睡着了，梦里固定的小游戏和闪现的片段又到底是什么"
+                },
+                {
+                    "text": "？？？ A&*%Ro呀，这是你（）（）的第一天哦，BR4($jd~妈妈会一直在家里J*nl1i的（微笑）"
+                },
+                {
+                    "text": "猫猫 ......."
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/street_light.jpg"
+        },
+        {
+            "type": "dialog",
+            "texts": [
+                {
+                    "text": "猫猫起床、洗漱，冲出了大门"
+                },
+                {
+                    "text": "？？？ 你A￥%x就好，WD*^Rf1"
+                },
+                {
+                    "text": "猫猫 ......."
+                },
+                {
+                    "text": " （猫猫跑出门，看到了ta）"
+                },
+                {
+                    "text": "猫猫 ......."
+                },
+                {
+                    "text": "？？？ ——，fc&82好久啦！@#））！"
+                },
+                {
+                    "text": " 你试图跑走，但环顾周围，本来正常的道路上布满了黑洞，你想起之前在公园见过的黑洞"
+                },
+                {
+                    "text": " 上一次，你退缩了，这一次，要赌一把吗？但这个黑洞的诡异，又让你迟疑"
+                }
+            ]
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/ocean_dark.jpg"
+        },
+        {
+            "type": "option",
+            "options": [
+                {
+                    "text": "进入黑洞",
+                    "url": "end9"
+                },
+                {
+                    "text": "不进入，转身逃跑",
+                    "url": "day4C.json"
+                }
+            ]
+        },
+        {
+            "type": "jump"
+        }
+    ]
+})
