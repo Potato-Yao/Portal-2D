@@ -67,6 +67,10 @@ window.$game.dataManager.resolve({
             "day": "1"
         },
         {
+            "type": "playBGM",
+            "name": "1.mp3"
+        },
+        {
             "type": "showImg",
             "url": "./assets/imgs/bedroom_light.jpg"
         },
@@ -188,6 +192,10 @@ window.$game.dataManager.resolve({
                     "text": "猫猫 （开心的笑）"
                 }
             ]
+        },
+        {
+            "type": "playBGM",
+            "name": "3.mp3"
         },
         {
             "type": "showImg",
