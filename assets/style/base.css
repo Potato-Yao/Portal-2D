@@ -127,16 +127,16 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
     font-family: "Noto Serif", "Noto Serif SC", serif;
     font-size: 1.25rem; /* 基于根元素字体大小 */
     font-weight: 600;
-    background: #bababa;
+    background: #bababad2;
     border: unset;
-    color: var(--theme);
+    color: #193bb6d7;
     white-space: nowrap;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .button-container .button:hover { /* 按钮鼠标悬停状态样式 */
     color: #ffffff; /* 文字颜色变为全局主题色（与背景色互换） */
-    background-color: var(--theme);
+    background-color: #3e58b6d0;
 }
 
 .fadeOut { /* 定义.fadeOut类（应用淡出动画） */
@@ -177,8 +177,6 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
     }
 }
 
-.parfait, /* 选择.parfait元素（自定义通知组件1） */
-.camera, /* 选择.camera元素（自定义通知组件2，如相机提示） */
 .achievement { /* 选择.achievement元素（自定义通知组件3，如成就解锁） */
     position: absolute; /* 绝对定位 */
     bottom: 0; /* 距离页面底部0（移除px单位） */
@@ -192,22 +190,16 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
     animation: slideIn 1s forwards; /* 应用slideIn动画，时长1s，保持结束状态（从底部滑入） */
 }
 
-.camera.hide, /* 带有hide类的.camera元素 */
-.achievement.hide, /* 带有hide类的.achievement元素 */
-.parfait.hide { /* 带有hide类的.parfait元素（隐藏通知） */
+.achievement.hide { /* 带有hide类的.parfait元素（隐藏通知） */
     animation: slideOut 1s forwards; /* 应用slideOut动画，时长1s，保持结束状态（从底部滑出） */
 }
 
-.camera.hidden, /* 带有hidden类的.camera元素 */
-.achievement.hidden, /* 带有hidden类的.achievement元素 */
-.parfait.hidden { /* 带有hidden类的.parfait元素（完全隐藏通知） */
+.achievement.hidden { /* 带有hidden类的.parfait元素（完全隐藏通知） */
     display: none; /* 隐藏元素，不占用空间 */
     visibility: hidden; /* 辅助隐藏，确保视觉不可见 */
 }
 
-.camera::before, /* 为.camera添加左侧装饰线 */
-.achievement::before, /* 为.achievement添加左侧装饰线 */
-.parfait::before { /* 为.parfait添加左侧装饰线 */
+.achievement::before { /* 为.parfait添加左侧装饰线 */
     content: ''; /* 伪元素空内容 */
     display: block; /* 块级元素（可设宽高） */
     position: absolute; /* 绝对定位，相对于父元素 */
@@ -218,20 +210,16 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
     background: #ffffff; /* 装饰线颜色为白色 */
 }
 
-.camera > .title, /* .camera下的.title子元素（通知标题） */
-.achievement > .title, /* .achievement下的.title子元素 */
-.parfait > .title { /* .parfait下的.title子元素 */
+.achievement > .title { /* .parfait下的.title子元素 */
     font-size: 1rem; /* 标题文字大小1rem，基于根元素字体大小，实现按比例缩放 */
     margin: 0.25rem 0; /* 上下外边距使用相对单位，实现按比例缩放 */
 }
 
-.achievement > .desc, /* .achievement下的.desc子元素（通知描述） */
-.parfait > .desc { /* .parfait下的.desc子元素 */
+.achievement > .desc { /* .parfait下的.desc子元素 */
     font-size: 0.8rem; /* 描述文字大小0.8rem，基于根元素字体大小，实现按比例缩放 */
 }
 
-.achievement > .caption, /* .achievement下的.caption子元素（通知副标题/补充说明） */
-.parfait > .caption { /* .parfait下的.caption子元素 */
+.achievement > .caption { /* .parfait下的.caption子元素 */
     font-size: 0.8rem; /* 文字大小0.8rem，基于根元素字体大小，实现按比例缩放 */
     opacity: 0.8; /* 不透明度0.8（比主文字浅，区分层级） */
 }
@@ -274,3 +262,4 @@ body, html { /* 选择body和html根元素，统一设置基础样式 */
     display: none; /* 隐藏元素，不占空间 */
     visibility: hidden; /* 辅助隐藏，确保视觉不可见 */
 }
+
