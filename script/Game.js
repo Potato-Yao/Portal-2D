@@ -76,17 +76,32 @@ class Game {
             this.loadPopup.hide();
         });
 
+        // 确保在构造函数中就获取controlMenu元素的引用
         this.controlMenu = document.querySelector('#control');
+        
+        // 添加备用的ESC键全局监听，确保即使在游戏循环出现问题时也能响应ESC键
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && document.getElementById('game')) {
+                if (!this.isPaused) {
+                    // 确保controlMenu存在
+                    let menu = this.controlMenu || document.querySelector('#control');
+                    if (menu) {
+                        menu.style.display = 'flex';
+                        menu.classList.remove('hidden');
+                        this.isPaused = true;
+                    }
+                }
+            }
+        }, { passive: false });
+
         this.resumeBtn = document.querySelector('#control-resume');
-        this.resumeBtn.addEventListener('click', () => this.resume());
-        this.restartBtn = document.querySelector('#control-restart');
-        this.restartBtn.addEventListener('click', () => this.restart());
+        if (this.resumeBtn) this.resumeBtn.addEventListener('click', () => this.resume());
+        
         this.backBtn = document.querySelector('#control-back');
-        this.backBtn.addEventListener('click', () => this.exit());
+        if (this.backBtn) this.backBtn.addEventListener('click', () => this.exit());
+        
         this.saveBtn = document.querySelector('#control-save');
-        this.saveBtn.addEventListener('click', () => this.savePopup.show());
-        this.loadBtn = document.querySelector('#control-load');
-        this.loadBtn.addEventListener('click', () => this.loadPopup.show());
+        if (this.saveBtn) this.saveBtn.addEventListener('click', () => this.savePopup.show());
 
         // this.deadScreen = new DeadScreen();
 
@@ -131,6 +146,21 @@ class Game {
         // this.view = new PortalView(this.map, this.viewData);
 
         this.chapterNow = filename.split('.')[0];
+        
+        // 在每天开始时自动存档
+        if (!window.$isAutosaving) {
+            window.$isAutosaving = true;
+            setTimeout(() => {
+                try {
+                    this.savePopup.save("Autosave");
+                    console.log("自动存档完成");
+                } catch (error) {
+                    console.error("自动存档失败", error);
+                } finally {
+                    window.$isAutosaving = false;
+                }
+            }, 1000); // 延迟1秒存档，确保所有数据加载完成
+        }
     }
 
     start(prev = 0) {
@@ -152,7 +182,34 @@ class Game {
 
         this.computations.push((t) => {
             if (this.inputManager.keyboard.isKeyDown('Esc')) {
-                this.pause();
+                // 直接处理ESC键，确保菜单能够立即显示
+                if (!this.isPaused) {
+                    // 确保controlMenu元素存在
+                    let menu = this.controlMenu || document.querySelector('#control');
+                    
+                    // 使用requestAnimationFrame确保在下一帧渲染时显示菜单
+                    window.requestAnimationFrame(() => {
+                        // 直接设置display属性，因为CSS中的display: none优先级很高
+                        menu.style.display = 'flex';
+                        menu.style.visibility = 'visible';
+                        
+                        // 移除hidden类
+                        menu.classList.remove('hidden');
+                    });
+                    
+                    // 标记为已暂停
+                    this.isPaused = true;
+                    
+                    // 播放暂停音效
+                    try {
+                        this.soundManager.playSound('pause');
+                    } catch(e) {
+                        console.log('音效播放失败');
+                    }
+                    
+                    // 保存统计数据
+                    Store.set("statistics", JSON.stringify(this.statistics));
+                }
             }
         });
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
@@ -246,8 +303,20 @@ class Game {
 
     pause() {
         if (!this.isPaused) {
+            // 确保controlMenu元素存在，如果不存在则重新获取
+            if (!this.controlMenu) {
+                this.controlMenu = document.querySelector('#control');
+            }
+            
             this.soundManager.playSound('pause');
             this.controlMenu.classList.remove('hidden');
+            
+            // 添加强制重绘逻辑，确保菜单能够立即显示
+            this.controlMenu.style.display = 'none';
+            setTimeout(() => {
+                this.controlMenu.style.display = '';
+            }, 10);
+            
             this.isPaused = true;
             Store.set("statistics", JSON.stringify(this.statistics));
         }
@@ -269,7 +338,7 @@ class Game {
 
     gameEnd() {
         Store.set("statistics", JSON.stringify(this.statistics));
-        window.location.href = `./outro.html?${window.$store.encode()}`;
+        window.location.href = `./index.html?${window.$store.encode()}`;
     }
 }
 
