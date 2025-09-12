@@ -1,0 +1,17 @@
+window.$game.dataManager.resolve({
+    "events": [
+        {
+            "type": "updateDay",
+            "day": "3"
+        },
+        {
+            "type": "showImg",
+            "url": "./assets/imgs/bedroom_light.jpg"
+        },
+
+        {
+            "type": "jump",
+            "url": "autoselect-day3"
+        }
+    ]
+})
