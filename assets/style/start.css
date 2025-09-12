@@ -7,11 +7,15 @@ body {
     font-family: "Noto Serif", "Noto Serif SC", serif;
     font-weight: 500;
     overflow: hidden;
+    background-image: url('../imgs/theme1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 :root {
     --theme: #193bb6;
-    --button-color: #bababa;
+    --button-color: #bababad2;
     --font-size: clamp(0.5rem, 2vw, 1.25rem);
 }
 
@@ -35,7 +39,7 @@ body {
     left: 0px;
     height: 100vh;
     width: 100vw;
-    background: var(--theme);
+    /* 移除背景色以显示页面背景图片 */
     color: #FFFFFF;
     user-select: none;
 }
@@ -89,7 +93,7 @@ body {
         transform: scale(0.2, 0.2);
     }
     to {
-        background-color: var(--button-color);
+        background-color: #bababa;
         transform: scale(1.2, 1.2);
     }
 }
@@ -100,6 +104,7 @@ body {
     height: 100%;
     display: block;
     position: absolute;
+    opacity: 0.6;
     animation: 1s emergeBack 400ms cubic-bezier(0.23, 1, 0.32, 1) forwards; /* 原动画为上面的 spreadIn，其余参数均不变 */
 }
 
@@ -141,7 +146,7 @@ body {
     font-weight: 600;
     background: var(--button-color);
     border: unset;
-    color: var(--theme);
+    color: #ffffffe7;
     white-space: nowrap;
     border-radius: clamp(2%, 10px, 12%);
     transition: background-color 0.3s, color 0.3s;
@@ -149,7 +154,7 @@ body {
 
 .button-container .button:hover { /* 按钮鼠标悬停状态样式 */
     color: #ffffff; /* 文字颜色变为全局主题色（与背景色互换） */
-    background-color: var(--theme);
+    background-color: #3e58b6d0;
 }
 
 .side {
@@ -260,9 +265,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 
     color: #ffffff;
-    background-color: var(--theme);
+    background-color: transparent;
 }
 
 .achievementDisp {
@@ -318,7 +325,7 @@ body {
     font-family: "Noto Serif", "Noto Serif SC", serif;
     font-size: 1.25rem;
     font-weight: 600;
-    background: var(--theme);
+    background: #bababae0;
     border: unset;
     color: #ffffff;
     position: relative;
@@ -365,7 +372,7 @@ body {
     left: 0px;
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
-    border-top: 1rem solid #ffffff;
+    border-top: 1rem solid #ffffffe7;
 }
 
 .save-container .list-item:hover,
@@ -380,6 +387,7 @@ body {
     justify-content: center; /* 文字在水平方向居中 */
     align-items: center; /* 按钮垂直居中 */
     position: absolute;
+    border-radius: clamp(2%, 10px, 12%);
     bottom: clamp(10vh, 10vh, 15vh);
     right: clamp(10vh, 10vh, 15vh);
     cursor: pointer;
@@ -391,13 +399,13 @@ body {
     font-weight: 600;
     background: var(--button-color);
     border: unset;
-    color: var(--theme);
+    color: #ffffffe7;
     white-space: nowrap;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .achievement-button:hover {
-    background-color: var(--theme);
+    background-color: #3e58b6d0;
     color: #ffffff;
 }
 
