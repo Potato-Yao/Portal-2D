@@ -141,10 +141,6 @@ body::before {
     justify-content: center;
 }
 
-#action-buttons button:hover {
-    background-color: #0056b3;
-}
-
 #action-buttons button:disabled {
     background-color: #555;
     cursor: not-allowed;
@@ -238,7 +234,8 @@ h1 {
     margin-top: 15px;
     font-size: 28px;       /* 清晰可读的尺寸 */
     display: flex;
-    justify-content: space-between;
+    gap: 40px;             /* 设置适中的间距 */
+    justify-content: center; /* 居中显示元素 */
 }
 
 /* 3. 屏幕上的虚拟方向键 */
@@ -263,12 +260,18 @@ h1 {
     padding: 12px 20px;   /* 适中的按钮大小 */
     font-size: 18px;      /* 按钮文字大小 */
     font-family: 'SimHei', sans-serif;
-    color: white;
-    background-color: #007bff;
+    color: #ffffff;
+    background-color: #3e58b644;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
+}
+
+#action-buttons button:hover {
+    color: #ffffff;
+    background-color: #3e58b6e4;
+    box-shadow: 0 0 0.5px #050c0ebb;
 }
 
 /* 5. 弹窗（模态窗口）的整体与文字 */
