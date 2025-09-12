@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 自动显示初始说明
         showInstructions();
-        setTimeout(hideAllModals, 10000); // 10秒后自动关闭
+        setTimeout(hideAllModals, 60000); // 60秒后自动关闭
 
         // 按钮事件监听
         instructionsButton.addEventListener("click", showInstructions);
