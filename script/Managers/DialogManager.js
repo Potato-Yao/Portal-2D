@@ -43,7 +43,10 @@ class DialogManager {
         optionsContainer.style.display = "none"; // 默认隐藏
         optionsContainer.style.display = "flex";
         optionsContainer.style.flexDirection = "column";
-        optionsContainer.style.alignItems = "flex-start"; // 左对齐
+        optionsContainer.style.alignItems = "center"; // 水平居中
+        optionsContainer.style.justifyContent = "center"; // 垂直居中
+        optionsContainer.style.width = "100%";
+        optionsContainer.style.right = "0";
 
         // 组装 DOM 元素
         dialog.appendChild(name);
@@ -163,20 +166,67 @@ class DialogManager {
                 label.style.padding = "8px";
                 label.style.margin = "4px";
                 label.style.cursor = "pointer";
-                label.style.color = "white";
-                label.style.background = "rgba(0,0,0,0.6)";
+                label.style.color = "rgba(255,255,255,0.8)";
+                label.style.background = "#3e58b6d0";
                 label.style.borderRadius = "5px";
+                label.style.display = "flex";
+                label.style.alignItems = "center";
+                label.style.justifyContent = "flex-start";
+                label.style.paddingLeft = "30px";
+                label.style.width = "fit-content";
+                
+                // 鼠标悬停时改变背景色
+                label.addEventListener("mouseover", function() {
+                    this.style.background = "#3e58b6e0";
+                });
+                label.addEventListener("mouseout", function() {
+                    this.style.background = "#3e58b6d0";
+                });
 
                 const radio = document.createElement("input");
                 radio.type = "radio";
                 radio.name = "dialogue-option";
                 radio.value = index;
-                radio.style.marginRight = "10px";
+                radio.style.position = "absolute";
+                radio.style.left = "10px";
+                radio.style.opacity = "0";
+                radio.style.width = "16px";
+                radio.style.height = "16px";
+                radio.style.cursor = "pointer";
+                
+                // 创建自定义倒三角radio
+                const customRadio = document.createElement("div");
+                customRadio.style.position = "absolute";
+                customRadio.style.left = "10px";
+                customRadio.style.width = "0";
+                customRadio.style.height = "0";
+                customRadio.style.borderLeft = "8px solid transparent";
+                customRadio.style.borderRight = "8px solid transparent";
+                customRadio.style.borderTop = "12px solid rgba(255,255,255,0.5)";
+                customRadio.style.pointerEvents = "none";
+                
+                // 监听radio状态变化，更新倒三角样式
+                radio.addEventListener("change", function() {
+                    // 重置所有倒三角样式
+                    document.querySelectorAll(".dialogue-option-custom-radio").forEach(el => {
+                        el.style.borderTopColor = "rgba(255,255,255,0.5)";
+                    });
+                    // 设置选中的倒三角样式
+                    if (this.checked) {
+                        customRadio.style.borderTopColor = "white";
+                    }
+                });
+                
+                customRadio.classList.add("dialogue-option-custom-radio");
 
                 const text = document.createElement("span");
                 text.textContent = optionText;
+                
+                // 设置label为相对定位，以便自定义radio绝对定位
+                label.style.position = "relative";
 
                 label.appendChild(radio);
+                label.appendChild(customRadio);
                 label.appendChild(text);
                 this.optionsContainer.appendChild(label);
             });
