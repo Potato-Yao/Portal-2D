@@ -85,16 +85,16 @@ class EventManager {
                     break;
                 case "jump":
                     if (event.url) {
-                        let url = event.url.split("-");
-                        if (url[0] === "autoselect") {
-                            if (url[1] === "game4") {
-                                if (window.$gameStateSum > 2) {
-                                    window.location.href = "./assets/games/game/index.html?json=第四关map.json";
-                                } else {
-                                    window.location.href = "./assets/games/game/index.html?json=第四四关map.json";
-                                }
-                            }
-                        }
+                        // let url = event.url.split("-");
+                        // if (url[0] === "autoselect") {
+                        //     if (url[1] === "game4") {
+                        //         if (window.$gameStateSum > 2) {
+                        //             window.location.href = "./assets/games/game/index.html?json=第四关map.json";
+                        //         } else {
+                        //             window.location.href = "./assets/games/game/index.html?json=第四四关map.json";
+                        //         }
+                        //     }
+                        // }
                         window.location.href = "./assets/games/" + event.url;
                     }
                     await window.$game.switchView(window.$choice);
