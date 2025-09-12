@@ -232,6 +232,10 @@ class DialogManager {
                 window.$game.inputManager.firstDown("ClickLeft", () => {
                     res = true;
                 });
+                window.$game.inputManager.firstDown("Escape", () => {
+                    console.log("ffffffff");
+                    window.$game.pause()
+                })
                 return res;
             };
             let toEnd = false;

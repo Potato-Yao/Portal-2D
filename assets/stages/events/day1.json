@@ -68,7 +68,7 @@ window.$game.dataManager.resolve({
         },
         {
             "type": "playBGM",
-            "name": "1.mp3"
+            "name": "1"
         },
         {
             "type": "showImg",
@@ -195,7 +195,7 @@ window.$game.dataManager.resolve({
         },
         {
             "type": "playBGM",
-            "name": "3.mp3"
+            "name": "3"
         },
         {
             "type": "showImg",

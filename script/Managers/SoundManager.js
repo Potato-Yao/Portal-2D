@@ -1,9 +1,9 @@
 class SoundManager {
     constructor() {
-        // this.bgmsFormal = [
-        //     new Audio("./assets/audios/bgms/村上純 - かえり道.mp3"),
-        //     new Audio("./assets/audios/bgms/阿保剛 - Christina I.mp3"),
-        // ];
+        this.bgmsFormal = [
+            new Audio("./assets/audios/bgms/村上純 - かえり道.mp3"),
+            new Audio("./assets/audios/bgms/阿保剛 - Christina I.mp3"),
+        ];
         this.backgroundMusic = null;
         this.init();
     }
@@ -14,10 +14,11 @@ class SoundManager {
             return;
         if (this.backgroundMusic)
             this.backgroundMusic.pause();
-        if (name)
+        if (name) {
             this.backgroundMusic = this.bgms[ name ];
-        // else
-        //     this.backgroundMusic = this.bgmsFormal[ Math.floor(Math.random() * this.bgmsFormal.length) ];
+        }
+        else
+            this.backgroundMusic = this.bgmsFormal[ Math.floor(Math.random() * this.bgmsFormal.length) ];
         // console.log(this.backgroundMusic);
         this.backgroundMusic.currentTime = 0;
         this.backgroundMusic.volume = 0.5;
@@ -37,16 +38,16 @@ class SoundManager {
 
 
     async load() {
-        // this.sounds = {};
-        // this.soundsURL = await window.$game.dataManager.loadJSON("./assets/audios/Sounds.json");
-        // Object.keys(this.soundsURL).forEach((kind) => {
-        //     this.sounds[ kind ] = {};
-        //     Object.keys(this.soundsURL[ kind ]).forEach((id) => {
-        //         const audio = new Audio(this.soundsURL[ kind ][ id ]);
-        //         audio.loop = false;
-        //         this.sounds[ kind ][ id ] = audio;
-        //     });
-        // });
+        this.sounds = {};
+        this.soundsURL = await window.$game.dataManager.loadJSON("./assets/audios/Sounds.json");
+        Object.keys(this.soundsURL).forEach((kind) => {
+            this.sounds[ kind ] = {};
+            Object.keys(this.soundsURL[ kind ]).forEach((id) => {
+                const audio = new Audio(this.soundsURL[ kind ][ id ]);
+                audio.loop = false;
+                this.sounds[ kind ][ id ] = audio;
+            });
+        });
 
         this.bgms = {};
         this.bgmsURL = await window.$game.dataManager.loadJSON("./assets/audios/BGMs.json");

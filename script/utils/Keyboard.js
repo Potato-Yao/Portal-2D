@@ -90,6 +90,7 @@ class KeyboardManager {
         [ 'NumLock', 'Num Lock' ],
         [ 'ScrollLock', 'Scroll Lock' ],
         [ 'Pause', 'Pause' ],
+        [ 'Esc', 'Escape'],
         [ 'PrintScreen', 'Print Screen' ],
 
         // Numpad Keys

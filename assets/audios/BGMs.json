@@ -4,6 +4,13 @@ window.$game.dataManager.resolve(
     "Haruhikage": "./assets/audios/bgms/MyGO!!!!! - 春日影 (MyGO!!!!! ver.).mp3",
     "deadEnd": "./assets/audios/bgms/阿保剛 - Believe me -zero-.mp3",
     "trueEnd": "./assets/audios/bgms/佐々木恵梨 - GATE OF STEINER (game size).mp3",
-    "found": "./assets/audios/bgms/阿保剛 - Gate of steiner -piano-.mp3"
+    "found": "./assets/audios/bgms/阿保剛 - Gate of steiner -piano-.mp3",
+    "1": "./assets/audios/bgms/1.mp3",
+    "2": "./assets/audios/bgms/2.mp3",
+    "3": "./assets/audios/bgms/3.mp3",
+    "4": "./assets/audios/bgms/4.mp3",
+    "5": "./assets/audios/bgms/5.mp3",
+    "6": "./assets/audios/bgms/6.mp3",
+    "7": "./assets/audios/bgms/7.mp3"
 }
 )
