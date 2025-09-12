@@ -29,7 +29,7 @@ window.$game.dataManager.resolve({
             "type": "dialog",
             "texts": [
                 {
-                    "text": "猫猫起床、洗漱，冲出了大门"
+                    "text": "猫猫 起床、洗漱，冲出了大门"
                 },
                 {
                     "text": "？？？ 你A￥%x就好，WD*^Rf1"

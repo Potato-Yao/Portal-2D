@@ -39,7 +39,7 @@ window.$game.dataManager.resolve({
             "type": "dialog",
             "texts": [
                 {
-                    "text": "猫猫起床、洗漱，出门"
+                    "text": "猫猫 起床、洗漱，出门"
                 },
                 {
                     "text": "？？？ 你喜欢就好，喜欢就多吃一点"

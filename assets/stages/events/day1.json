@@ -102,7 +102,7 @@ window.$game.dataManager.resolve({
             "type": "dialog",
             "texts": [
                 {
-                    "text": " 猫猫起床、洗漱、走到餐厅"
+                    "text": "猫猫 （起床、洗漱、走到餐厅）"
                 },
                 {
                     "text": "猫猫 哇，好丰盛的早餐！嚼嚼嚼..."
