@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exitless Day - Web版</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <div id="game-container">
+        <div id="map-grid"></div>
+
+        <div id="ui-panel">
+            <div id="hp-display">生命: 3</div>
+            <div id="map-display">地图: map1</div>
+        </div>
+
+        <div id="controls-panel">
+            <div class="key" id="key-up">↑</div>
+            <div class="key" id="key-left">←</div>
+            <div class="key" id="key-down">↓</div>
+            <div class="key" id="key-right">→</div>
+        </div>
+
+        <div id="action-buttons">
+            <button id="instructions-button">游戏说明</button>
+            <button id="hint-button">查看线索 (消耗1生命)</button>
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="hidden">
+        <div id="instructions-modal" class="modal-content hidden">
+            <button class="close-button">×</button>
+            <h2>游戏说明</h2>
+            <p>欢迎游玩ExitlessDay</p>
+            <p>此处为夜间小游戏的新手介绍。</p>
+            <p>玩家可以操纵角色进行上下左右移动，碰到黄色的标志会进行地图切换，只可以在米黄色的路上行走。</p>
+            <p>初始红色块为起点，第二张地图的浅蓝色为终点。</p>
+            <p>如果切换地图后碰到蓝色或棕色的墙壁会减少一条血量；若四周被墙壁包围，则会自动回到初始起点重新开始。</p>
+            <p>关卡中血量为3，请谨慎前行。</p>
+            <p>您可以选择用一条血量换同时看两张地图的机会10秒。</p>
+            <p>走到终点即判定为win，血量清零则判定为lose。</p>
+            <p>小游戏会影响后期剧情走向，请注意。</p>
+            <p>祝游戏愉快！</p>
+        </div>
+
+        <div id="hint-modal" class="modal-content hidden">
+            <p>地图将在 <span id="hint-timer">10</span> 秒后消失...</p>
+            <div class="hint-maps-container">
+                <div class="hint-map">
+                    <h3>Map 1</h3>
+                    <div id="hint-map1-grid" class="mini-map-grid"></div>
+                </div>
+                <div class="hint-map">
+                    <h3>Map 2</h3>
+                    <div id="hint-map2-grid" class="mini-map-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

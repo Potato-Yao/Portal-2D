@@ -1,0 +1,247 @@
+/* style.css */
+:root {
+    --tile-size: 40px; /* 定义一个变量，方便统一修改方块大小 */
+}
+
+body {
+    background-color: #282c34;
+    color: white;
+    font-family: 'SimHei', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+#game-container {
+    padding: 20px;
+    border: 2px solid #61dafb;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#map-grid {
+    display: grid; /* 使用强大的网格布局！ */
+    border: 1px solid #444;
+}
+
+/* 基础方块样式 */
+.tile {
+    width: var(--tile-size);
+    height: var(--tile-size);
+    background-size: cover; /* 确保图片填满方块 */
+    position: relative; /* 用于玩家定位 */
+}
+
+/* 不同类型方块的背景图片 */
+.floor { background-image: url('assets/floor.png'); }
+.wall-map1 { background-image: url('assets/wall_map1.png'); } /* <- 新增map1的墙 */
+.wall-map2 { background-image: url('assets/wall_map2.png'); } /* <- 新增map2的墙 */
+.switch { background-image: url('assets/switch.png'); }
+.start { background-image: url('assets/start.png'); }
+.exit { background-image: url('assets/exit.png'); }
+
+/* 玩家样式，使用::after伪元素可以叠加在方块上 */
+.player::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/player.png');
+    background-size: cover;
+}
+/* --- 虚拟按键样式 --- */
+
+/* 按键面板容器，使用网格布局来定位四个方向键 */
+#controls-panel {
+    margin-top: 20px;
+    display: grid;
+    grid-template-areas: 
+        ". up ."
+        "left down right";
+    gap: 5px;
+    width: calc(var(--tile-size) * 3 + 10px); /* 大约3个方块的宽度 */
+    justify-content: center;
+}
+/* 这是关键！按键被按下时的样式 */
+.key.pressed {
+    background-color: #61dafb;
+    color: #282c34;
+    transform: scale(0.9); /* 产生一个被按下去的视觉效果 */
+}
+
+/* 使用 grid-area 将每个按键放置在网格的指定区域 */
+#key-up { grid-area: up; }
+#key-down { grid-area: down; }
+#key-left { grid-area: left; }
+#key-right { grid-area: right; }
+/* --- 掉血提示动画 --- */
+
+/* 定义一个名为 flash-red 的动画 */
+@keyframes flash-red {
+    /* 动画开始 (0%) 和结束 (100%) 时 */
+    0%, 100% {
+        color: #ff4757; /* 变为醒目的红色 */
+        transform: scale(1.1); /* 稍微放大一点 */
+    }
+    /* 动画进行到一半 (50%) 时 */
+    50% {
+        color: white; /* 恢复为白色 */
+        transform: scale(1.0); /* 恢复为正常大小 */
+    }
+}
+
+/* 创建一个可以应用到任何元素上的动画类 */
+.damage-flash {
+    /* * 应用名为 flash-red 的动画
+     * 持续时间为 0.5 秒
+     * 播放 2 次
+    */
+    animation: flash-red 0.5s 2;
+}
+
+/* --- 游戏操作按钮样式 --- */
+#action-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#action-buttons button:hover {
+    background-color: #0056b3;
+}
+
+#action-buttons button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+
+/* --- 模态窗口（弹窗）样式 --- */
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* 用于隐藏元素的通用类 */
+.hidden {
+    display: none !important;
+}
+
+
+/* --- 线索小地图样式 --- */
+.hint-maps-container {
+    display: flex;
+    gap: 20px;
+}
+
+
+.mini-map-grid {
+    display: grid;
+    border: 1px solid #61dafb;
+}
+
+/* --- UI 元素最终样式 (均衡版) --- */
+
+/* 1. 主标题 */
+h1 {
+    font-size: 52px;       /* 一个醒目但不过大的标题尺寸 */
+    color: #61dafb;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+/* 2. 左下角的状态栏 (生命/地图) */
+#ui-panel {
+    margin-top: 15px;
+    font-size: 28px;       /* 清晰可读的尺寸 */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 3. 屏幕上的虚拟方向键 */
+.key {
+    width: var(--tile-size);
+    height: var(--tile-size);
+    background-color: #4a505c;
+    border: 2px solid #61dafb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;      /* 箭头符号的尺寸 */
+    font-weight: bold;
+    color: #61dafb;
+    user-select: none;
+    transition: all 0.1s ease-in-out;
+}
+
+/* 4. “游戏说明”和“查看线索”按钮 */
+#action-buttons button {
+    padding: 12px 20px;   /* 适中的按钮大小 */
+    font-size: 18px;      /* 按钮文字大小 */
+    font-family: 'SimHei', sans-serif;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* 5. 弹窗（模态窗口）的整体与文字 */
+.modal-content {
+    background-color: #282c34;
+    padding: 30px 40px;
+    border-radius: 10px;
+    border: 2px solid #61dafb;
+    max-width: 800px;     /* 合理的弹窗宽度 */
+    position: relative;
+    text-align: left;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #61dafb;
+    font-size: 36px;      /* 弹窗标题大小 */
+}
+
+.modal-content p {
+    line-height: 1.8;
+    font-size: 20px;      /* 弹窗正文大小 */
+}
+
+/* 6. 线索小地图的标题和方块 */
+.hint-map h3 {
+    text-align: center;
+    font-size: 24px;
+}
+
+.mini-tile {
+    width: 25px;         /* 小地图方块推荐尺寸 */
+    height: 25px;
+    background-size: cover;
+}
