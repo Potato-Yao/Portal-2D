@@ -3,14 +3,18 @@
     --light-theme: rgba(25, 59, 182, 0.1);
     --text-light: #ffffff;
     --text-dark: #333333;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-color: var(--theme);
+    background-image: url('../imgs/theme1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,9 +28,9 @@ body {
     max-width: 1200px;
     min-width: 300px;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.911);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     overflow: hidden;
     box-sizing: border-box;
 }
@@ -90,7 +94,7 @@ body {
 
 .personal-nav a {
     color: var(--text-light);
-    background-color: #3e58b6;
+    background-color: rgba(62, 88, 182, 0.8);
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 4px;
