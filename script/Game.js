@@ -142,8 +142,8 @@ class Game {
             return;
         }
 
-        this.computations.push((t) => this.view.compute(t));
-        this.renderings.push(() => this.view.draw());
+        // this.computations.push((t) => this.view.compute(t));
+        // this.renderings.push(() => this.view.draw());
 
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
@@ -226,7 +226,7 @@ class Game {
         Store.set("statistics", JSON.stringify(this.statistics));
         this.load(this.chapterNow + '.json');
         this.stop = true;
-        this.view = new PortalView(this.map, this.viewData);
+        // this.view = new PortalView(this.map, this.viewData);
     }
 
     async switchView(url) {
