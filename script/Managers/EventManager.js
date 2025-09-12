@@ -95,7 +95,7 @@ class EventManager {
                                 }
                             }
                         }
-                        window.location.href = "./assets/games/" + event.url + "/index.html";
+                        window.location.href = "./assets/games/" + event.url;
                     }
                     await window.$game.switchView(window.$choice);
                     return;

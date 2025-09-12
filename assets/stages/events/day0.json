@@ -3,7 +3,7 @@ window.$game.dataManager.resolve(
     "events": [
         {
             "type": "jump",
-            "url": "game1"
+            "url": "game/index.html?json=第一关map.json"
         }
     ]
 }

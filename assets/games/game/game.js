@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
         4: "exit",
     };
 
-    let mapsData = null;
+    // 根据需求：重命名 mapsData -> jsonData
+    let jsonData = null;
     let player = { name: "玩家1", hp: 3, map_name: "map1", pos: [0, 0] };
     let isGameOver = false;
 
@@ -26,6 +27,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeButton = document.querySelector(
         "#instructions-modal .close-button"
     );
+
+    // 解析查询字符串，获得将要读取的JSON文件名
+    function getJsonFilenameFromQuery() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            // 支持多种常见参数名：?json= / ?file= / ?map= / ?data=
+            const keys = ["json", "file", "map", "data"];
+            for (const k of keys) {
+                const v = params.get(k);
+                if (v && v.trim()) return v.trim();
+            }
+            // 若无命名参数，取第一个参数值
+            for (const [, v] of params.entries()) {
+                if (v && v.trim()) return v.trim();
+            }
+        } catch (e) {
+            console.warn("解析查询字符串失败，使用默认JSON。", e);
+        }
+        return "第一关map.json";
+    }
 
     // --- 适配缩放函数 ---
     function applyScale() {
@@ -62,8 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 游戏绘图函数 ---
     function drawGame() {
-        if (!mapsData) return;
-        const grid = mapsData[player.map_name].grid;
+        if (!jsonData) return;
+        const grid = jsonData[player.map_name].grid;
         gridContainer.style.gridTemplateColumns = `repeat(${grid[0].length}, ${TILE_SIZE}px)`;
         gridContainer.style.gridTemplateRows = `repeat(${grid.length}, ${TILE_SIZE}px)`;
         gridContainer.innerHTML = "";
@@ -107,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const [x, y] = player.pos;
         const new_x = x + dx,
             new_y = y + dy;
-        const grid = mapsData[player.map_name].grid;
+        const grid = jsonData[player.map_name].grid;
 
         if (
             !(
@@ -125,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (cell === 4) {
             alert("🎉 你到达出口，游戏胜利！");
             isGameOver = true;
+            window.location.href = winJump;
             return;
         }
 
@@ -140,6 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (player.hp <= 0) {
             alert("💀 生命归零，游戏失败！");
             isGameOver = true;
+            window.location.href = loseJump;
         }
     }
 
@@ -148,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
         player.map_name = player.map_name === "map1" ? "map2" : "map1";
         player.pos = last_pos; // 保持相同坐标
 
-        const grid = mapsData[player.map_name].grid;
+        const grid = jsonData[player.map_name].grid;
         if (grid[player.pos[0]][player.pos[1]] === 1) {
             player.hp -= 1;
             hpDisplay.classList.add("damage-flash");
@@ -158,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function isPlayerTrapped() {
         const [x, y] = player.pos;
-        const grid = mapsData[player.map_name].grid;
+        const grid = jsonData[player.map_name].grid;
         const neighbors = [
             { r: x - 1, c: y },
             { r: x + 1, c: y },
@@ -180,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function findStartPos(map_name) {
-        const grid = mapsData[map_name].grid;
+        const grid = jsonData[map_name].grid;
         for (let i = 0; i < grid.length; i++) {
             for (let j = 0; j < grid[i].length; j++) {
                 if (grid[i][j] === 3) return [i, j];
@@ -200,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hintButton.disabled = true; // 禁用按钮防止重复点击
 
         const drawMiniMap = (containerId, mapName) => {
-            const grid = mapsData[mapName].grid;
+            const grid = jsonData[mapName].grid;
             const container = document.getElementById(containerId);
             container.innerHTML = "";
             container.style.gridTemplateColumns = `repeat(${grid[0].length}, 25px)`;
@@ -238,8 +261,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 游戏启动与事件监听 ---
     async function initGame() {
-        const response = await fetch("第一关map.json");
-        mapsData = await response.json();
+        // 从查询字符串解析要读取的JSON文件名
+        const jsonFilename = getJsonFilenameFromQuery();
+        try {
+            const response = await fetch(jsonFilename);
+            if (!response.ok) throw new Error(`加载失败: ${response.status}`);
+            jsonData = await response.json();
+        } catch (err) {
+            console.error("加载JSON失败", err);
+            alert("关卡数据加载失败，请检查URL参数或网络。");
+            return;
+        }
+
+        // 读取跳转链接（如果存在）
+        winJump = jsonData && jsonData.winJump ? String(jsonData.winJump) : undefined;
+        loseJump = jsonData && jsonData.loseJump ? String(jsonData.loseJump) : undefined;
+
         player.pos = findStartPos(player.map_name);
         drawGame();
 
