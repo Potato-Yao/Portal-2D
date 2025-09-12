@@ -1,9 +1,12 @@
 // game.js
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     // --- 全局变量和常量 ---
     const TILE_SIZE = 40;
     const TILE_CLASS_MAPPING = {
-        0: 'floor', 2: 'switch', 3: 'start', 4: 'exit',
+        0: "floor",
+        2: "switch",
+        3: "start",
+        4: "exit",
     };
 
     let mapsData = null;
@@ -11,48 +14,50 @@ document.addEventListener('DOMContentLoaded', () => {
     let isGameOver = false;
 
     // --- 获取HTML元素 ---
-    const gridContainer = document.getElementById('map-grid');
-    const hpDisplay = document.getElementById('hp-display');
-    const mapDisplay = document.getElementById('map-display');
-    const instructionsButton = document.getElementById('instructions-button');
-    const hintButton = document.getElementById('hint-button');
-    const modalOverlay = document.getElementById('modal-overlay');
-    const instructionsModal = document.getElementById('instructions-modal');
-    const hintModal = document.getElementById('hint-modal');
-    const hintTimerSpan = document.getElementById('hint-timer');
-    const closeButton = document.querySelector('#instructions-modal .close-button');
+    const gridContainer = document.getElementById("map-grid");
+    const hpDisplay = document.getElementById("hp-display");
+    const mapDisplay = document.getElementById("map-display");
+    const instructionsButton = document.getElementById("instructions-button");
+    const hintButton = document.getElementById("hint-button");
+    const modalOverlay = document.getElementById("modal-overlay");
+    const instructionsModal = document.getElementById("instructions-modal");
+    const hintModal = document.getElementById("hint-modal");
+    const hintTimerSpan = document.getElementById("hint-timer");
+    const closeButton = document.querySelector(
+        "#instructions-modal .close-button"
+    );
 
     // --- 适配缩放函数 ---
     function applyScale() {
-        const container = document.getElementById('game-container');
+        const container = document.getElementById("game-container");
         if (!container) return;
 
         // 计算容器的原始尺寸（内容自然大小）
         // 使用 getBoundingClientRect 获取当前尺寸，然后用 scale(1) 的基准
-        container.style.transform = 'scale(1)';
+        container.style.transform = "scale(1)";
         const rect = container.getBoundingClientRect();
 
         const availableW = window.innerWidth;
         const availableH = window.innerHeight;
-    let scale = Math.min(
+        let scale = Math.min(
             availableW / Math.max(rect.width, 1),
             availableH / Math.max(rect.height, 1)
         );
-    // 防止放大超过原始尺寸，避免顶部被挤出
-    scale = Math.min(scale, 1);
-    container.style.transform = `scale(${scale})`;
+        // 防止放大超过原始尺寸，避免顶部被挤出
+        scale = Math.min(scale, 1);
+        container.style.transform = `scale(${scale})`;
     }
 
     // --- 弹窗控制函数 ---
     function showInstructions() {
-        modalOverlay.classList.remove('hidden');
-        instructionsModal.classList.remove('hidden');
+        modalOverlay.classList.remove("hidden");
+        instructionsModal.classList.remove("hidden");
     }
 
     function hideAllModals() {
-        modalOverlay.classList.add('hidden');
-        instructionsModal.classList.add('hidden');
-        hintModal.classList.add('hidden');
+        modalOverlay.classList.add("hidden");
+        instructionsModal.classList.add("hidden");
+        hintModal.classList.add("hidden");
     }
 
     // --- 游戏绘图函数 ---
@@ -61,44 +66,59 @@ document.addEventListener('DOMContentLoaded', () => {
         const grid = mapsData[player.map_name].grid;
         gridContainer.style.gridTemplateColumns = `repeat(${grid[0].length}, ${TILE_SIZE}px)`;
         gridContainer.style.gridTemplateRows = `repeat(${grid.length}, ${TILE_SIZE}px)`;
-        gridContainer.innerHTML = '';
+        gridContainer.innerHTML = "";
 
         grid.forEach((row, i) => {
             row.forEach((tileVal, j) => {
-                const tileDiv = document.createElement('div');
-                let tileClass = TILE_CLASS_MAPPING[tileVal] || 'floor';
+                const tileDiv = document.createElement("div");
+                let tileClass = TILE_CLASS_MAPPING[tileVal] || "floor";
                 if (tileVal === 1) {
-                    tileClass = (player.map_name === 'map1') ? 'wall-map1' : 'wall-map2';
+                    tileClass =
+                        player.map_name === "map1" ? "wall-map1" : "wall-map2";
                 }
-                tileDiv.classList.add('tile', tileClass);
+                tileDiv.classList.add("tile", tileClass);
                 tileDiv.id = `tile-${i}-${j}`;
                 gridContainer.appendChild(tileDiv);
             });
         });
 
-        const playerTile = document.getElementById(`tile-${player.pos[0]}-${player.pos[1]}`);
-        if (playerTile) playerTile.classList.add('player');
+        const playerTile = document.getElementById(
+            `tile-${player.pos[0]}-${player.pos[1]}`
+        );
+        if (playerTile) playerTile.classList.add("player");
 
         hpDisplay.textContent = `生命: ${player.hp}`;
         mapDisplay.textContent = `地图: ${player.map_name}`;
 
-    // 绘制完成后进行一次自适应缩放
-    applyScale();
+        // 绘制完成后进行一次自适应缩放
+        applyScale();
     }
-    
+
     // --- 核心游戏逻辑 ---
     function movePlayer(direction) {
         if (isGameOver) return;
-        let dx = 0, dy = 0;
-        if (direction === "up") dx = -1; else if (direction === "down") dx = 1;
-        else if (direction === "left") dy = -1; else if (direction === "right") dy = 1;
+        let dx = 0,
+            dy = 0;
+        if (direction === "up") dx = -1;
+        else if (direction === "down") dx = 1;
+        else if (direction === "left") dy = -1;
+        else if (direction === "right") dy = 1;
 
         const [x, y] = player.pos;
-        const new_x = x + dx, new_y = y + dy;
+        const new_x = x + dx,
+            new_y = y + dy;
         const grid = mapsData[player.map_name].grid;
 
-        if (!(new_x >= 0 && new_x < grid.length && new_y >= 0 && new_y < grid[0].length)) return;
-        
+        if (
+            !(
+                new_x >= 0 &&
+                new_x < grid.length &&
+                new_y >= 0 &&
+                new_y < grid[0].length
+            )
+        )
+            return;
+
         const cell = grid[new_x][new_y];
         if (cell === 1) return;
 
@@ -107,13 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
             isGameOver = true;
             return;
         }
-        
+
         player.pos = [new_x, new_y]; // 先移动位置
         if (cell === 2) switchMap();
 
         if (isPlayerTrapped()) {
-            player.map_name = 'map1';
-            player.pos = findStartPos('map1');
+            player.map_name = "map1";
+            player.pos = findStartPos("map1");
         }
 
         drawGame();
@@ -125,29 +145,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function switchMap() {
         const last_pos = player.pos; // 记录切换前的位置
-        player.map_name = (player.map_name === "map1") ? "map2" : "map1";
+        player.map_name = player.map_name === "map1" ? "map2" : "map1";
         player.pos = last_pos; // 保持相同坐标
 
         const grid = mapsData[player.map_name].grid;
         if (grid[player.pos[0]][player.pos[1]] === 1) {
             player.hp -= 1;
-            hpDisplay.classList.add('damage-flash');
-            setTimeout(() => hpDisplay.classList.remove('damage-flash'), 1000);
+            hpDisplay.classList.add("damage-flash");
+            setTimeout(() => hpDisplay.classList.remove("damage-flash"), 1000);
         }
     }
-    
+
     function isPlayerTrapped() {
         const [x, y] = player.pos;
         const grid = mapsData[player.map_name].grid;
-        const neighbors = [{ r: x - 1, c: y }, { r: x + 1, c: y }, { r: x, c: y - 1 }, { r: x, c: y + 1 }];
-        for (const {r, c} of neighbors) {
-            if (r >= 0 && r < grid.length && c >= 0 && c < grid[0].length && grid[r][c] !== 1) {
+        const neighbors = [
+            { r: x - 1, c: y },
+            { r: x + 1, c: y },
+            { r: x, c: y - 1 },
+            { r: x, c: y + 1 },
+        ];
+        for (const { r, c } of neighbors) {
+            if (
+                r >= 0 &&
+                r < grid.length &&
+                c >= 0 &&
+                c < grid[0].length &&
+                grid[r][c] !== 1
+            ) {
                 return false;
             }
         }
         return true;
     }
-    
+
     function findStartPos(map_name) {
         const grid = mapsData[map_name].grid;
         for (let i = 0; i < grid.length; i++) {
@@ -157,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return [0, 0];
     }
-    
+
     // --- 新增：线索功能 ---
     function showHint() {
         if (player.hp <= 1) {
@@ -167,28 +198,30 @@ document.addEventListener('DOMContentLoaded', () => {
         player.hp -= 1;
         drawGame(); // 更新HP显示
         hintButton.disabled = true; // 禁用按钮防止重复点击
-        
+
         const drawMiniMap = (containerId, mapName) => {
             const grid = mapsData[mapName].grid;
             const container = document.getElementById(containerId);
-            container.innerHTML = '';
+            container.innerHTML = "";
             container.style.gridTemplateColumns = `repeat(${grid[0].length}, 25px)`;
-            grid.forEach(row => {
-                row.forEach(tileVal => {
-                    const tileDiv = document.createElement('div');
-                    let tileClass = TILE_CLASS_MAPPING[tileVal] || 'floor';
-                    if (tileVal === 1) tileClass = (mapName === 'map1') ? 'wall-map1' : 'wall-map2';
-                    tileDiv.classList.add('mini-tile', tileClass);
+            grid.forEach((row) => {
+                row.forEach((tileVal) => {
+                    const tileDiv = document.createElement("div");
+                    let tileClass = TILE_CLASS_MAPPING[tileVal] || "floor";
+                    if (tileVal === 1)
+                        tileClass =
+                            mapName === "map1" ? "wall-map1" : "wall-map2";
+                    tileDiv.classList.add("mini-tile", tileClass);
                     container.appendChild(tileDiv);
                 });
             });
         };
-        
-        drawMiniMap('hint-map1-grid', 'map1');
-        drawMiniMap('hint-map2-grid', 'map2');
 
-        modalOverlay.classList.remove('hidden');
-        hintModal.classList.remove('hidden');
+        drawMiniMap("hint-map1-grid", "map1");
+        drawMiniMap("hint-map2-grid", "map2");
+
+        modalOverlay.classList.remove("hidden");
+        hintModal.classList.remove("hidden");
 
         let timeLeft = 10;
         hintTimerSpan.textContent = timeLeft;
@@ -205,47 +238,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 游戏启动与事件监听 ---
     async function initGame() {
-        const response = await fetch('第一关map.json');
+        const response = await fetch("第一关map.json");
         mapsData = await response.json();
         player.pos = findStartPos(player.map_name);
         drawGame();
 
-    // 初始缩放一次
-    applyScale();
+        // 初始缩放一次
+        applyScale();
 
         // 自动显示初始说明
         showInstructions();
         setTimeout(hideAllModals, 10000); // 10秒后自动关闭
 
         // 按钮事件监听
-        instructionsButton.addEventListener('click', showInstructions);
-        hintButton.addEventListener('click', showHint);
-        closeButton.addEventListener('click', hideAllModals);
-        modalOverlay.addEventListener('click', (e) => {
+        instructionsButton.addEventListener("click", showInstructions);
+        hintButton.addEventListener("click", showHint);
+        closeButton.addEventListener("click", hideAllModals);
+        modalOverlay.addEventListener("click", (e) => {
             if (e.target === modalOverlay) hideAllModals();
         });
 
         // 键盘事件监听...
-        const keyMap = {'ArrowUp':'up', 'w':'up', 'ArrowDown':'down', 's':'down', 'ArrowLeft':'left', 'a':'left', 'ArrowRight':'right', 'd':'right'};
+        const keyMap = {
+            ArrowUp: "up",
+            w: "up",
+            ArrowDown: "down",
+            s: "down",
+            ArrowLeft: "left",
+            a: "left",
+            ArrowRight: "right",
+            d: "right",
+        };
         const pressedKeys = new Set();
 
-        window.addEventListener('keydown', (e) => {
+        window.addEventListener("keydown", (e) => {
             const keyElement = document.getElementById(`key-${keyMap[e.key]}`);
-            if(keyElement) keyElement.classList.add('pressed');
+            if (keyElement) keyElement.classList.add("pressed");
 
             if (keyMap[e.key] && !pressedKeys.has(e.key)) {
                 pressedKeys.add(e.key);
                 movePlayer(keyMap[e.key]);
             }
         });
-        window.addEventListener('keyup', (e) => {
+        window.addEventListener("keyup", (e) => {
             const keyElement = document.getElementById(`key-${keyMap[e.key]}`);
-            if(keyElement) keyElement.classList.remove('pressed');
+            if (keyElement) keyElement.classList.remove("pressed");
             pressedKeys.delete(e.key);
         });
 
-    // 窗口大小变化时重新适配
-    window.addEventListener('resize', applyScale);
+        // 窗口大小变化时重新适配
+        window.addEventListener("resize", applyScale);
     }
 
     initGame();
