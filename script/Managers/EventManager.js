@@ -89,9 +89,9 @@ class EventManager {
                         if (url[0] === "autoselect") {
                             if (url[1] === "game4") {
                                 if (window.$gameStateSum > 2) {
-                                    window.location.href = "./assets/games/game4/index.html";
+                                    window.location.href = "./assets/games/game/index.html?json=第四关map.json";
                                 } else {
-                                    window.location.href = "./assets/games/gamee4/index.html";
+                                    window.location.href = "./assets/games/game/index.html?json=第四四关map.json";
                                 }
                             }
                         }
