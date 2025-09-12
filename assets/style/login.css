@@ -64,6 +64,7 @@ body {
 
 .form input::placeholder {
     opacity: 0.8; /* 设置输入框占位符的透明度为0.8 */
+    color: #ffffff; /* 设置占位符文本颜色为白色 */
 }
 
 .form .button {
@@ -80,14 +81,14 @@ body {
     cursor: pointer; /* 鼠标悬停时显示手型指针 */
     width: 100%; /* 宽度占满父元素 */
     margin-bottom: 1rem; /* 下外边距1rem */
-    background: #ffffff;
-    color: var(--theme); 
+    background: #3e58b6a8;
+    color: #ffffffea; 
     transition: background-color 0.3s, color 0.3s;
 }
 
 .form .button:hover {
     color: #ffffff;
-    background-color: var(--theme);
+    background-color: #3e58b6d3;
 }
 
 .form p {
