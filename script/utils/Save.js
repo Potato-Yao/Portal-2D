@@ -64,15 +64,11 @@ class Save {
     }
 
     save(title = null) {
-        const parfait = JSON.parse(Store.get("parfait") ?? "[]");
-        const camera = JSON.parse(Store.get("camera") ?? "[]");
         const statistics = window.$game.statistics ?? {};
         title ??= `${window.$game.chapterNow}-${(new Date()).toISOString()}`;
 
         this.set(title, {
             url: `${window.$game.chapterNow}.json`,
-            parfait,
-            camera,
             statistics
         });
         this.hide();
@@ -89,9 +85,7 @@ class Save {
     /**
      * @typedef SaveData
      * @type {{
-     *      url: string,
-     *      parfait: string[]
-     *      camera: string[]
+     *      url: string
      * }}
      */
 
@@ -102,9 +96,9 @@ class Save {
         const data = JSON.parse(Store.get("saves")) ?? {};
 
         const result = new Map()
-        Object.keys(data).forEach((v, k) => {
-            result.set(v, data[v])
-        })
+        Object.keys(data).forEach((key) => {
+            result.set(key, data[key]);
+        });
 
         return result;
     }
