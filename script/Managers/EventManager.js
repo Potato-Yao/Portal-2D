@@ -90,9 +90,9 @@ class EventManager {
                             if (url[1] === "day3") {
                                 if (window.$gameStateSum > 2) {
                                     // window.location.href = "./assets/games/game/index.html?json=第四关map.json";
-                                    window.$choice = "day3A";
+                                    window.$choice = "day3A.json";
                                 } else {
-                                    window.$choice = "day3B";
+                                    window.$choice = "day3B.json";
                                     // window.location.href = "./assets/games/game/index.html?json=第四四关map.json";
                                 }
                             }
