@@ -274,8 +274,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // 读取跳转链接（如果存在）
-        winJump = jsonData && jsonData.winJump ? String(jsonData.winJump) : undefined;
-        loseJump = jsonData && jsonData.loseJump ? String(jsonData.loseJump) : undefined;
+        winJump =
+            jsonData && jsonData.winJump ? String(jsonData.winJump) : undefined;
+        loseJump =
+            jsonData && jsonData.loseJump
+                ? String(jsonData.loseJump)
+                : undefined;
 
         player.pos = findStartPos(player.map_name);
         drawGame();
