@@ -64,7 +64,7 @@ window.$game.dataManager.resolve({
                     "text": " （另一道轻柔飘渺的声音响起，像耳边的幻听）"
                 },
                 {
-                    "text": "？？？：猫猫……快醒来吧……"
+                    "text": "？？？ 猫猫……快醒来吧……"
                 }
             ]
         },
