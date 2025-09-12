@@ -117,7 +117,7 @@ window.$game.dataManager.resolve({
         },
         {
             "type": "jump",
-            "url": "autoselect-game4"
+            "url": "game/index.html?json=第四四关map.json"
         }
     ]
 })

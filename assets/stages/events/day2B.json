@@ -53,7 +53,7 @@ window.$game.dataManager.resolve({
         },
         {
             "type": "jump",
-            "url": "game3"
+            "url": "game/index.html?json=第三关map.json"
         }
     ]
 })

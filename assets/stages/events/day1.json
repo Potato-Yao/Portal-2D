@@ -253,7 +253,7 @@ window.$game.dataManager.resolve({
         },
         {
             "type": "jump",
-            "url": "game2"
+            "url": "game/index.html?json=第二关map.json"
         }
     ]
 })

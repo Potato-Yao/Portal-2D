@@ -618,5 +618,7 @@
                 1
             ]
         ]
-    }
+    },
+    "loseJump": "../../../game.html?portal-2d-toLoad={\"url\": \"day3A.json\", \"state\": 0}",
+    "winJump": "../../../game.html?portal-2d-toLoad={\"url\": \"day3A.json\", \"state\": 1}"
 }

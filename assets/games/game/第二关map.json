@@ -654,5 +654,7 @@
                 1
             ]
         ]
-    }
+    },
+    "loseJump": "../../../game.html?portal-2d-toLoad={\"url\": \"day2.json\", \"state\": 0}",
+    "winJump": "../../../game.html?portal-2d-toLoad={\"url\": \"day2.json\", \"state\": 1}"
 }

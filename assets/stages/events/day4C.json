@@ -3,7 +3,7 @@ window.$game.dataManager.resolve(
     "events": [
         {
             "type": "jump",
-            "url": "game5"
+            "url": "game/index.html?json=第五关map.json"
         }
     ]
 }
