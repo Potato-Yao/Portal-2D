@@ -4,11 +4,15 @@
     --light-theme: rgba(25, 59, 182, 0.1);
     --text-dark: #333333;
     --text-light: #ffffff;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 body {
-    background-color: var(--theme);
+    background-image: url('../imgs/theme1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: transparent;
 }
 
 .container {
@@ -51,7 +55,7 @@ body {
 
 .main-nav a {
     color: var(--text-light);
-    background-color: #314db6;
+    background-color: rgba(49, 78, 182, 0.505);
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 4px;
@@ -64,7 +68,8 @@ body {
 }
 
 .main-nav a:hover {
-    background-color: #3e58b6;
+    background-color: #3e58b6d1;
+    box-shadow: 0 0 5px rgba(189, 189, 189, 0.226);
     color: var(--text-light);
 }
 
@@ -79,7 +84,7 @@ body {
     gap: 30px;
     padding: 10px 0;
     overflow-x: auto;
-    scrollbar-color: var(--text-light) #3e58b6;
+    scrollbar-color: var(--text-light) #3e58b6a8;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     margin-top: 20px;
@@ -99,10 +104,10 @@ body {
 }
 
 .member-gallery::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, #ffffff, #8ac8ff);
+    background: linear-gradient(90deg, rgba(49, 78, 182, 0.3), rgba(49, 78, 182, 0.7));
     border-radius: 28px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4), 0 0 60px rgba(50,120,255,1), 0 0 0 1px rgba(255,255,255,1);
-    border: 4.5px solid rgba(255,255,255,1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4), 0 0 60px rgba(49, 78, 182, 0.8), 0 0 0 1px rgba(255,255,255,0.8);
+    border: 4.5px solid rgba(255,255,255,0.8);
     transition: all 0.2s ease;
 }
 
@@ -117,7 +122,7 @@ body {
 }
 
 .member-card {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--shadow);
