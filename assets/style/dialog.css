@@ -44,8 +44,8 @@ body {
 
 /* 头像框 (新增) */
 .avatar-box {
-    width: 15vh;
-    height: 15vh;
+    width: 8vh;
+    height: 8vh;
     background-image: url("../avatar_box.svg"); /* 注意图片路径 */
     background-size: contain;
     background-repeat: no-repeat;
@@ -53,7 +53,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5vh;
+    padding: 1.25vh;
     box-sizing: border-box;
 }
 
@@ -112,4 +112,27 @@ body {
     max-height: 500vh;
     object-fit: contain;
     z-index: 3;
+}
+
+/* 新增：将头像框放置在对话框上方，并把名字放入头像框中 */
+/* 让 .avatar-box 作为 .dialogue-box 的绝对定位子元素，视觉上位于对话框上方 */
+.dialogue-box .avatar-box {
+    position: absolute;
+    bottom: calc(100% - 10vh); /* 稍微下移，减少与对话框的间距 */
+    left: 3%; /* 稍微左移 */
+    z-index: 30; /* 高于对话框装饰图片 */
+}
+
+/* 放在头像框中的角色名样式，覆盖原先的绝对定位 */
+.avatar-box .character-name {
+    position: static;
+    left: auto;
+    transform: none;
+    z-index: 1;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    font-size: 2vh; /* 与正文相近，保持协调 */
+    font-weight: 500;
+    color: #000;
 }

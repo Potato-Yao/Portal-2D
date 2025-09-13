@@ -11,7 +11,8 @@ class DialogManager {
     createDialog() {
         let dialog = document.querySelector(".dialogue-container");
         let textContainer = document.querySelector(".dialogue-box");
-        let name = document.createElement("div");
+    let name = document.createElement("div");
+    let avatarBox = document.createElement("div");
         let text = document.createElement("p");
         let characterImg = document.createElement("img");
         let optionsContainer = document.createElement("div"); // 新建选项容器
@@ -24,8 +25,11 @@ class DialogManager {
         textContainer.id = "dialogue-box";
         textContainer.classList.add("dialogue-box");
 
-        name.id = "character-name";
-        name.classList.add("character-name");
+    name.id = "character-name";
+    name.classList.add("character-name");
+
+    // 新增头像框
+    avatarBox.classList.add("avatar-box");
 
         text.id = "text";
         text.classList.add("text");
@@ -49,8 +53,10 @@ class DialogManager {
         optionsContainer.style.right = "0";
 
         // 组装 DOM 元素
-        dialog.appendChild(name);
-        dialog.appendChild(textContainer);
+    // 将头像框放在对话框上方，并把角色名放入头像框
+    textContainer.appendChild(avatarBox);
+    avatarBox.appendChild(name);
+    dialog.appendChild(textContainer);
         textContainer.appendChild(text);
 
         gameContainer.appendChild(dialog);
@@ -62,7 +68,8 @@ class DialogManager {
         // 存储 DOM 元素的引用
         this.dialog = dialog;
         this.optionsContainer = optionsContainer; // 存储选项容器的引用
-        this.name = name;
+    this.name = name;
+    this.avatarBox = avatarBox;
         this.text = text;
         this.characterImg = characterImg;
     }
