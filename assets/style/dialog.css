@@ -1,3 +1,10 @@
+@font-face {
+    font-family: "汉仪文黑-85W Heavy";
+    src: url("../fonts/汉仪文黑-85W.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
 body {
     height: 100vh;
 }
@@ -15,7 +22,7 @@ body {
     margin: 0;
     font-family: "Noto Sans SC", sans-serif;
     pointer-events: none; /* 让容器不阻塞事件，内部元素可自行控制 */
-    height: 220px; /* 固定高度，不随页面大小变化 */
+    height: 30vh;
 }
 
 /* 角色信息容器 (名字 + 头像) */
@@ -84,16 +91,16 @@ body {
 .dialogue-box p {
     margin: 0; /* 与分隔线紧挨 */
     word-break: break-word;
-    max-width: 66.6667vw; /* 正文最大宽度为页面宽度的 2/3 */
+    max-width: 60vw; /* 正文最大宽度为页面宽度的 2/3 */
     color: #fff;
     z-index: 20;
-    line-height: 1.6;
+    line-height: 1.8;
     text-align: center;
-    font-family: "HYWenHei 85W","Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy 优先，带回退 */
+    font-family: "汉仪文黑-85W Heavy","Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy 优先，带回退 */
 }
 
 .dialogue-box span {
-    font-size: 2vh;
+    font-size: 2.3vh;
     font-weight: 500;
 }
 
@@ -115,7 +122,7 @@ body {
     position: static;
     color: #ffc300; /* 金色 */
     font-weight: 800;
-    font-size: 2.1vh;
+    font-size: 2.5vh;
     margin: 0; /* 与上边界紧挨，间距由容器内边距控制 */
     text-align: center; /* 居中显示 */
     /* 覆盖全局.character-name带来的定位与宽度影响，确保真正居中 */
@@ -123,8 +130,8 @@ body {
     transform: none;
     width: auto;
     align-self: center;
-    font-family: "HYWenHei-85W","Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy */
-    max-width: 66.6667vw; /* 与正文一致的宽度限制 */
+    font-family: "汉仪文黑-85W Heavy","Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy */
+    max-width: 60vw; /* 与正文一致的宽度限制 */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -140,8 +147,8 @@ body {
 /* 单行正文：分隔线宽度跟随内容宽度；多行正文：固定为最大宽度 */
 .dialogue-content {
     display: inline-block;
-    max-width: 66.6667vw;
+    max-width: 60vw;
     text-align: center;
 }
 .dialogue-content.single-line + .dialogue-sep { width: fit-content; }
-.dialogue-content.multi-line + .dialogue-sep { width: 66.6667vw; }
+.dialogue-content.multi-line + .dialogue-sep { width: 60vw; }
