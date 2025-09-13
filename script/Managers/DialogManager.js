@@ -30,6 +30,8 @@ class DialogManager {
 
         // 新增头像框
         avatarBox.classList.add("avatar-box");
+    // 初始隐藏，待有角色名时再显示
+    avatarBox.style.display = "none";
 
         text.id = "text";
         text.classList.add("text");
@@ -107,6 +109,8 @@ class DialogManager {
     async open() {
         this.name.innerHTML = ""; // 清空名称和文本
         this.text.innerHTML = "";
+    // 无名时隐藏头像框
+    if (this.avatarBox) this.avatarBox.style.display = "none";
 
         this.dialog.classList.remove("fadeOut");
         this.dialog.classList.add("fadeIn");
@@ -121,6 +125,7 @@ class DialogManager {
         this.dialog.classList.remove("fadeIn");
         this.dialog.classList.add("fadeOut");
         this.optionsContainer.style.display = "none"; // 关闭时隐藏选项
+    if (this.avatarBox) this.avatarBox.style.display = "none";
 
         await wait(300);
         this.dialog.classList.remove("fadeOut");
@@ -267,8 +272,10 @@ class DialogManager {
             this.text.innerHTML = "";
             let text = content.text;
             let texts = text.split(" ");
-            let name = texts[0];
-            this.name.innerHTML = name;
+            let name = (texts[0] || "").trim();
+            // 设置名字文本并根据是否为空显示/隐藏头像框
+            this.name.textContent = name;
+            if (this.avatarBox) this.avatarBox.style.display = name ? "flex" : "none";
 
             if (name === "妈妈") {
                 this.characterImg.src = "./assets/imgs/mom.png";
@@ -343,6 +350,7 @@ class DialogManager {
         this.name.innerHTML = "";
         this.text.innerHTML = "";
         this.printing = false;
+    if (this.avatarBox) this.avatarBox.style.display = "none";
         await this.close();
     }
 }
