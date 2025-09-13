@@ -23,8 +23,10 @@ class BackgroundChanger {
                 // 根据完成的成就数量返回对应的背景图片
                 if (completedCount === 0) {
                     return 'theme1.png'; // 未解锁任何成就
-                } else if (completedCount < totalAchievements) {
+                } else if (completedCount === 1) {
                     return 'theme2.png'; // 解锁一个成就
+                } else if (completedCount < totalAchievements) {
+                    return 'theme3.png'; // 解锁多于一个但非全部成就
                 } else {
                     return 'theme4.png'; // 解锁全部成就
                 }
