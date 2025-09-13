@@ -58,7 +58,9 @@ body {
 }
 
 /* 名字矩形框移除：改为对话框顶部文字展示 */
-.avatar-box { display: none !important; }
+.avatar-box {
+    display: none !important;
+}
 
 #avatar-image {
     width: 100%;
@@ -68,31 +70,40 @@ body {
 
 /* 内层的对话框 */
 .dialogue-box {
-        position: relative;
-        bottom: 0;
-        left: 0;
-        transform: none;
-        width: 100vw; /* 宽度为页面宽度 */
-        height: 100%; /* 填满容器高度 */
-        box-sizing: border-box;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    width: 100vw; /* 宽度为页面宽度 */
+    height: 100%; /* 填满容器高度 */
+    box-sizing: border-box;
     z-index: 20; /* 高于立绘，确保立绘位于背景与对话框之间 */
-        text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
-        font-size: 2vh;
-        display: flex;
-        flex-direction: column; /* 纵向布局：名字、分割线、正文 */
-        align-items: center; /* 居中内部内容 */
-        justify-content: flex-start;
-        padding: 12px 0 18px; /* 顶部紧挨边界，底部留白 */
-        gap: 0; /* 紧挨着排布 */
-        pointer-events: auto; /* 允许内部控件交互 */
-        /* 灰黑色半透明背景：自上到下、从中心到两侧透明度逐渐增大 */
-        background:
-            radial-gradient(ellipse at center, rgba(20,20,20,0.25) 0%, rgba(20,20,20,0) 100%),
-            linear-gradient(to bottom, rgba(20,20,20,0.5) 0%, rgba(20,20,20,0) 100%);
-        border: none;
+    text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+    font-size: 2vh;
+    display: flex;
+    flex-direction: column; /* 纵向布局：名字、分割线、正文 */
+    align-items: center; /* 居中内部内容 */
+    justify-content: flex-start;
+    padding: 12px 0 18px; /* 顶部紧挨边界，底部留白 */
+    gap: 0; /* 紧挨着排布 */
+    pointer-events: auto; /* 允许内部控件交互 */
+    /* 灰黑色半透明背景：自上到下、从中心到两侧透明度逐渐增大 */
+    background: radial-gradient(
+            ellipse at center,
+            rgba(20, 20, 20, 0.25) 0%,
+            rgba(20, 20, 20, 0) 100%
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(20, 20, 20, 0.5) 0%,
+            rgba(20, 20, 20, 0) 100%
+        );
+    border: none;
 }
 
-.dialogue-box img { display: none; }
+.dialogue-box img {
+    display: none;
+}
 
 .dialogue-box p {
     margin: 0; /* 与分隔线紧挨 */
@@ -102,7 +113,7 @@ body {
     z-index: 20;
     line-height: 1.8;
     text-align: center;
-    font-family: "汉仪文黑-85W Heavy","Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy 优先，带回退 */
+    font-family: "汉仪文黑-85W Heavy", "Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy 优先，带回退 */
 }
 
 .dialogue-box span {
@@ -139,7 +150,7 @@ body {
     transform: none;
     width: auto;
     align-self: center;
-    font-family: "汉仪文黑-85W Heavy","Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy */
+    font-family: "汉仪文黑-85W Heavy", "Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy */
     max-width: 60vw; /* 与正文一致的宽度限制 */
     white-space: nowrap;
     overflow: hidden;
@@ -149,7 +160,11 @@ body {
 /* 金色分隔线：单行时自适应文本宽，多行时与正文最大宽度一致 */
 .dialogue-sep {
     height: 1px;
-    background: linear-gradient(to right, rgba(212,175,55,1), rgba(212,175,55,0.85));
+    background: linear-gradient(
+        to right,
+        rgba(212, 175, 55, 1),
+        rgba(212, 175, 55, 0.85)
+    );
     margin: 1.2px; /* 与名字和正文紧挨 */
 }
 
@@ -159,5 +174,9 @@ body {
     max-width: 60vw;
     text-align: center;
 }
-.dialogue-content.single-line + .dialogue-sep { width: fit-content; }
-.dialogue-content.multi-line + .dialogue-sep { width: 60vw; }
+.dialogue-content.single-line + .dialogue-sep {
+    width: fit-content;
+}
+.dialogue-content.multi-line + .dialogue-sep {
+    width: 60vw;
+}

@@ -11,13 +11,13 @@ class DialogManager {
     createDialog() {
         let dialog = document.querySelector(".dialogue-container");
         let textContainer = document.querySelector(".dialogue-box");
-    let name = document.createElement("div");
-    let sep = document.createElement("div");
+        let name = document.createElement("div");
+        let sep = document.createElement("div");
         let text = document.createElement("p");
         let characterImg = document.createElement("img");
-    let optionsContainer = document.createElement("div"); // 新建选项容器
-    let gameRoot = document.getElementById("game");
-    let stageContainer = document.getElementById("game-container");
+        let optionsContainer = document.createElement("div"); // 新建选项容器
+        let gameRoot = document.getElementById("game");
+        let stageContainer = document.getElementById("game-container");
 
         // 设置 ID 和样式
         dialog.id = "dialogue-container";
@@ -26,12 +26,12 @@ class DialogManager {
         textContainer.id = "dialogue-box";
         textContainer.classList.add("dialogue-box");
 
-    name.id = "character-name";
-    name.classList.add("character-name");
+        name.id = "character-name";
+        name.classList.add("character-name");
 
-    // 金色分隔线
-    sep.classList.add("dialogue-sep");
-    sep.style.width = "0px"; // 初始宽度
+        // 金色分隔线
+        sep.classList.add("dialogue-sep");
+        sep.style.width = "0px"; // 初始宽度
 
         text.id = "text";
         text.classList.add("text");
@@ -54,11 +54,11 @@ class DialogManager {
         optionsContainer.style.width = "100%";
         optionsContainer.style.right = "0";
 
-    // 组装 DOM 元素：名字（顶部） -> 分隔线 -> 正文
-    dialog.appendChild(textContainer);
-    textContainer.appendChild(name);
-    textContainer.appendChild(sep);
-    textContainer.appendChild(text);
+        // 组装 DOM 元素：名字（顶部） -> 分隔线 -> 正文
+        dialog.appendChild(textContainer);
+        textContainer.appendChild(name);
+        textContainer.appendChild(sep);
+        textContainer.appendChild(text);
 
         gameRoot.appendChild(dialog);
         // 立绘放入背景容器内，保证与背景底部对齐
@@ -69,12 +69,11 @@ class DialogManager {
         }
         gameRoot.appendChild(optionsContainer); // 将选项容器添加到游戏容器
 
-
         // 存储 DOM 元素的引用
         this.dialog = dialog;
         this.optionsContainer = optionsContainer; // 存储选项容器的引用
-    this.name = name;
-    this.sep = sep;
+        this.name = name;
+        this.sep = sep;
         this.text = text;
         this.characterImg = characterImg;
     }
@@ -112,7 +111,7 @@ class DialogManager {
     async open() {
         this.name.innerHTML = ""; // 清空名称和文本
         this.text.innerHTML = "";
-    if (this.sep) this.sep.style.width = "0px";
+        if (this.sep) this.sep.style.width = "0px";
 
         this.dialog.classList.remove("fadeOut");
         this.dialog.classList.add("fadeIn");
@@ -127,7 +126,7 @@ class DialogManager {
         this.dialog.classList.remove("fadeIn");
         this.dialog.classList.add("fadeOut");
         this.optionsContainer.style.display = "none"; // 关闭时隐藏选项
-    if (this.sep) this.sep.style.width = "0px";
+        if (this.sep) this.sep.style.width = "0px";
 
         await wait(300);
         this.dialog.classList.remove("fadeOut");
@@ -378,7 +377,7 @@ class DialogManager {
         this.name.innerHTML = "";
         this.text.innerHTML = "";
         this.printing = false;
-    if (this.avatarBox) this.avatarBox.style.display = "none";
+        if (this.avatarBox) this.avatarBox.style.display = "none";
         await this.close();
     }
 }
