@@ -24,7 +24,9 @@ body {
 #dialogue-options {
     position: fixed; /* 相对视口，便于对齐三等分线与底部对话框 */
     left: 66.6667vw; /* 左边界对齐页面三等分线中靠右那条（2/3 处） */
-    bottom: calc(30vh + var(--options-gap)); /* 紧挨对话框上方，间隔与选项间距相等 */
+    bottom: calc(
+        30vh + var(--options-gap)
+    ); /* 紧挨对话框上方，间隔与选项间距相等 */
     display: none; /* 默认隐藏，显示由 JS 控制 */
     flex-direction: column;
     align-items: flex-start; /* 左对齐 */
@@ -46,7 +48,7 @@ body {
     display: block;
     cursor: pointer;
     user-select: none;
-    font-family: "汉仪文黑-85W Heavy","Noto Sans SC", sans-serif; /* 与正文相同 */
+    font-family: "汉仪文黑-85W Heavy", "Noto Sans SC", sans-serif; /* 与正文相同 */
 }
 
 .dialogue-option-input {
@@ -71,26 +73,34 @@ body {
     border-radius: calc(var(--opt-height) / 2); /* 左端呈半圆形，贴合圆 */
 
     /* 渐变边框 + 渐变填充：从左到右透明度逐渐增大 */
-    background:
-      linear-gradient(to right, rgba(255,255,255,0.3), rgba(255,255,255,0)) border-box,
-      linear-gradient(to right, rgba(20,20,20,0.7), rgba(20,20,20,0.1)) padding-box;
+    background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0)
+            )
+            border-box,
+        linear-gradient(to right, rgba(20, 20, 20, 0.7), rgba(20, 20, 20, 0.1))
+            padding-box;
     border: 1.5px solid transparent;
 }
 
 /* 圆：位于矩形左边界，直径与高度一致，中心处放三角形 */
-.dialogue-option-box::before { content: none !important; }
+.dialogue-option-box::before {
+    content: none !important;
+}
 
 /* 三角形：位于圆心，作为 radio 纹样 */
 .dialogue-option-input + .dialogue-option-box::after {
     content: "";
     position: absolute;
-    width: 0; height: 0;
+    width: 0;
+    height: 0;
     left: calc(var(--opt-height) / 2); /* 左侧圆心位置（基于固定高度） */
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     border-left: 0.6vh solid transparent;
     border-right: 0.6vh solid transparent;
-    border-top: 1.0vh solid rgba(255,255,255,0.6); /* 默认半透明白 */
+    border-top: 1vh solid rgba(255, 255, 255, 0.6); /* 默认半透明白 */
     pointer-events: none;
 }
 .dialogue-option-input:hover + .dialogue-option-box::after {
@@ -104,7 +114,9 @@ body {
     text-overflow: ellipsis;
     transform: translateX(1vh);
     /* 文本最大宽度 = 选项宽度 - 左内边距 - 右内边距 */
-    max-width: calc(var(--option-width) - (var(--opt-height) / 2) - var(--pad-r));
+    max-width: calc(
+        var(--option-width) - (var(--opt-height) / 2) - var(--pad-r)
+    );
     font-size: var(--dialog-font-size);
 }
 
