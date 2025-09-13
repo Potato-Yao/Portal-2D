@@ -59,7 +59,7 @@ window.$game.dataManager.resolve({
             "url": "./assets/imgs/ocean_dark.jpg"
         },
         {
-            "type": "option",
+            "type": "options",
             "options": [
                 {
                     "text": "进入黑洞",

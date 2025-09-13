@@ -170,7 +170,7 @@ window.$game.dataManager.resolve({
             ]
         },
         {
-            "type": "option",
+            "type": "options",
             "options": [
                 {
                     "text": "想",

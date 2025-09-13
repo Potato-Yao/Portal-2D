@@ -125,7 +125,7 @@ window.$game.dataManager.resolve({
             ]
         },
         {
-            "type": "option",
+            "type": "options",
             "options": [
                 { "text": "爱", "url": "day4B" },
                 { "text": "不爱", "url": "day4B"}
