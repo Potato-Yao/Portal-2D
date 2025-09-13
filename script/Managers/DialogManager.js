@@ -11,8 +11,8 @@ class DialogManager {
     createDialog() {
         let dialog = document.querySelector(".dialogue-container");
         let textContainer = document.querySelector(".dialogue-box");
-    let name = document.createElement("div");
-    let avatarBox = document.createElement("div");
+        let name = document.createElement("div");
+        let avatarBox = document.createElement("div");
         let text = document.createElement("p");
         let characterImg = document.createElement("img");
         let optionsContainer = document.createElement("div"); // 新建选项容器
@@ -25,11 +25,11 @@ class DialogManager {
         textContainer.id = "dialogue-box";
         textContainer.classList.add("dialogue-box");
 
-    name.id = "character-name";
-    name.classList.add("character-name");
+        name.id = "character-name";
+        name.classList.add("character-name");
 
-    // 新增头像框
-    avatarBox.classList.add("avatar-box");
+        // 新增头像框
+        avatarBox.classList.add("avatar-box");
 
         text.id = "text";
         text.classList.add("text");
@@ -53,10 +53,10 @@ class DialogManager {
         optionsContainer.style.right = "0";
 
         // 组装 DOM 元素
-    // 将头像框放在对话框上方，并把角色名放入头像框
-    textContainer.appendChild(avatarBox);
-    avatarBox.appendChild(name);
-    dialog.appendChild(textContainer);
+        // 将头像框放在对话框上方，并把角色名放入头像框
+        textContainer.appendChild(avatarBox);
+        avatarBox.appendChild(name);
+        dialog.appendChild(textContainer);
         textContainer.appendChild(text);
 
         gameContainer.appendChild(dialog);
@@ -68,8 +68,8 @@ class DialogManager {
         // 存储 DOM 元素的引用
         this.dialog = dialog;
         this.optionsContainer = optionsContainer; // 存储选项容器的引用
-    this.name = name;
-    this.avatarBox = avatarBox;
+        this.name = name;
+        this.avatarBox = avatarBox;
         this.text = text;
         this.characterImg = characterImg;
     }
@@ -152,8 +152,7 @@ class DialogManager {
         this.options = []; // 清除选项
     }
 
-    async showImg(name) {
-    }
+    async showImg(name) {}
 
     // 显示选项并等待用户选择
     async showOption() {
@@ -181,12 +180,12 @@ class DialogManager {
                 label.style.justifyContent = "flex-start";
                 label.style.paddingLeft = "30px";
                 label.style.width = "fit-content";
-                
+
                 // 鼠标悬停时改变背景色
-                label.addEventListener("mouseover", function() {
+                label.addEventListener("mouseover", function () {
                     this.style.background = "#3e58b6e0";
                 });
-                label.addEventListener("mouseout", function() {
+                label.addEventListener("mouseout", function () {
                     this.style.background = "#3e58b6d0";
                 });
 
@@ -200,7 +199,7 @@ class DialogManager {
                 radio.style.width = "16px";
                 radio.style.height = "16px";
                 radio.style.cursor = "pointer";
-                
+
                 // 创建自定义倒三角radio
                 const customRadio = document.createElement("div");
                 customRadio.style.position = "absolute";
@@ -209,26 +208,29 @@ class DialogManager {
                 customRadio.style.height = "0";
                 customRadio.style.borderLeft = "8px solid transparent";
                 customRadio.style.borderRight = "8px solid transparent";
-                customRadio.style.borderTop = "12px solid rgba(255,255,255,0.5)";
+                customRadio.style.borderTop =
+                    "12px solid rgba(255,255,255,0.5)";
                 customRadio.style.pointerEvents = "none";
-                
+
                 // 监听radio状态变化，更新倒三角样式
-                radio.addEventListener("change", function() {
+                radio.addEventListener("change", function () {
                     // 重置所有倒三角样式
-                    document.querySelectorAll(".dialogue-option-custom-radio").forEach(el => {
-                        el.style.borderTopColor = "rgba(255,255,255,0.5)";
-                    });
+                    document
+                        .querySelectorAll(".dialogue-option-custom-radio")
+                        .forEach((el) => {
+                            el.style.borderTopColor = "rgba(255,255,255,0.5)";
+                        });
                     // 设置选中的倒三角样式
                     if (this.checked) {
                         customRadio.style.borderTopColor = "white";
                     }
                 });
-                
+
                 customRadio.classList.add("dialogue-option-custom-radio");
 
                 const text = document.createElement("span");
                 text.textContent = optionText;
-                
+
                 // 设置label为相对定位，以便自定义radio绝对定位
                 label.style.position = "relative";
 
@@ -291,8 +293,8 @@ class DialogManager {
                 });
                 window.$game.inputManager.firstDown("Escape", () => {
                     console.log("ffffffff");
-                    window.$game.pause()
-                })
+                    window.$game.pause();
+                });
                 return res;
             };
             let toEnd = false;
@@ -325,7 +327,7 @@ class DialogManager {
                             ])
                         );
                     })()
-                    ) ;
+                );
             else await delay(100);
         }
         this.buffer = [];
