@@ -41,18 +41,7 @@ class DialogManager {
         characterImg.style.display = "none";
 
         // 设置选项容器的样式
-        optionsContainer.id = "dialogue-options";
-        optionsContainer.style.position = "absolute";
-        optionsContainer.style.right = "40px";
-        optionsContainer.style.top = "50%";
-        optionsContainer.style.transform = "translateY(-50%)";
-        optionsContainer.style.display = "none"; // 默认隐藏
-        optionsContainer.style.display = "flex";
-        optionsContainer.style.flexDirection = "column";
-        optionsContainer.style.alignItems = "center"; // 水平居中
-        optionsContainer.style.justifyContent = "center"; // 垂直居中
-        optionsContainer.style.width = "100%";
-        optionsContainer.style.right = "0";
+    optionsContainer.id = "dialogue-options";
 
         // 组装 DOM 元素：名字（顶部） -> 分隔线 -> 正文
         dialog.appendChild(textContainer);
@@ -173,76 +162,26 @@ class DialogManager {
         return new Promise((resolve) => {
             // 为每个选项创建单选按钮
             this.options.forEach((button, index) => {
-                let optionText = button.text;
+                const optionText = button.text;
                 const label = document.createElement("label");
-                label.style.padding = "8px";
-                label.style.margin = "4px";
-                label.style.cursor = "pointer";
-                label.style.color = "rgba(255,255,255,0.8)";
-                label.style.background = "#3e58b6d0";
-                label.style.borderRadius = "5px";
-                label.style.display = "flex";
-                label.style.alignItems = "center";
-                label.style.justifyContent = "flex-start";
-                label.style.paddingLeft = "30px";
-                label.style.width = "fit-content";
-
-                // 鼠标悬停时改变背景色
-                label.addEventListener("mouseover", function () {
-                    this.style.background = "#3e58b6e0";
-                });
-                label.addEventListener("mouseout", function () {
-                    this.style.background = "#3e58b6d0";
-                });
+                label.className = "dialogue-option";
 
                 const radio = document.createElement("input");
                 radio.type = "radio";
                 radio.name = "dialogue-option";
                 radio.value = index;
-                radio.style.position = "absolute";
-                radio.style.left = "10px";
-                radio.style.opacity = "0";
-                radio.style.width = "16px";
-                radio.style.height = "16px";
-                radio.style.cursor = "pointer";
+                radio.className = "dialogue-option-input";
 
-                // 创建自定义倒三角radio
-                const customRadio = document.createElement("div");
-                customRadio.style.position = "absolute";
-                customRadio.style.left = "10px";
-                customRadio.style.width = "0";
-                customRadio.style.height = "0";
-                customRadio.style.borderLeft = "8px solid transparent";
-                customRadio.style.borderRight = "8px solid transparent";
-                customRadio.style.borderTop =
-                    "12px solid rgba(255,255,255,0.5)";
-                customRadio.style.pointerEvents = "none";
-
-                // 监听radio状态变化，更新倒三角样式
-                radio.addEventListener("change", function () {
-                    // 重置所有倒三角样式
-                    document
-                        .querySelectorAll(".dialogue-option-custom-radio")
-                        .forEach((el) => {
-                            el.style.borderTopColor = "rgba(255,255,255,0.5)";
-                        });
-                    // 设置选中的倒三角样式
-                    if (this.checked) {
-                        customRadio.style.borderTopColor = "white";
-                    }
-                });
-
-                customRadio.classList.add("dialogue-option-custom-radio");
+                const box = document.createElement("div");
+                box.className = "dialogue-option-box";
 
                 const text = document.createElement("span");
+                text.className = "dialogue-option-text";
                 text.textContent = optionText;
 
-                // 设置label为相对定位，以便自定义radio绝对定位
-                label.style.position = "relative";
-
                 label.appendChild(radio);
-                label.appendChild(customRadio);
-                label.appendChild(text);
+                label.appendChild(box);
+                box.appendChild(text);
                 this.optionsContainer.appendChild(label);
             });
 
@@ -259,6 +198,29 @@ class DialogManager {
 
             this.optionsContainer.addEventListener("change", listener);
             this.optionsContainer.style.display = "flex"; // 显示选项容器
+
+            // 统一选项框长度：取最长文本的所需宽度
+            requestAnimationFrame(() => {
+                const boxes = Array.from(this.optionsContainer.querySelectorAll('.dialogue-option-box'));
+                const texts = Array.from(this.optionsContainer.querySelectorAll('.dialogue-option-text'));
+                let max = 0;
+                texts.forEach(t => {
+                    // 需要实际渲染后的 scrollWidth
+                    max = Math.max(max, t.scrollWidth);
+                });
+                // 将 max 限制到最大可用宽度：视口 1/4 宽度以内（避免越界到右侧）
+                const maxAvailable = Math.max(parseInt(getComputedStyle(this.optionsContainer).width) || 0, 0);
+                const circle = parseInt(getComputedStyle(this.optionsContainer).getPropertyValue('--circle-d')) || 44;
+                const gap = parseInt(getComputedStyle(this.optionsContainer).getPropertyValue('--gap')) || 10;
+                const padR = parseInt(getComputedStyle(this.optionsContainer).getPropertyValue('--pad-r')) || 16;
+                const inner = circle + gap + padR;
+                const target = Math.max(max + inner, parseInt(getComputedStyle(this.optionsContainer).getPropertyValue('--option-min-width')) || 260);
+                this.optionsContainer.style.setProperty('--option-width', target + 'px');
+                // 更新每个文本的最大宽度
+                texts.forEach(t => {
+                    t.style.maxWidth = (target - inner) + 'px';
+                });
+            });
         });
     }
 
