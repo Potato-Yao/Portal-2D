@@ -23,11 +23,29 @@
         <script type="text/javascript" src="../script/utils/Store.js"></script>
         <script type="text/javascript" src="../script/Managers/AchievementManager.js"></script>
         <script type="text/javascript" src="../script/utils/BackgroundChanger.js"></script>
+        
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // 页面加载完成后设置背景图片
-                if (window.BackgroundChanger) {
-                    BackgroundChanger.setBackground('../assets/imgs/');
+                try {
+                    // 尝试从localStorage读取保存的背景图片路径
+                    const savedBackground = Store.get('backgroundImage');
+                    if (savedBackground) {
+                        // 如果有保存的背景图片，直接设置
+                        console.log('Loading saved background image:', savedBackground);
+                        document.body.style.backgroundImage = `url('../assets/imgs/${savedBackground}')`;
+                        document.body.style.backgroundSize = 'cover';
+                        document.body.style.backgroundPosition = 'center';
+                        document.body.style.backgroundRepeat = 'no-repeat';
+                    } else if (window.BackgroundChanger) {
+                        // 如果没有保存的背景图片，使用BackgroundChanger设置默认背景
+                        BackgroundChanger.setBackground('../assets/imgs/');
+                    }
+                } catch (error) {
+                    console.error('Error loading background image:', error);
+                    // 如果出错，使用BackgroundChanger设置默认背景
+                    if (window.BackgroundChanger) {
+                        BackgroundChanger.setBackground('../assets/imgs/');
+                    }
                 }
             });
         </script>
