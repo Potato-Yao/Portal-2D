@@ -9,6 +9,12 @@ body {
     height: 100vh;
 }
 
+/* 使立绘相对游戏背景容器定位，保证底部对齐背景底部 */
+#game-container {
+    position: relative;
+    z-index: 0; /* 背景层 */
+}
+
 .dialogue-container {
     position: fixed; /* 固定在页面底部 */
     bottom: 0;
@@ -69,7 +75,7 @@ body {
         width: 100vw; /* 宽度为页面宽度 */
         height: 100%; /* 填满容器高度 */
         box-sizing: border-box;
-        z-index: 0;
+    z-index: 20; /* 高于立绘，确保立绘位于背景与对话框之间 */
         text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
         font-size: 2vh;
         display: flex;
@@ -106,12 +112,15 @@ body {
 
 #character-img {
     position: absolute;
-    left: 5%;
-    bottom: 0;
-    width: 60vh;
-    max-height: 500vh;
-    object-fit: contain;
-    z-index: 3;
+    left: 50%;
+    transform: translateX(-50%); /* 纵向中轴线位于画面中央 */
+    bottom: 0; /* 底部紧挨画面底部 */
+    height: clamp(40vh, 70vh, 85vh); /* 随窗口大小自适应高度 */
+    width: auto; /* 按比例缩放宽度 */
+    max-width: 90vw; /* 防止过宽溢出 */
+    object-fit: contain; /* 保持比例 */
+    z-index: 10; /* 介于背景(0)与对话框(20)之间 */
+    pointer-events: none; /* 不阻挡交互 */
 }
 
 /* 头像框已移除 */

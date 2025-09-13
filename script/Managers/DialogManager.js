@@ -15,8 +15,9 @@ class DialogManager {
     let sep = document.createElement("div");
         let text = document.createElement("p");
         let characterImg = document.createElement("img");
-        let optionsContainer = document.createElement("div"); // 新建选项容器
-        let gameContainer = document.getElementById("game");
+    let optionsContainer = document.createElement("div"); // 新建选项容器
+    let gameRoot = document.getElementById("game");
+    let stageContainer = document.getElementById("game-container");
 
         // 设置 ID 和样式
         dialog.id = "dialogue-container";
@@ -59,11 +60,15 @@ class DialogManager {
     textContainer.appendChild(sep);
     textContainer.appendChild(text);
 
-        gameContainer.appendChild(dialog);
-        gameContainer.appendChild(characterImg);
-        gameContainer.appendChild(optionsContainer); // 将选项容器添加到游戏容器
+        gameRoot.appendChild(dialog);
+        // 立绘放入背景容器内，保证与背景底部对齐
+        if (stageContainer) {
+            stageContainer.appendChild(characterImg);
+        } else {
+            gameRoot.appendChild(characterImg);
+        }
+        gameRoot.appendChild(optionsContainer); // 将选项容器添加到游戏容器
 
-        dialog.appendChild(characterImg);
 
         // 存储 DOM 元素的引用
         this.dialog = dialog;
