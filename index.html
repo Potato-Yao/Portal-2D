@@ -72,6 +72,7 @@
     <script type="text/javascript" src="script/utils/AchievementDisp.js"></script>
     <script type="text/javascript" src="script/Managers/AchievementManager.js"></script>
     <script type="text/javascript" src="script/Managers/DataManager.js"></script>
+    <script type="text/javascript" src="script/utils/BackgroundChanger.js"></script>
 
     <script type="text/javascript">
         window.$gameStateSum = 0;
@@ -275,6 +276,9 @@
                 }
             })
             await achievementManager.load()
+            
+            // 页面加载完成后设置背景图片
+            BackgroundChanger.setBackground('./assets/imgs/');
         }
     </script>
 </body>
