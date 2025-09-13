@@ -11,8 +11,8 @@ class DialogManager {
     createDialog() {
         let dialog = document.querySelector(".dialogue-container");
         let textContainer = document.querySelector(".dialogue-box");
-        let name = document.createElement("div");
-        let avatarBox = document.createElement("div");
+    let name = document.createElement("div");
+    let sep = document.createElement("div");
         let text = document.createElement("p");
         let characterImg = document.createElement("img");
         let optionsContainer = document.createElement("div"); // 新建选项容器
@@ -25,13 +25,12 @@ class DialogManager {
         textContainer.id = "dialogue-box";
         textContainer.classList.add("dialogue-box");
 
-        name.id = "character-name";
-        name.classList.add("character-name");
+    name.id = "character-name";
+    name.classList.add("character-name");
 
-        // 新增头像框
-        avatarBox.classList.add("avatar-box");
-    // 初始隐藏，待有角色名时再显示
-    avatarBox.style.display = "none";
+    // 金色分隔线
+    sep.classList.add("dialogue-sep");
+    sep.style.width = "0px"; // 初始宽度
 
         text.id = "text";
         text.classList.add("text");
@@ -54,12 +53,11 @@ class DialogManager {
         optionsContainer.style.width = "100%";
         optionsContainer.style.right = "0";
 
-        // 组装 DOM 元素
-        // 将头像框放在对话框上方，并把角色名放入头像框
-        textContainer.appendChild(avatarBox);
-        avatarBox.appendChild(name);
-        dialog.appendChild(textContainer);
-        textContainer.appendChild(text);
+    // 组装 DOM 元素：名字（顶部） -> 分隔线 -> 正文
+    dialog.appendChild(textContainer);
+    textContainer.appendChild(name);
+    textContainer.appendChild(sep);
+    textContainer.appendChild(text);
 
         gameContainer.appendChild(dialog);
         gameContainer.appendChild(characterImg);
@@ -70,8 +68,8 @@ class DialogManager {
         // 存储 DOM 元素的引用
         this.dialog = dialog;
         this.optionsContainer = optionsContainer; // 存储选项容器的引用
-        this.name = name;
-        this.avatarBox = avatarBox;
+    this.name = name;
+    this.sep = sep;
         this.text = text;
         this.characterImg = characterImg;
     }
@@ -109,8 +107,7 @@ class DialogManager {
     async open() {
         this.name.innerHTML = ""; // 清空名称和文本
         this.text.innerHTML = "";
-    // 无名时隐藏头像框
-    if (this.avatarBox) this.avatarBox.style.display = "none";
+    if (this.sep) this.sep.style.width = "0px";
 
         this.dialog.classList.remove("fadeOut");
         this.dialog.classList.add("fadeIn");
@@ -125,7 +122,7 @@ class DialogManager {
         this.dialog.classList.remove("fadeIn");
         this.dialog.classList.add("fadeOut");
         this.optionsContainer.style.display = "none"; // 关闭时隐藏选项
-    if (this.avatarBox) this.avatarBox.style.display = "none";
+    if (this.sep) this.sep.style.width = "0px";
 
         await wait(300);
         this.dialog.classList.remove("fadeOut");
@@ -273,9 +270,10 @@ class DialogManager {
             let text = content.text;
             let texts = text.split(" ");
             let name = (texts[0] || "").trim();
-            // 设置名字文本并根据是否为空显示/隐藏头像框
+            // 设置名字文本并根据是否为空显示/隐藏分隔线/名字
             this.name.textContent = name;
-            if (this.avatarBox) this.avatarBox.style.display = name ? "inline-flex" : "none";
+            this.name.style.display = name ? "block" : "none";
+            if (this.sep) this.sep.style.display = name ? "block" : "none";
 
             if (name === "妈妈") {
                 this.characterImg.src = "./assets/imgs/mom.png";
@@ -306,12 +304,34 @@ class DialogManager {
             };
             let toEnd = false;
             // this.play_audio(content.url);
+            const updateSeparator = () => {
+                if (!this.sep) return;
+                // 判断是否多行：根据内容高度与行高比较
+                const cs = window.getComputedStyle(this.text);
+                const lineHeight = parseFloat(cs.lineHeight) || 0;
+                const isMultiLine = this.text.scrollHeight > lineHeight * 1.3;
+                // 多行时固定为最大宽度（与CSS一致），单行时为内容实际宽度
+                if (isMultiLine) {
+                    this.text.classList.add("multi-line");
+                    this.text.classList.remove("single-line");
+                    this.text.style.width = "66.6667vw";
+                    this.sep.style.width = this.text.clientWidth + "px";
+                } else {
+                    this.text.classList.add("single-line");
+                    this.text.classList.remove("multi-line");
+                    this.text.style.width = "auto";
+                    // 使用 scrollWidth 以获取内容真实宽度
+                    this.sep.style.width = this.text.scrollWidth + "px";
+                }
+            };
+
             for (let i = 1; i < texts.length; ++i) {
                 if (!this.printing) return;
 
                 let span = document.createElement("span");
                 span.textContent = texts[i];
                 this.text.appendChild(span); // 逐字显示文本
+                updateSeparator();
                 if (window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"])) {
                     await delay(10); // 控制打印速度
                     continue;
@@ -320,6 +340,9 @@ class DialogManager {
                 toEnd = getEnd();
                 await delay(50); // 控制打印速度
             }
+
+            // 最后再对分隔线宽度进行一次校正
+            updateSeparator();
 
             // 等待用户输入
             if (!window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"]))

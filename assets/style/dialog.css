@@ -3,17 +3,19 @@ body {
 }
 
 .dialogue-container {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80vw;
+    position: fixed; /* 固定在页面底部 */
+    bottom: 0;
+    left: 0;
+    width: 100vw; /* 占满页面宽度 */
+    transform: none;
     display: flex;
-    justify-content: center;
-    align-items: flex-end; /* 底部对齐 */
-    gap: 1vw; /* 在头像和对话框之间添加间隙 */
+    justify-content: center; /* 居中内部对话框内容 */
+    align-items: flex-end;
+    gap: 0;
     margin: 0;
     font-family: "Noto Sans SC", sans-serif;
+    pointer-events: none; /* 让容器不阻塞事件，内部元素可自行控制 */
+    height: 220px; /* 固定高度，不随页面大小变化 */
 }
 
 /* 角色信息容器 (名字 + 头像) */
@@ -42,24 +44,8 @@ body {
     background: black;
 }
 
-/* 名字矩形框（自适应宽度） */
-.avatar-box {
-    display: inline-flex; /* 让容器宽度随内容收缩 */
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 0.6vh 1.2vh; /* 内边距：与名字之间留白 */
-    background: rgba(255, 255, 255, 0.95);
-    border: 0.25vh solid rgba(0, 0, 0, 0.85);
-    border-radius: 0.8vh;
-    box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.15);
-    white-space: nowrap; /* 名字不换行 */
-    width: auto; /* 自适应内容 */
-    height: auto;
-    max-width: 40vw; /* 防止极长名字溢出 */
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+/* 名字矩形框移除：改为对话框顶部文字展示 */
+.avatar-box { display: none !important; }
 
 #avatar-image {
     width: 100%;
@@ -69,38 +55,41 @@ body {
 
 /* 内层的对话框 */
 .dialogue-box {
-    min-width: 30vw;
-    max-width: 40vw;
-    min-height: 2rem;
-    position: relative;
-    left: 50%;
-    bottom: 5%;
-    transform: translateX(-50%);
-    z-index: 0;
-    text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
-    font-size: 2vh;
-    aspect-ratio: 10/5;
-    display: flex;
-    align-items: center;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        width: 100vw; /* 宽度为页面宽度 */
+        height: 100%; /* 填满容器高度 */
+        box-sizing: border-box;
+        z-index: 0;
+        text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+        font-size: 2vh;
+        display: flex;
+        flex-direction: column; /* 纵向布局：名字、分割线、正文 */
+        align-items: center; /* 居中内部内容 */
+        justify-content: flex-start;
+        padding: 12px 0 18px; /* 顶部紧挨边界，底部留白 */
+        gap: 0; /* 紧挨着排布 */
+        pointer-events: auto; /* 允许内部控件交互 */
+        /* 灰黑色半透明背景：自上到下、从中心到两侧透明度逐渐增大 */
+        background:
+            radial-gradient(ellipse at center, rgba(20,20,20,0.25) 0%, rgba(20,20,20,0) 100%),
+            linear-gradient(to bottom, rgba(20,20,20,0.5) 0%, rgba(20,20,20,0) 100%);
+        border: none;
 }
 
-.dialogue-box img {
-    position: absolute;
-    bottom: 5%;
-    z-index: 10;
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-    width: auto;
-}
+.dialogue-box img { display: none; }
 
 .dialogue-box p {
-    margin: 5% 20%;
-    word-break: break-all;
-    max-width: 80%;
-    color: rgb(0, 0, 0);
+    margin: 0; /* 与分隔线紧挨 */
+    word-break: break-word;
+    max-width: 66.6667vw; /* 正文最大宽度为页面宽度的 2/3 */
+    color: #fff;
     z-index: 20;
-    line-height: 1.5;
+    line-height: 1.6;
+    text-align: center;
+    font-family: "HYWenHei 85W","Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy 优先，带回退 */
 }
 
 .dialogue-box span {
@@ -118,28 +107,41 @@ body {
     z-index: 3;
 }
 
-/* 新增：将头像框放置在对话框上方，并把名字放入头像框中 */
-/* 让 .avatar-box 作为 .dialogue-box 的绝对定位子元素，视觉上位于对话框上方 */
-.dialogue-box .avatar-box {
-    position: absolute;
-    bottom: calc(100% - 10vh); /* 稍微下移，减少与对话框的间距 */
-    left: 3%; /* 稍微左移 */
-    z-index: 30; /* 高于对话框装饰图片 */
-}
+/* 头像框已移除 */
 
 /* 放在头像框中的角色名样式，覆盖原先的绝对定位 */
-.avatar-box .character-name {
+/* 顶部名字样式（对话框内） */
+.dialogue-box .character-name {
     position: static;
+    color: #ffc300; /* 金色 */
+    font-weight: 800;
+    font-size: 2.1vh;
+    margin: 0; /* 与上边界紧挨，间距由容器内边距控制 */
+    text-align: center; /* 居中显示 */
+    /* 覆盖全局.character-name带来的定位与宽度影响，确保真正居中 */
     left: auto;
     transform: none;
-    z-index: 1;
-    margin: 0;
-    width: auto; /* 让内部名字宽度由内容决定 */
-    white-space: nowrap; /* 单行显示 */
-    overflow: hidden; /* 超出隐藏 */
-    text-overflow: ellipsis; /* 超出显示省略号 */
-    text-align: center;
-    font-size: 2vh; /* 与正文相近，保持协调 */
-    font-weight: 500;
-    color: #000;
+    width: auto;
+    align-self: center;
+    font-family: "HYWenHei-85W","Noto Sans SC", sans-serif; /* 汉仪文黑-85W Heavy */
+    max-width: 66.6667vw; /* 与正文一致的宽度限制 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+/* 金色分隔线：单行时自适应文本宽，多行时与正文最大宽度一致 */
+.dialogue-sep {
+    height: 1px;
+    background: linear-gradient(to right, rgba(212,175,55,1), rgba(212,175,55,0.85));
+    margin: 1.2px; /* 与名字和正文紧挨 */
+}
+
+/* 单行正文：分隔线宽度跟随内容宽度；多行正文：固定为最大宽度 */
+.dialogue-content {
+    display: inline-block;
+    max-width: 66.6667vw;
+    text-align: center;
+}
+.dialogue-content.single-line + .dialogue-sep { width: fit-content; }
+.dialogue-content.multi-line + .dialogue-sep { width: 66.6667vw; }
