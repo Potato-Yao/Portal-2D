@@ -165,8 +165,8 @@ class Game {
         // 已在上面根据是否为结局文件设置了chapterNow，移除重复设置
         // this.chapterNow = filename.split('.')[0];
         
-        // 在每天开始时自动存档
-        if (!window.$isAutosaving) {
+        // 在每天开始时自动存档，但进入结局时不存档，保留进入结局前的天数
+        if (!window.$isAutosaving && !endingMatch) {
             window.$isAutosaving = true;
             setTimeout(() => {
                 try {
