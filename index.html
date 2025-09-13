@@ -279,6 +279,28 @@
             
             // 页面加载完成后设置背景图片
             BackgroundChanger.setBackground('./assets/imgs/');
+            
+            // 添加页面离开事件监听，保存当前背景图片路径
+            window.addEventListener('beforeunload', function() {
+                try {
+                    // 获取当前body的背景图片
+                    const currentBackground = document.body.style.backgroundImage;
+                    if (currentBackground) {
+                        // 提取图片路径
+                        const match = currentBackground.match(/url\(['"]?([^'"]+)['"]?\)/);
+                        if (match && match[1]) {
+                            // 提取文件名
+                            const imagePath = match[1];
+                            const fileName = imagePath.substring(imagePath.lastIndexOf('/') + 1);
+                            // 保存到localStorage
+                            Store.set('backgroundImage', fileName);
+                            console.log('Background image saved:', fileName);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error saving background image:', error);
+                }
+            });
         }
     </script>
 </body>
