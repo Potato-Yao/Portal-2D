@@ -31,7 +31,7 @@ body {
     --options-gap: clamp(8px, 1.8vh, 16px);
     --opt-height: clamp(32px, 4.2vh, 56px);
     --circle-d: var(--opt-height); /* 圆直径，默认与高度一致 */
-    --gap: clamp(6px, 0.8vw, 12px); /* 圆与文字间距 */
+    /* --gap removed - replaced with 0 where needed */
     --pad-r: clamp(10px, 1.2vw, 18px); /* 右侧留白 */
     --option-min-width: clamp(220px, 22vw, 420px); /* 最小长度（响应式） */
     --option-width: var(--option-min-width); /* 将由 JS 更新为所有选项所需的统一长度 */
@@ -58,7 +58,7 @@ body {
     position: relative;
     height: var(--opt-height);
     width: var(--option-width);
-    padding-left: calc(var(--circle-d) + var(--gap));
+    padding-left: var(--circle-d);
     padding-right: var(--pad-r);
     display: flex;
     align-items: center;
@@ -97,7 +97,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: calc(var(--option-width) - var(--circle-d) - var(--gap) - var(--pad-r));
+    max-width: calc(var(--option-width) - var(--circle-d) - var(--pad-r));
 }
 
 .dialogue-container {
