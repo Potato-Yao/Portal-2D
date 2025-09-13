@@ -12,6 +12,7 @@ class SoundManager {
         // console.log(name)
         if (window.$game.chapterNow === "Outro" && name === null)
             return;
+        // 如果当前有正在播放的音乐，就暂停
         if (this.backgroundMusic)
             this.backgroundMusic.pause();
         if (name) {
