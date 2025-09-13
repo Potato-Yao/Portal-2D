@@ -199,28 +199,7 @@ class DialogManager {
             this.optionsContainer.addEventListener("change", listener);
             this.optionsContainer.style.display = "flex"; // 显示选项容器
 
-            // 统一选项框长度：取最长文本的所需宽度
-            requestAnimationFrame(() => {
-                const boxes = Array.from(this.optionsContainer.querySelectorAll('.dialogue-option-box'));
-                const texts = Array.from(this.optionsContainer.querySelectorAll('.dialogue-option-text'));
-                let max = 0;
-                texts.forEach(t => {
-                    // 需要实际渲染后的 scrollWidth
-                    max = Math.max(max, t.scrollWidth);
-                });
-                // 将 max 限制到最大可用宽度：视口 1/4 宽度以内（避免越界到右侧）
-                const maxAvailable = Math.max(parseInt(getComputedStyle(this.optionsContainer).width) || 0, 0);
-                const circle = parseInt(getComputedStyle(this.optionsContainer).getPropertyValue('--circle-d')) || 44;
-                const gap = parseInt(getComputedStyle(this.optionsContainer).getPropertyValue('--gap')) || 10;
-                const padR = parseInt(getComputedStyle(this.optionsContainer).getPropertyValue('--pad-r')) || 16;
-                const inner = circle + gap + padR;
-                const target = Math.max(max + inner, parseInt(getComputedStyle(this.optionsContainer).getPropertyValue('--option-min-width')) || 260);
-                this.optionsContainer.style.setProperty('--option-width', target + 'px');
-                // 更新每个文本的最大宽度
-                texts.forEach(t => {
-                    t.style.maxWidth = (target - inner) + 'px';
-                });
-            });
+            // 选项宽度由 CSS 响应式变量控制（--option-width），不再在运行时测量和写入。
         });
     }
 

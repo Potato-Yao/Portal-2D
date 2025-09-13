@@ -9,6 +9,11 @@ body {
     height: 100vh;
 }
 
+/* 全局变量：将对话字体大小设为 root 变量，确保所有对话相关容器都能访问 */
+:root {
+    --dialog-font-size: 2vh;
+}
+
 /* 使立绘相对游戏背景容器定位，保证底部对齐背景底部 */
 #game-container {
     position: relative;
@@ -29,12 +34,11 @@ body {
 
     /* 全局参数：间距、尺寸（响应式） */
     --options-gap: clamp(8px, 1.8vh, 16px);
-    --opt-height: clamp(32px, 4.2vh, 56px);
-    --circle-d: var(--opt-height); /* 圆直径，默认与高度一致 */
-    /* --gap removed - replaced with 0 where needed */
-    --pad-r: clamp(10px, 1.2vw, 18px); /* 右侧留白 */
-    --option-min-width: clamp(220px, 22vw, 420px); /* 最小长度（响应式） */
-    --option-width: var(--option-min-width); /* 将由 JS 更新为所有选项所需的统一长度 */
+    /* 固定选项尺寸：宽度 25vw，高度 5vh（可随视窗缩放） */
+    --option-width: 25vw;
+    /* 正文字体大小由对话框内定义的变量控制；选项高度基于正文字体大小 + 0.4vh */
+    --opt-height: calc(var(--dialog-font-size, 2vh) + 2.4vh);
+    --pad-r: clamp(10px, 1.2vw, 18px); /* 右侧留白（仍保留） */
 }
 
 .dialogue-option {
@@ -58,7 +62,8 @@ body {
     position: relative;
     height: var(--opt-height);
     width: var(--option-width);
-    padding-left: var(--circle-d);
+    /* 左侧圆形装饰已移除，使用固定左内边距以保持视觉平衡 */
+    padding-left: calc(var(--opt-height) / 2);
     padding-right: var(--pad-r);
     display: flex;
     align-items: center;
@@ -80,12 +85,12 @@ body {
     content: "";
     position: absolute;
     width: 0; height: 0;
-    left: calc(var(--opt-height) / 2 - 8px); /* 左侧半圆圆心（已考虑响应式变量） */
+    left: calc(var(--opt-height) / 2); /* 左侧圆心位置（基于固定高度） */
     top: 50%;
-    transform: translateY(-50%);
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 12px solid rgba(255,255,255,0.6); /* 默认半透明白 */
+    transform: translateX(-50%) translateY(-50%);
+    border-left: 0.6vh solid transparent;
+    border-right: 0.6vh solid transparent;
+    border-top: 1.0vh solid rgba(255,255,255,0.6); /* 默认半透明白 */
     pointer-events: none;
 }
 .dialogue-option-input:checked + .dialogue-option-box::after {
@@ -97,7 +102,10 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: calc(var(--option-width) - var(--circle-d) - var(--pad-r));
+    transform: translateX(1vh);
+    /* 文本最大宽度 = 选项宽度 - 左内边距 - 右内边距 */
+    max-width: calc(var(--option-width) - (var(--opt-height) / 2) - var(--pad-r));
+    font-size: var(--dialog-font-size);
 }
 
 .dialogue-container {
@@ -114,27 +122,6 @@ body {
     font-family: "Noto Sans SC", sans-serif;
     pointer-events: none; /* 让容器不阻塞事件，内部元素可自行控制 */
     height: 30vh;
-}
-
-/* 角色信息容器 (名字 + 头像) */
-.character-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* 角色名 (已修改) */
-.character-name {
-    color: black;
-    font-size: 2.25vh;
-    position: absolute;
-    left: 25%;
-    transform: translateX(-50%);
-    z-index: 1;
-    font-weight: 900;
-    width: 10rem;
-    text-align: center;
-    margin-bottom: 0.5rem; /* 名字和头像框之间的距离 */
 }
 
 .character-name > span {
@@ -164,7 +151,9 @@ body {
     box-sizing: border-box;
     z-index: 20; /* 高于立绘，确保立绘位于背景与对话框之间 */
     text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
-    font-size: 2vh;
+    /* 正文字体大小作为变量，便于统一调整；默认 2vh */
+    --dialog-font-size: 2vh;
+    font-size: var(--dialog-font-size);
     display: flex;
     flex-direction: column; /* 纵向布局：名字、分割线、正文 */
     align-items: center; /* 居中内部内容 */
@@ -192,6 +181,8 @@ body {
 
 .dialogue-box p {
     margin: 0; /* 与分隔线紧挨 */
+    /* 正文字体使用对话框变量 */
+    font-size: var(--dialog-font-size);
     word-break: break-word;
     max-width: 60vw; /* 正文最大宽度为页面宽度的 2/3 */
     color: #fff;
@@ -227,7 +218,8 @@ body {
     position: static;
     color: #ffc300; /* 金色 */
     font-weight: 800;
-    font-size: 2.5vh;
+    /* 名字大小 = 正文字体大小 + 0.5vh */
+    font-size: calc(var(--dialog-font-size) + 0.5vh);
     margin: 0; /* 与上边界紧挨，间距由容器内边距控制 */
     text-align: center; /* 居中显示 */
     /* 覆盖全局.character-name带来的定位与宽度影响，确保真正居中 */
@@ -256,12 +248,12 @@ body {
 /* 单行正文：分隔线宽度跟随内容宽度；多行正文：固定为最大宽度 */
 .dialogue-content {
     display: inline-block;
-    max-width: 60vw;
+    max-width: var(--option-width);
     text-align: center;
 }
 .dialogue-content.single-line + .dialogue-sep {
     width: fit-content;
 }
 .dialogue-content.multi-line + .dialogue-sep {
-    width: 60vw;
+    width: var(--option-width);
 }
