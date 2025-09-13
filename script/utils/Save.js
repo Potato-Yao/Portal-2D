@@ -4,6 +4,13 @@ class Save {
     }
 
     show() {
+        // 检查当前章节是否为Outro
+        if (window.$game && window.$game.chapterNow === "Outro") {
+            // 使用alert显示提示信息
+            alert("已到达结局，无需存档");
+            return;
+        }
+        
         this.build();
         this.ctx.classList.remove("hidden");
     }
