@@ -131,8 +131,10 @@ class Game {
         } else if (filename === "day4jump0") {
             if (window.$gameState === 1) {
                 filename = "end1.json";
+                this.ending = 1; // 设置ending属性为1，解锁end1结局成就
             } else {
                 filename = "end5.json";
+                this.ending = 5; // 设置ending属性为5，解锁end5结局成就
             }
         } else if (filename === "day4jump1") {
             if (window.$gameState === 1) {
@@ -141,11 +143,27 @@ class Game {
                 filename = "day4B.json";
             }
         }
+        // 检查是否是结局文件，如果是，设置对应的ending属性
+        const endingMatch = filename.match(/^end(\d+)\.json$/);
+        if (endingMatch) {
+            this.ending = parseInt(endingMatch[1]);
+            // 加载结局文件时设置chapterNow为"Outro"
+            this.chapterNow = "Outro";
+        } else {
+            // 非结局文件使用原有的设置
+            this.chapterNow = filename.split('.')[0];
+        }
         await this.eventManager.loadFromURL('./assets/stages/events/' + filename);
         this.loaded = true;
+        
+        // 如果是结局文件，调用achievementManager.update()检查成就
+        if (endingMatch) {
+            this.achievementManager.update();
+        }
         // this.view = new PortalView(this.map, this.viewData);
 
-        this.chapterNow = filename.split('.')[0];
+        // 已在上面根据是否为结局文件设置了chapterNow，移除重复设置
+        // this.chapterNow = filename.split('.')[0];
         
         // 在每天开始时自动存档
         if (!window.$isAutosaving) {
