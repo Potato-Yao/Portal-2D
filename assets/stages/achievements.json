@@ -41,6 +41,17 @@ window.$game.dataManager.resolve(
         "title": "物是人非",
         "condition": "达到结局7",
         "desc": ""
+    },
+    {
+        "type": 0,
+        "title": "幸福的梦境",
+        "condition": "达到结局8",
+        "desc": ""
+    },
+    {
+        "type": 0,
+        "title": "勇气的代价",
+        "condition": "达到结局9",
+        "desc": ""
     }
-]
-)
+])
