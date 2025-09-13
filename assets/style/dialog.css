@@ -72,7 +72,7 @@ body {
 
     /* 渐变边框 + 渐变填充：从左到右透明度逐渐增大 */
     background:
-      linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0)) border-box,
+      linear-gradient(to right, rgba(255,255,255,0.3), rgba(255,255,255,0)) border-box,
       linear-gradient(to right, rgba(20,20,20,0.7), rgba(20,20,20,0.1)) padding-box;
     border: 1.5px solid transparent;
 }
@@ -93,7 +93,7 @@ body {
     border-top: 1.0vh solid rgba(255,255,255,0.6); /* 默认半透明白 */
     pointer-events: none;
 }
-.dialogue-option-input:checked + .dialogue-option-box::after {
+.dialogue-option-input:hover + .dialogue-option-box::after {
     border-top-color: #ffffff; /* 选中时更亮 */
 }
 
