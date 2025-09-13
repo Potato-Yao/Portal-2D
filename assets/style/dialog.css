@@ -18,21 +18,22 @@ body {
 /* ======================= 对话选项样式 ======================= */
 #dialogue-options {
     position: fixed; /* 相对视口，便于对齐三等分线与底部对话框 */
-    left: 75vw; /* 左边界对齐页面 3/4 竖直线 */
-    bottom: calc(220px + 16px); /* 位于对话框之上，保留与对话框之间的间距 */
+    left: 66.6667vw; /* 左边界对齐页面三等分线中靠右那条（2/3 处） */
+    bottom: calc(30vh + var(--options-gap)); /* 紧挨对话框上方，间隔与选项间距相等 */
     display: none; /* 默认隐藏，显示由 JS 控制 */
     flex-direction: column;
     align-items: flex-start; /* 左对齐 */
-    gap: 12px; /* 选项框之间的间距 */
+    gap: var(--options-gap); /* 选项框之间的间距 */
     width: max-content; /* 随内容宽度 */
     z-index: 25; /* 在对话框之上显示 */
 
-    /* 可调参数：统一高度、圆直径、间距、右侧内边距、最小宽度 */
-    --opt-height: 44px;
-    --circle-d: 44px; /* 圆直径，默认与高度一致 */
-    --gap: 0px; /* 圆与文字间距 */
-    --pad-r: 16px; /* 右侧留白 */
-    --option-min-width: 260px; /* 最小长度 */
+    /* 全局参数：间距、尺寸（响应式） */
+    --options-gap: clamp(8px, 1.8vh, 16px);
+    --opt-height: clamp(32px, 4.2vh, 56px);
+    --circle-d: var(--opt-height); /* 圆直径，默认与高度一致 */
+    --gap: clamp(6px, 0.8vw, 12px); /* 圆与文字间距 */
+    --pad-r: clamp(10px, 1.2vw, 18px); /* 右侧留白 */
+    --option-min-width: clamp(220px, 22vw, 420px); /* 最小长度（响应式） */
     --option-width: var(--option-min-width); /* 将由 JS 更新为所有选项所需的统一长度 */
 }
 
@@ -79,7 +80,7 @@ body {
     content: "";
     position: absolute;
     width: 0; height: 0;
-    left: calc(var(--opt-height) / 2 - 8px); /* 左侧半圆圆心 */
+    left: calc(var(--opt-height) / 2 - 8px); /* 左侧半圆圆心（已考虑响应式变量） */
     top: 50%;
     transform: translateY(-50%);
     border-left: 8px solid transparent;
