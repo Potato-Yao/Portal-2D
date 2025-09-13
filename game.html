@@ -169,11 +169,12 @@
     src="script/Managers/EventManager.js"
 ></script>
 <script
-    type="text/javascript"
-    src="script/Managers/AchievementManager.js"
-></script>
+        type="text/javascript"
+        src="script/Managers/AchievementManager.js"
+    ></script>
+    <script type="text/javascript" src="script/utils/BackgroundChanger.js"></script>
 
-<script type="text/javascript" src="script/Events/Event.js"></script>
+    <script type="text/javascript" src="script/Events/Event.js"></script>
 <script
     type="text/javascript"
     src="script/Events/EventList.js"
@@ -219,6 +220,11 @@
 
         if (!Auth.isAuthenticated()) {
             Auth.toLogin();
+        }
+        
+        // 页面加载完成后设置背景图片
+        if (window.BackgroundChanger) {
+            BackgroundChanger.setBackground('./assets/imgs/');
         }
 
         let toLoad = Store.get("toLoad") ?? undefined;
