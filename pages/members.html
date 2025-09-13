@@ -20,6 +20,18 @@
             </nav>
         </header>
 
+        <script type="text/javascript" src="../script/utils/Store.js"></script>
+        <script type="text/javascript" src="../script/Managers/AchievementManager.js"></script>
+        <script type="text/javascript" src="../script/utils/BackgroundChanger.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // 页面加载完成后设置背景图片
+                if (window.BackgroundChanger) {
+                    BackgroundChanger.setBackground('../assets/imgs/');
+                }
+            });
+        </script>
+
         <main class="member-container">
             <div class="member-gallery">
                 <div class="member-card" id="czf">
