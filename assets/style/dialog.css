@@ -42,19 +42,23 @@ body {
     background: black;
 }
 
-/* 头像框 (新增) */
+/* 名字矩形框（自适应宽度） */
 .avatar-box {
-    width: 8vh;
-    height: 8vh;
-    background-image: url("../avatar_box.svg"); /* 注意图片路径 */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    justify-content: center;
+    display: inline-flex; /* 让容器宽度随内容收缩 */
     align-items: center;
-    padding: 1.25vh;
+    justify-content: center;
     box-sizing: border-box;
+    padding: 0.6vh 1.2vh; /* 内边距：与名字之间留白 */
+    background: rgba(255, 255, 255, 0.95);
+    border: 0.25vh solid rgba(0, 0, 0, 0.85);
+    border-radius: 0.8vh;
+    box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.15);
+    white-space: nowrap; /* 名字不换行 */
+    width: auto; /* 自适应内容 */
+    height: auto;
+    max-width: 40vw; /* 防止极长名字溢出 */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #avatar-image {
@@ -129,8 +133,11 @@ body {
     left: auto;
     transform: none;
     z-index: 1;
-    width: 100%;
     margin: 0;
+    width: auto; /* 让内部名字宽度由内容决定 */
+    white-space: nowrap; /* 单行显示 */
+    overflow: hidden; /* 超出隐藏 */
+    text-overflow: ellipsis; /* 超出显示省略号 */
     text-align: center;
     font-size: 2vh; /* 与正文相近，保持协调 */
     font-weight: 500;

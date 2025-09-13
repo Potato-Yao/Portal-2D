@@ -275,7 +275,7 @@ class DialogManager {
             let name = (texts[0] || "").trim();
             // 设置名字文本并根据是否为空显示/隐藏头像框
             this.name.textContent = name;
-            if (this.avatarBox) this.avatarBox.style.display = name ? "flex" : "none";
+            if (this.avatarBox) this.avatarBox.style.display = name ? "inline-flex" : "none";
 
             if (name === "妈妈") {
                 this.characterImg.src = "./assets/imgs/mom.png";
