@@ -1,6 +1,10 @@
 window.$game.dataManager.resolve({
     "events": [
         {
+            "type": "playBGM",
+            "name": "5"
+        },
+        {
             "type": "showImg",
             "url": "./assets/imgs/bedroom_light.jpg"
         },
@@ -95,6 +99,10 @@ window.$game.dataManager.resolve({
                     "text": " （到了夜晚，猫猫辗转反侧，但还是紧紧地闭上了眼睛...）"
                 }
             ]
+        },
+        {
+            "type": "playBGM",
+            "name": "4"
         },
         {
             "type": "showImg",

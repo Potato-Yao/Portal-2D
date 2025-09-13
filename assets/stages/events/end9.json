@@ -1,6 +1,10 @@
 window.$game.dataManager.resolve({
     "events": [
         {
+            "type": "playBGM",
+            "name": "5"
+        },
+        {
             "type": "showImg",
             "url": "./assets/imgs/ocean_dark.jpg"
         },
@@ -59,6 +63,10 @@ window.$game.dataManager.resolve({
                     "text": " （就在猫猫跑了不知道多久以后，突然回到了家中）"
                 }
             ]
+        },
+        {
+            "type": "playBGM",
+            "name": "6"
         },
         {
             "type": "showImg",

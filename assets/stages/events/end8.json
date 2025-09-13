@@ -1,6 +1,10 @@
 window.$game.dataManager.resolve({
     "events": [
         {
+            "type": "playBGM",
+            "name": "5"
+        },
+        {
             "type": "showImg",
             "url": "./assets/imgs/canteen_light.jpg"
         },

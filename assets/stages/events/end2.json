@@ -1,6 +1,10 @@
 window.$game.dataManager.resolve({
     "events": [
         {
+            "type": "playBGM",
+            "name": "5"
+        },
+        {
             "type": "showImg",
             "url": "./assets/imgs/ocean_dark.jpg"
         },

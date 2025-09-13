@@ -13,6 +13,10 @@ window.$game.dataManager.resolve({
             ]
         },
         {
+            "type": "playBGM",
+            "name": "1"
+        },
+        {
             "type": "showImg",
             "url": "./assets/imgs/sittingroom_light.jpg"
         },

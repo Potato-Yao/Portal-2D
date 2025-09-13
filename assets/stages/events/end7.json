@@ -2,6 +2,10 @@ window.$game.dataManager.resolve(
 {
     "events": [
         {
+            "type": "playBGM",
+            "name": "5"
+        },
+        {
             "type": "showImg",
             "url": "./assets/imgs/bedroom_dark.jpg"
         },

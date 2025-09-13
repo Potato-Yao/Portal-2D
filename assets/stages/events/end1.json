@@ -1,6 +1,10 @@
 window.$game.dataManager.resolve({
     "events": [
         {
+            "type": "playBGM",
+            "name": "2"
+        },
+        {
             "type": "showImg",
             "url": "./assets/imgs/sittingroom_light.jpg"
         },

@@ -5,6 +5,10 @@ window.$game.dataManager.resolve({
             "day": "2"
         },
         {
+            "type": "playBGM",
+            "name": "1"
+        },
+        {
             "type": "showImg",
             "url": "./assets/imgs/bedroom_light.jpg"
         },
