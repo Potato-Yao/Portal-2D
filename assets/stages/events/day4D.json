@@ -60,6 +60,11 @@ window.$game.dataManager.resolve({
         },
         {
             "type": "dialog",
+            "texts": [
+                {
+                    "text": " （要进入黑洞吗？）"
+                }
+            ],
             "options": [
                 {
                     "text": "进入黑洞",

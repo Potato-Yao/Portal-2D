@@ -175,6 +175,11 @@ window.$game.dataManager.resolve({
         },
         {
             "type": "dialog",
+            "texts": [
+                {
+                    "text": " "
+                }
+            ],
             "options": [
                 {
                     "text": "想",

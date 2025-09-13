@@ -122,10 +122,7 @@ window.$game.dataManager.resolve({
                 {
                     "text": "？？？ 猫猫，如果真实的世界并非你想的那般美好，你会爱那个世界吗？"
                 }
-            ]
-        },
-        {
-            "type": "dialog",
+            ],
             "options": [
                 { "text": "爱", "url": "day4B" },
                 { "text": "不爱", "url": "day4B"}
