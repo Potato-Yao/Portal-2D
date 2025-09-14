@@ -131,6 +131,9 @@
             window.$store = new Store();
             Store.remove("toLoad");
 
+            // 从localStorage读取胜利次数，如果不存在则初始化为0
+            window.$gameStateSum = parseInt(Store.get("winCount")) || 0;
+
             window.$game = {
                 dataManager: new DataManager(),
             }
