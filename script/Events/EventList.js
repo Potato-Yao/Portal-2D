@@ -69,18 +69,6 @@ const createEvent = (id, event) => {
 
         return e;
     }
-    // Wire
-    if (event.type === 2) {
-        return new Wire(
-            id,
-            event.type,
-            new Vector(event.position.x, event.position.y),
-            new Vector(event.size.x, event.size.y),
-            event.affect,
-            event.predir,
-            event.nxtdir,
-        );
-    }
     // ViewSwitch
     if (event.type === 3) {
         return new ViewSwitch(
