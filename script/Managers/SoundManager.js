@@ -39,17 +39,6 @@ class SoundManager {
 
 
     async load() {
-        this.sounds = {};
-        this.soundsURL = await window.$game.dataManager.loadJSON("./assets/audios/Sounds.json");
-        Object.keys(this.soundsURL).forEach((kind) => {
-            this.sounds[ kind ] = {};
-            Object.keys(this.soundsURL[ kind ]).forEach((id) => {
-                const audio = new Audio(this.soundsURL[ kind ][ id ]);
-                audio.loop = false;
-                this.sounds[ kind ][ id ] = audio;
-            });
-        });
-
         this.bgms = {};
         this.bgmsURL = await window.$game.dataManager.loadJSON("./assets/audios/BGMs.json");
         Object.keys(this.bgmsURL).forEach((id) => {
