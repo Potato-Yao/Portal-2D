@@ -102,16 +102,6 @@ class EventManager {
                     }
                     await window.$game.switchView(window.$choice);
                     return;
-                // case "deathSelect":
-                //     await window.$game.deadScreen.show().then(async () => {
-                //         // retry
-                //         await window.$game.restart();
-                //     }, async () => {
-                //         // cancel
-                //         Store.set("ending", "bad")
-                //         await window.$game.gameEnd();
-                //     });
-                //     break;
                 case "gameEnd":
                     await window.$game.gameEnd();
                     break;

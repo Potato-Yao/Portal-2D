@@ -94,8 +94,6 @@ class Game {
         this.saveBtn = document.querySelector('#control-save');
         if (this.saveBtn) this.saveBtn.addEventListener('click', () => this.savePopup.show());
 
-        // this.deadScreen = new DeadScreen();
-
         this.chapterNow = 'day1';
         window.$chatperState = "null";
 
