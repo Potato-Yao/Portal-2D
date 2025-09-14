@@ -59,7 +59,6 @@ class Game {
 
         this.savePopup = new Save();
         this.loadPopup = new Load((data) => {
-            Store.set("camera", JSON.stringify(data.camera));
             Store.set("statistics", JSON.stringify(data.statistics ?? {}));
             Object.keys(data.statistics ?? {}).forEach((key) => {
                 window.$game.statistics[key] = data.statistics[key];
