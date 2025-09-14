@@ -314,8 +314,24 @@
 5. ## 设计文档（此部分尚未完成，有待后续填充）
 - ### <mark>站点地图  
 ![站点图.png](https://cdn.jsdelivr.net/gh/Potato-Yao/ExitlessDay@main/站点图.png) 
-- ### 线框图
-- ### 设计规范（各个界面）
+- ### <mark>线框图
+登录页面：
+![登录页面.png](https://cdn.jsdelivr.net/gh/Potato-Yao/ExitlessDay@main/线框图/png/登录.png)  
+读取存档页面:
+![读取存档页面.png](https://cdn.jsdelivr.net/gh/Potato-Yao/ExitlessDay@main/线框图/png/读取存档.png)   
+开始页面:
+![开始页面.png](https://cdn.jsdelivr.net/gh/Potato-Yao/ExitlessDay@main/线框图/png/开始页面.png)  
+注册页面:
+![注册页面.png](https://cdn.jsdelivr.net/gh/Potato-Yao/ExitlessDay@main/线框图/png/注册.png)
+- ### <mark>设计规范（各个界面）  
+登录页面：
+![登录页面.png](https://cdn.jsdelivr.net/gh/Potato-Yao/ExitlessDay@main/效果图/登录.png)  
+读取存档页面:
+![读取存档页面.png](https://cdn.jsdelivr.net/gh/Potato-Yao/ExitlessDay@main/效果图/读取存档.png)   
+开始页面:
+![开始页面.png](https://cdn.jsdelivr.net/gh/Potato-Yao/ExitlessDay@main/效果图/开始界面.png)  
+注册页面:
+![注册页面.png](https://cdn.jsdelivr.net/gh/Potato-Yao/ExitlessDay@main/效果图/注册.png)
 
 
 
