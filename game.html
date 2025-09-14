@@ -221,12 +221,23 @@
             Auth.toLogin();
         }
 
+        // 从localStorage读取胜利次数，如果不存在则初始化为0
+        window.$gameStateSum = parseInt(Store.get("winCount")) || 0;
+
         let toLoad = Store.get("toLoad") ?? undefined;
         if (toLoad) {
             toLoad = JSON.parse(toLoad);
             Store.remove("toLoad");
-            window.$gameStateSum += toLoad.state;
+            Store.set("parfait", JSON.stringify(toLoad.parfait));
+            
+            // 更新胜利次数并保存到localStorage
+            if (toLoad.state === 1) {
+                window.$gameStateSum += 1;
+                Store.set("winCount", window.$gameStateSum.toString());
+            }
             window.$gameState = toLoad.state;
+        } else {
+            Store.remove("parfait");
         }
         window.$game = new Game();
         window.$game.init(toLoad?.url).then(() => {
