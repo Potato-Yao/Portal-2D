@@ -58,6 +58,7 @@
 
 <body style="background-color: black"></body>
 <span class="fps-count">FPS: <span id="fps"></span></span>
+    <span id="win-count" style="position: fixed; top: 20px; right: 20px; z-index: 114514; color: white; font-size: 16px; font-weight: bold;">胜利次数: 0</span>
 <div id="game">
     <div id="game-container">
         <canvas
@@ -221,23 +222,31 @@
             Auth.toLogin();
         }
 
-        // 从localStorage读取胜利次数，如果不存在则初始化为0
-        window.$gameStateSum = parseInt(Store.get("winCount")) || 0;
-
         let toLoad = Store.get("toLoad") ?? undefined;
+        let stateValue = 0;
+        
         if (toLoad) {
             toLoad = JSON.parse(toLoad);
             Store.remove("toLoad");
-            Store.set("parfait", JSON.stringify(toLoad.parfait));
-            
-            // 更新胜利次数并保存到localStorage
-            if (toLoad.state === 1) {
-                window.$gameStateSum += 1;
-                Store.set("winCount", window.$gameStateSum.toString());
-            }
+            // 确保state是数字类型
+            stateValue = Number(toLoad.state) || 0;
             window.$gameState = toLoad.state;
-        } else {
-            Store.remove("parfait");
+        }
+
+        // 从localStorage读取胜利次数，如果不存在则初始化为0
+        window.$gameStateSum = parseInt(Store.get("gameStateSum")) || 0;
+        
+        // 如果有新的state值，才增加胜利次数
+        if (stateValue > 0) {
+            window.$gameStateSum += stateValue;
+            // 将更新后的胜利次数保存到localStorage
+            Store.set("gameStateSum", window.$gameStateSum.toString());
+        }
+
+        // 更新胜利次数显示
+        const winCountElement = document.getElementById('win-count');
+        if (winCountElement) {
+            winCountElement.textContent = `胜利次数: ${window.$gameStateSum / 2}`;
         }
         window.$game = new Game();
         window.$game.init(toLoad?.url).then(() => {
