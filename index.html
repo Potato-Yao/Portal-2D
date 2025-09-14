@@ -131,9 +131,6 @@
             window.$store = new Store();
             Store.remove("toLoad");
 
-            // 从localStorage读取胜利次数，如果不存在则初始化为0
-            window.$gameStateSum = parseInt(Store.get("winCount")) || 0;
-
             window.$game = {
                 dataManager: new DataManager(),
             }
@@ -202,6 +199,8 @@
                 fadeOut();
                 setTimeout(() => {
                     console.log(window.$store)
+                    // 开始新游戏时，清除localStorage中的gameStateSum，确保重新计数
+                    localStorage.removeItem('portal-2d-gameStateSum');
                     window.location.href = `./game.html?${window.$store.encode()}`;
                 }, GAPTIME);
             });
