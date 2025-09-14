@@ -104,16 +104,6 @@ const createEvent = (id, event) => {
         window.$game.map.superEdges.push(e.block);
         return e;
     }
-    if (event.type === 6 || event.type === 7) {
-        return new CameraEvent(
-            id,
-            event.type ^ event.type & 1,
-            new Vector(event.position.x, event.position.y),
-            new Vector(event.size.x, event.size.y + 22),
-            event.affect,
-            event.type - 6
-        );
-    }
     return new GameEvent(
         id,
         event.type,
