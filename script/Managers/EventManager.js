@@ -88,7 +88,7 @@ class EventManager {
                         let url = event.url.split("-");
                         if (url[0] === "autoselect") {
                             if (url[1] === "day3") {
-                                if (window.$gameStateSum >= 2) {
+                                if (window.$gameStateSum >= 4) {
                                     // window.location.href = "./assets/games/game/index.html?json=第四关map.json";
                                     window.$choice = "day3A.json";
                                 } else {
