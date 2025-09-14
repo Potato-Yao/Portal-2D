@@ -124,8 +124,8 @@ window.$game.dataManager.resolve({
                 }
             ],
             "options": [
-                { "text": "爱", "url": "day4B" },
-                { "text": "不爱", "url": "day4B"}
+                { "text": "爱", "url": "day4B1" },
+                { "text": "不爱", "url": "day4B2"}
             ]
         },
         {
