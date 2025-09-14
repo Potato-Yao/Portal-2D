@@ -1,8 +1,8 @@
 class SoundManager {
     constructor() {
         this.bgmsFormal = [
-            new Audio("./assets/audios/bgms/村上純 - かえり道.mp3"),
-            new Audio("./assets/audios/bgms/阿保剛 - Christina I.mp3"),
+            new Audio("./assets/audios/bgms/1.mp3"),
+            new Audio("./assets/audios/bgms/2.mp3"),
         ];
         this.backgroundMusic = null;
         this.init();
@@ -63,27 +63,27 @@ class SoundManager {
         /**
          * @type {HTMLAudioElement}
          */
-        // const sound = this.sounds[ kind ] && this.sounds[ kind ][ id ];
-        // if (sound) {
-        //     if (!sound.paused) {
-        //         if (kind == "walk")
-        //             return;
-        //         /**
-        //          * @type {HTMLAudioElement}
-        //          */
-        //         const copy = sound.cloneNode();
-        //         copy.currentTime = 0;
-        //         copy.play().catch(error => {
-        //             console.error(`Error playing sound: ${kind + id}`, error);
-        //         });
-        //     }
-        //     else {
-        //         // sound.play().catch(error => {
-        //         //     console.error(`Error playing sound: ${kind + id}`, error);
-        //         // });
-        //     }
-        // } else {
-        //     console.warn(`Sound ${id} not found in AudioManager.`);
-        // }
+        const sound = this.sounds[ kind ] && this.sounds[ kind ][ id ];
+        if (sound) {
+            if (!sound.paused) {
+                if (kind == "walk")
+                    return;
+                /**
+                 * @type {HTMLAudioElement}
+                 */
+                const copy = sound.cloneNode();
+                copy.currentTime = 0;
+                copy.play().catch(error => {
+                    console.error(`Error playing sound: ${kind + id}`, error);
+                });
+            }
+            else {
+                // sound.play().catch(error => {
+                //     console.error(`Error playing sound: ${kind + id}`, error);
+                // });
+            }
+        } else {
+            console.warn(`Sound ${id} not found in AudioManager.`);
+        }
     }
 }
