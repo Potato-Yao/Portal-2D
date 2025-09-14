@@ -3,7 +3,7 @@ window.$game.dataManager.resolve(
     "events": [
         {
             "type": "playBGM",
-            "name": "5"
+            "name": "2"
         },
         {
             "type": "showImg",
