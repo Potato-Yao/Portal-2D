@@ -55,18 +55,10 @@ class Game {
         this.isPaused = false;
 
         this.store = new Store();
-        // this.statistics = {
-        //     portal: 0,
-        //     bullet: 0,
-        //     restart: 0,
-        //     jump: 0,
-        //     jumpTime: 0,
-        // };
         window.$store = this.store;
 
         this.savePopup = new Save();
         this.loadPopup = new Load((data) => {
-            Store.set("parfait", JSON.stringify(data.parfait));
             Store.set("camera", JSON.stringify(data.camera));
             Store.set("statistics", JSON.stringify(data.statistics ?? {}));
             Object.keys(data.statistics ?? {}).forEach((key) => {
